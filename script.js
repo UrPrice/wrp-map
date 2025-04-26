@@ -30,14 +30,70 @@ document.addEventListener('DOMContentLoaded', (event) => {
         popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
     });
 
+    const contextMenu = document.getElementById('context-menu');
+    const copyNotification = document.getElementById('copy-notification');
+    let clickLatLng = null;
+
+    // Обработчик события правого клика
+    map.on('contextmenu', function(event) {
+        clickLatLng = event.latlng;
+        showContextMenu(event.containerPoint.x, event.containerPoint.y);
+        event.originalEvent.preventDefault();
+    });
+
+    // Функция для показа контекстного меню
+    function showContextMenu(x, y) {
+        contextMenu.style.left = `${x}px`;
+        contextMenu.style.top = `${y}px`;
+        contextMenu.classList.remove('hidden');
+    }
+
+    document.getElementById('copy-coordinates').addEventListener('click', function(event) {
+        if (clickLatLng) {
+            const { lat, lng } = clickLatLng;
+            const y = Math.floor(lat);
+            const x = Math.floor(lng);
+            const coordinates = `${x} , ${y}`;
+    
+            navigator.clipboard.writeText(coordinates)
+                .then(() => {
+                    showCopyNotification(event.clientX, event.clientY); // Передача корректных координат
+                })
+                .catch(err => {
+                    console.error('Ошибка при копировании: ', err);
+                });
+            
+            contextMenu.classList.add('hidden'); // Скрыть контекстное меню
+        }
+    });
+    
+    // Обновленная функция для показа уведомления
+    function showCopyNotification(x, y) {
+        copyNotification.style.left = `${x - 70}px`; // немного сдвиг, чтобы не перекрывать курсор
+        copyNotification.style.top = `${y - 30}px`; // немного сдвиг, чтобы не перекрывать курсор
+        copyNotification.style.transform = 'translate(0, 0)'; // убрать центрирование
+        copyNotification.classList.remove('hidden');
+    
+        setTimeout(() => {
+            copyNotification.classList.add('hidden');
+        }, 500);
+    }
+    
+
+    // Скрыть контекстное меню, если пользователь кликает в другом месте
+    map.on('click', function() {
+        contextMenu.classList.add('hidden');
+    });
+
+
     // Функция для добавления маркера на карту
-    function addMarker(latitude, longitude, popupText) {
+    function addMarker(longitude, latitude, popupText) {
         const marker = L.marker([latitude, longitude],{ icon: alchemyIcon }).addTo(map);
         if (popupText) {
             marker.bindPopup(popupText);
         }
     }
 
-    addMarker(1955, 1733,  '<b>Трейдер | Травница</b><br>Описание<img src="images/iconAlchemist.png"></img>');
+    addMarker(1733, 1955, '<b>Трейдер | Травница</b><br>Описание<img src="images/iconAlchemist.png"></img>');
 
 });

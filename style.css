@@ -3,11 +3,44 @@ html, body {
     margin: 0;
     padding: 0;
     cursor: url('images/playerPoint.png'), auto;
+    background-color: rgb(20, 20, 20);
 }
 
 #map {
     width: 100vw;
     height: 100vh;
+    background-color: rgb(20, 20, 20);
     cursor: url('images/playerPoint.png'), auto;
 }
 
+ul.hidden, #copy-notification.hidden {
+    display: none;
+}
+
+#context-menu {
+    position: absolute;
+    background-color: white;
+    list-style: none;
+    padding: 5px 0;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px #aaa;
+    z-index: 1000;
+}
+
+#context-menu li {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#context-menu li:hover {
+    background-color: #eee;
+}
+
+#copy-notification {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 1000;
+}

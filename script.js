@@ -78,6 +78,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
         contextMenu.classList.add('hidden');
     });
 
+    
+    const imageLayer = L.imageOverlay('mapImage/mainMap.png', bounds).addTo(map);
+    map.fitBounds(bounds);
+
+    document.getElementById('opacity-slider').addEventListener('input', function(event) {
+        const opacityValue = event.target.value / 100;
+        imageLayer.getElement().style.filter = `brightness(${1 - opacityValue})`;
+    });
+
+
+    // ## Метки
+
+
     // добавление алхимика
 
     const alchemyIcon = L.icon({

@@ -17,15 +17,24 @@
     <script src="leaflet.js"></script>
     <script src="script.js"></script>
 
-    <div id="coordinates" style="position: fixed; bottom: 10px; left: 10px; background-color: white; padding: 5px; border-radius: 3px; z-index: 1000;">
+    <div id="coordinates" style="position: fixed; bottom: 10px; left: 10px; background-color: rgba(225, 225, 225, 0.5); padding: 5px; border-radius: 3px; z-index: 1000;">
         x: 0, y: 0
     </div>
 
+    <div id="githublink" style="position: fixed; top: 10px; right: 10px; background-color: rgba(225, 225, 225, 0.5); padding: 5px; border-radius: 3px; z-index: 1000;">
+        <a href="https://github.com/UrPrice/wrp-map" style="text-decoration: none; color: inherit;">UrPrice <img src="images/iconGitHub.png" height="16px" width="16px"></img></a>
+    </div>
+    
     <ul id="context-menu" class="hidden">
         <li id="copy-coordinates">Скопировать координаты</li>
     </ul>
 
     <div id="copy-notification" class="hidden">Координаты скопированы</div>
+
+    <div id="slider-container">
+        <input type="range" min="0" max="100" value="0" id="opacity-slider">
+    </div>
+
 
 </body>
 </html>

@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Функция для показа контекстного меню
     function showContextMenu(x, y) {
-        contextMenu.style.left = `${x+25}px`;
-        contextMenu.style.top = `${y-25}px`;
+        contextMenu.style.left = `${x+10}px`;
+        contextMenu.style.top = `${y-35}px`;
         contextMenu.classList.remove('hidden');
     }
 
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const { lat, lng } = clickLatLng;
             const y = Math.floor(lat);
             const x = Math.floor(lng);
-            const coordinates = `${x+2} , ${y-3}`;
+            const coordinates = `${x} , ${y}`;
     
             navigator.clipboard.writeText(coordinates)
                 .then(() => {
@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     // Обновленная функция для показа уведомления
     function showCopyNotification(x, y) {
-        copyNotification.style.left = `${x - 70}px`; // немного сдвиг, чтобы не перекрывать курсор
-        copyNotification.style.top = `${y - 30}px`; // немного сдвиг, чтобы не перекрывать курсор
+        copyNotification.style.left = `${x - 110}px`; // немного сдвиг, чтобы не перекрывать курсор
+        copyNotification.style.top = `${y - 50}px`; // немного сдвиг, чтобы не перекрывать курсор
         copyNotification.style.transform = 'translate(0, 0)'; // убрать центрирование
         copyNotification.classList.remove('hidden');
     
@@ -78,18 +78,76 @@ document.addEventListener('DOMContentLoaded', (event) => {
         contextMenu.classList.add('hidden');
     });
 
-    
-    const imageLayer = L.imageOverlay('mapImage/mainMap.png', bounds).addTo(map);
-    map.fitBounds(bounds);
 
-    document.getElementById('opacity-slider').addEventListener('input', function(event) {
-        const opacityValue = event.target.value / 100;
-        imageLayer.getElement().style.filter = `brightness(${1 - opacityValue})`;
+
+    // ## Квесты
+
+    const sidebar = document.getElementById('quest-sidebar');
+    const toggleButton = document.getElementById('sidebar-toggle');
+    const questItems = document.getElementsByClassName('quest-item');
+    const questInfo = document.getElementById('quest-info');
+
+    toggleButton.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
     });
 
+    for (let item of questItems) {
+        item.addEventListener('click', () => {
+            const questId = item.dataset.questId;
+            displayQuestInfo(questId);
+        });
+    }
+
+    function displayQuestInfo(questId) {
+        const questData = {
+            1: {
+                name: "Опасная гладкость",
+                level: 40,
+                requirements: "Принести 2 бритвы",
+                rewards: "30 опыта"
+            },
+            2: {
+                name: "Опасная гладкость",
+                level: 40,
+                requirements: "Принести 2 бритвы",
+                rewards: "30 опыта"
+            },
+            3: {
+                name: "Опасная гладкость",
+                level: 40,
+                requirements: "Принести 2 бритвы",
+                rewards: "30 опыта"
+            },
+        };
+
+        const info = questData[questId];
+        
+        if (info) {
+            questInfo.innerHTML = `
+                <h3>${info.name}</h3>
+                <p><strong>Макс. Уровень:</strong> ${info.level}</p>
+                <p><strong>Требуется:</strong> ${info.requirements}</p>
+                <p><strong>Награда:</strong> ${info.rewards}</p>
+            `;
+            questInfo.classList.remove('hidden');
+        }
+    }
 
     // ## Метки
 
+    // Создаем массивы для хранения меток
+    const essenceStones = [];
+    const alchemists = [];
+    const hunters = [];
+    const armorMen = [];
+    const weaponMen = [];
+    const boards = [];
+    const recipes = [];
+    const dangerZones = [];
+    const caves = [];
+    const granizons = [];
+    const quests = [];
+    const traders = [];
 
     // добавление алхимика
 
@@ -105,6 +163,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (popupText) {
             marker.bindPopup(popupText);
         }
+        alchemists.push(marker);
     }
 
     // добавление бронника
@@ -121,6 +180,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (popupText) {
             marker.bindPopup(popupText);
         }
+        armorMen.push(marker);
     }
 
     // добавление лагеря бандитов
@@ -153,6 +213,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (popupText) {
             marker.bindPopup(popupText);
         }
+        boards.push(marker);
     }
 
     // добавление пещер
@@ -169,6 +230,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (popupText) {
             marker.bindPopup(popupText);
         }
+        caves.push(marker);
     }
 
     // добавление гарнизонов
@@ -185,6 +247,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (popupText) {
             marker.bindPopup(popupText);
         }
+        granizons.push(marker);
     }
 
     // добавление опасных мест
@@ -201,6 +264,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (popupText) {
             marker.bindPopup(popupText);
         }
+        dangerZones.push(marker);
     }
         
     // добавление квеста
@@ -217,6 +281,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (popupText) {
             marker.bindPopup(popupText);
         }
+        quests.push(marker);
     }
 
     // добавление барахольщика
@@ -233,6 +298,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (popupText) {
             marker.bindPopup(popupText);
         }
+        traders.push(marker);
     }
 
     // добавление оружейника
@@ -249,6 +315,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (popupText) {
             marker.bindPopup(popupText);
         }
+        weaponMen.push(marker);
     }
 
     // добавление оружейника
@@ -265,6 +332,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (popupText) {
             marker.bindPopup(popupText);
         }
+        hunters.push(marker);
     }
 
     // добавление камней силы
@@ -281,6 +349,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (popupText) {
             marker.bindPopup(popupText);
         }
+        essenceStones.push(marker);
     }
 
     // добавление мест поиска чертежей
@@ -297,6 +366,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (popupText) {
             marker.bindPopup(popupText);
         }
+        recipes.push(marker);
     }
 
     // Трейдеры и работы
@@ -355,6 +425,30 @@ document.addEventListener('DOMContentLoaded', (event) => {
     addEssenceStone(2411 , 2238, '<b>Камень силы №14</b> <br> Возможный спавн камня силы для сбора эссенций')
     addEssenceStone(1310 , 1866, '<b>Камень силы №15</b> <br> Возможный спавн камня силы для сбора эссенций')
     addEssenceStone(1403 , 788, '<b>Камень силы №16</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1321 , 1726, '<b>Камень силы №17</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1393 , 1751, '<b>Камень силы №18</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1450 , 1533, '<b>Камень силы №19</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1315 , 1519, '<b>Камень силы №20</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1885 , 1611, '<b>Камень силы №21</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1844 , 1597, '<b>Камень силы №22</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(2177 , 1665, '<b>Камень силы №23</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1781 , 1413, '<b>Камень силы №24</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1883 , 1386, '<b>Камень силы №25</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1844 , 1234, '<b>Камень силы №26</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1904 , 1168, '<b>Камень силы №27</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1615 , 1164, '<b>Камень силы №28</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1330 , 1287, '<b>Камень силы №29</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1331 , 1328, '<b>Камень силы №30</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(597 , 1214, '<b>Камень силы №31</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1539 , 1027, '<b>Камень силы №32</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1459 , 986, '<b>Камень силы №33</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1355 , 1062, '<b>Камень силы №34</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(2011 , 821, '<b>Камень силы №35</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(2065 , 873, '<b>Камень силы №36</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(2112 , 810, '<b>Камень силы №37</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1135 , 363, '<b>Камень силы №38</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(1704 , 342, '<b>Камень силы №39</b> <br> Возможный спавн камня силы для сбора эссенций')
+    addEssenceStone(2237 , 627, '<b>Камень силы №40</b> <br> Возможный спавн камня силы для сбора эссенций')
     // Пещеры
     addCave(1891 , 1235, '<b>Вход в пещеру №1</b> <br> Пещера у углежогов')
     addCave(1887 , 1291, '<b>Вход в пещеру №1</b> <br> Пещера у углежогов')
@@ -385,5 +479,64 @@ document.addEventListener('DOMContentLoaded', (event) => {
     addRecipePlace(1485 , 775, '<b>Древние Чертежи №5</b> <br> Возможное местоположение чертежа. Локация может быть опасна по наличию накеров и гончих')
     addRecipePlace(2277 , 2554, '<b>Древние Чертежи №6</b> <br> Возможное местоположение чертежа. Локация может быть опасна по наличию накеров и гончих')
     addRecipePlace(549 , 2381, '<b>Древние Чертежи №7</b> <br> Возможное местоположение чертежа. Локация может быть опасна по наличию накеров и гончих')
+
+
+    function toggleMarkers(markers) {
+        markers.forEach(marker => {
+            if (map.hasLayer(marker)) {
+                map.removeLayer(marker);
+            } else {
+                map.addLayer(marker);
+            }
+        });
+    }
+
+    document.getElementById('toggle-essence-stones').addEventListener('click', () => {
+        toggleMarkers(essenceStones);
+    });
+
+    document.getElementById('toggle-alchemists').addEventListener('click', () => {
+        toggleMarkers(alchemists);
+    });
+
+    document.getElementById('toggle-hunters').addEventListener('click', () => {
+        toggleMarkers(hunters);
+    });
+
+    document.getElementById('toggle-armorMen').addEventListener('click', () => {
+        toggleMarkers(armorMen);
+    });
+    document.getElementById('toggle-weaponMen').addEventListener('click', () => {
+        toggleMarkers(weaponMen);
+    });
+    document.getElementById('toggle-boards').addEventListener('click', () => {
+        toggleMarkers(boards);
+    });
+    document.getElementById('toggle-recipes').addEventListener('click', () => {
+        toggleMarkers(recipes);
+    });
+    document.getElementById('toggle-dangerZones').addEventListener('click', () => {
+        toggleMarkers(dangerZones);
+    });
+    document.getElementById('toggle-caves').addEventListener('click', () => {
+        toggleMarkers(caves);
+    });
+    document.getElementById('toggle-granizons').addEventListener('click', () => {
+        toggleMarkers(granizons);
+    });
+    document.getElementById('toggle-quests').addEventListener('click', () => {
+        toggleMarkers(quests);
+    });
+    document.getElementById('toggle-traders').addEventListener('click', () => {
+        toggleMarkers(traders);
+    });
+
+    const imageLayer = L.imageOverlay('mapImage/mainMap.png', bounds).addTo(map);
+    map.fitBounds(bounds);
+
+    document.getElementById('opacity-slider').addEventListener('input', function(event) {
+        const opacityValue = event.target.value / 100;
+        imageLayer.getElement().style.filter = `brightness(${1 - opacityValue})`;
+    });
 
 });

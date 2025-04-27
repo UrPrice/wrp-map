@@ -24,7 +24,45 @@
     <div id="githublink" style="position: fixed; top: 10px; right: 10px; background-color: rgba(225, 225, 225, 0.5); padding: 5px; border-radius: 3px; z-index: 1000;">
         <a href="https://github.com/UrPrice/wrp-map" style="text-decoration: none; color: inherit;">UrPrice <img src="images/iconGitHub.png" height="16px" width="16px"></img></a>
     </div>
+
+    <div id="wrlink" style="position: fixed; top: 50px; right: 10px; background-color: rgba(225, 225, 225, 0.5); padding: 5px; border-radius: 3px; z-index: 1000;">
+        <a href="https://discord.gg/Gr2Egx3Nwm" style="text-decoration: none; color: inherit;">W:RP <img src="images/logoSmall.png" height="16px" width="16px"></img></a>
+    </div>
     
+    <div id="sidebar-toggle" class="sidebar-toggle">Квесты</div>
+
+    <div id="quest-sidebar" class="quest-sidebar">
+        <div id="quest-list" class="hidden">
+            <ul>
+                work in progress <br>
+                квестовая база ещё не создана
+                <li class="quest-item" data-quest-id="1">Тест квест</li>
+                <li class="quest-item" data-quest-id="2">Тест квест</li>
+                <li class="quest-item" data-quest-id="3">Тест квест</li>
+                
+            </ul>
+        </div>
+        <div id="quest-info" class="hidden">
+            
+        </div>
+    </div>
+
+    <div id="filter-controls" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); background-color: rgba(225, 225, 225, 0.5); padding: 10px; z-index: 1100; border-radius: 10px 10px 0 0;">
+        <button id="toggle-traders" class="filter-button traders-icon" data-tooltip="Скрыть Барахольщиков"></button>
+        <button id="toggle-alchemists" class="filter-button alchemist-icon" data-tooltip="Скрыть Алхимиков"></button>
+        <button id="toggle-hunters" class="filter-button hunter-icon" data-tooltip="Скрыть Охотников"></button>
+        <button id="toggle-armorMen" class="filter-button armorMen-icon" data-tooltip="Скрыть Бронников"></button>
+        <button id="toggle-weaponMen" class="filter-button weaponMen-icon" data-tooltip="Скрыть Оружейников"></button>
+        <button id="toggle-boards" class="filter-button boards-icon" data-tooltip="Скрыть Трактирщиков"></button>
+        <button id="toggle-quests" class="filter-button quests-icon" data-tooltip="Скрыть Работадателей"></button>
+        <button id="toggle-dangerZones" class="filter-button dangerZones-icon" data-tooltip="Скрыть Монстров"></button>
+        <button id="toggle-caves" class="filter-button caves-icon" data-tooltip="Скрыть Пещеры"></button>
+        <button id="toggle-granizons" class="filter-button granizons-icon" data-tooltip="Скрыть Гарнизоны"></button>
+        <button id="toggle-essence-stones" class="filter-button essence-stone-icon" data-tooltip="Скрыть Камни силы"></button>
+        <button id="toggle-recipes" class="filter-button recipes-icon" data-tooltip="Скрыть Чертежи"></button>
+    </div>
+    
+
     <ul id="context-menu" class="hidden">
         <li id="copy-coordinates">Скопировать координаты</li>
     </ul>
@@ -34,7 +72,7 @@
     <div id="slider-container">
         <input type="range" min="0" max="100" value="0" id="opacity-slider">
     </div>
-
+    
 
 </body>
 </html>

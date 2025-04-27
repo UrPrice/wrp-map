@@ -9,7 +9,6 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    cursor: url('images/playerPoint.png'), auto;
     background-color: rgb(20, 20, 20);
     font-family: 'Friz Quadrata';
 }
@@ -18,7 +17,6 @@ html, body {
     width: 100vw;
     height: 100vh;
     background-color: rgb(20, 20, 20);
-    cursor: url('images/playerPoint.png'), auto;
 }
 
 ul.hidden, #copy-notification.hidden {
@@ -58,7 +56,7 @@ ul.hidden, #copy-notification.hidden {
     top: 50%;
     left: 10px;
     transform: translateY(-50%);
-    background-color: rgba(225, 225, 225, 0.8);
+    background-color: rgba(225, 225, 225, 0.5);
     padding: 15px;
     border-radius: 5px;
     z-index: 1000;
@@ -75,3 +73,139 @@ ul.hidden, #copy-notification.hidden {
     background: transparent;
     cursor: pointer;
 }
+
+#quest-sidebar {
+    position: fixed;
+    top: 150px; /* расстояние от верхнего края - отрегулируйте по необходимости */
+    right: 0px;
+    width: 300px;
+    height: calc(100vh - 300px);
+    background-color: rgba(20, 20, 20, 0.95); /* Темный полупрозрачный фон */
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%);
+    box-shadow: 2px 2px 5px #aaa;
+    border-radius: 10px 0 0 10px;
+    z-index: 1000; /* Достаточно высокий z-index */
+    font-family: 'Friz Quadrata';
+    color: white;
+}
+
+#quest-sidebar.open {
+    transform: translateX(0%);
+}
+
+#sidebar-toggle {
+    position: absolute;
+    top: 90px;
+    right: 0;
+    background-color: rgba(225, 225, 225, 0.5);
+    color: black;
+    text-align: center;
+    line-height: 50px;
+    width: 60px;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px #aaa;
+    border-radius: 10px 0 0 10px;
+    z-index: 1100; /* Высокий z-index для отображения поверх карты */
+    font-family: 'Friz Quadrata'; /* Поддержка используемого шрифта */
+}
+
+.quest-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    color: white;
+}
+
+.quest-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#quest-info {
+    padding: 10px;
+}
+
+
+.filter-button {
+    width: 32px; /* Размер кнопки - совпадает с размером иконки */
+    height: 32px;
+    border: none;
+    background-color: rgba(88, 88, 88, 0.5); /* Серый фон */
+    cursor: pointer;
+    background-size: cover; /* Масштабирование под размер кнопки */
+    transition: background-color 0.2s; /* Для плавного затемнения */
+    margin: 5px;
+}
+
+.filter-button:hover {
+    background-color: rgba(180, 180, 180, 0.7); /* Фон при наведении */
+}
+
+.filter-button:active {
+    background-color: rgba(150, 150, 150, 0.9); /* Затемнение при нажатии */
+}
+
+.filter-button::after {
+    content: attr(data-tooltip); /* Текст подсказки из атрибута data-tooltip */
+    position: absolute;
+    bottom: 100%; /* Размещает tooltip сверху кнопки */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap; /* Предотвращает перенос строки */
+    opacity: 0; /* Изначально скрыт */
+    pointer-events: none; /* Отключение событий мыши */
+    transition: opacity 0.2s; /* Плавная смена видимости */
+}
+
+.filter-button:hover::after {
+    opacity: 1; /* Показывает tooltip при наведении */
+}
+
+/* Устанавливаем фон для каждой кнопки */
+.essence-stone-icon {
+    background-image: url('images/iconEssence.png');
+}
+
+.alchemist-icon {
+    background-image: url('images/iconAlchemist.png');
+}
+
+.hunter-icon {
+    background-image: url('images/huntIcon.png');
+}
+
+.armorMen-icon{
+    background-image: url('images/iconArmor.png');
+}
+.weaponMen-icon{
+    background-image: url('images/iconWeapon.png');
+}
+.boards-icon{
+    background-image: url('images/iconBoard.png');
+}
+.recipes-icon{
+    background-image: url('images/iconRecipe.png');
+}
+.dangerZones-icon{
+    background-image: url('images/iconMonsters.png');
+}
+.caves-icon{
+    background-image: url('images/iconCave.png');
+}
+.granizons-icon{
+    background-image: url('images/iconGP.png');
+}
+.quests-icon{
+    background-image: url('images/iconQuestion.png');
+}
+.traders-icon{
+    background-image: url('images/iconTrader.png');
+}
+
+/* Добавьте дополнительные стили для других категорий */

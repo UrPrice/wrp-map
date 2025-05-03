@@ -6,16 +6,21 @@
     <title>W:RP IMap by UrPrice</title>
     <link rel="icon" type="image/png" href="images/logoSmall.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="leaflet.css">
+    <link rel="stylesheet" href="leaflet/leaflet.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="map" style="width: 100vw; height: 100vh;"></div>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="leaflet-src.esm.js"></script>
-    <script src="leaflet-src.js"></script>
-    <script src="leaflet.js"></script>
+    <script src="leaflet/leaflet-src.esm.js"></script>
+    <script src="leaflet/leaflet-src.js"></script>
+    <script src="leaflet/leaflet.js"></script>
+    
     <script src="script.js"></script>
+        <script src="jsData/caves.js"></script>
+        <script src="jsData/dangerZones.js"></script>
+        <script src="jsData/essenceStones.js"></script>
+        <script src="jsData/rareRecipes.js"></script>
 
     <div id="coordinates" style="position: fixed; bottom: 10px; left: 10px; background-color: rgba(225, 225, 225, 0.5); padding: 5px; border-radius: 3px; z-index: 1000;">
         x: 0, y: 0
@@ -61,11 +66,12 @@
         <button id="toggle-essence-stones" class="filter-button essence-stone-icon" data-tooltip="Скрыть Камни силы"></button>
         <button id="toggle-recipes" class="filter-button recipes-icon" data-tooltip="Скрыть Чертежи"></button>
     </div>
-    
 
-    <ul id="context-menu" class="hidden">
-        <li id="copy-coordinates">Скопировать координаты</li>
-    </ul>
+    <div id="context-menu" class="context-menu hidden">
+        <button id="createMarkerButton">Создать метку</button>
+        <button id="copy-coordinates">Скопировать координаты</button>
+    </div>
+    
 
     <div id="copy-notification" class="hidden">Координаты скопированы</div>
 

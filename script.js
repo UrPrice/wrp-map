@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     map.fitBounds(bounds); 
 
-    // Получаем ссылку на элемент, где будут отображаться координаты
     const coordinatesDisplay = document.getElementById('coordinates');
 
     // Обработчик события движения мыши
@@ -26,6 +25,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const contextMenu = document.getElementById('context-menu');
     const copyNotification = document.getElementById('copy-notification');
     let clickLatLng = null;
+    let markerForm = null;
 
     // Обработчик события правого клика
     map.on('contextmenu', function(event) {
@@ -36,10 +36,95 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Функция для показа контекстного меню
     function showContextMenu(x, y) {
-        contextMenu.style.left = `${x+10}px`;
-        contextMenu.style.top = `${y-35}px`;
+        contextMenu.style.left = `${x + 10}px`;
+        contextMenu.style.top = `${y - 35}px`;
         contextMenu.classList.remove('hidden');
     }
+
+    // Обработчик для кнопки "Создать метку"
+    document.getElementById('createMarkerButton').addEventListener('click', function(event) {
+        createMarker(event.clientX, event.clientY);
+        contextMenu.classList.add('hidden');
+    });
+
+    // Функция для создания метки
+    function createMarker(x, y) {
+        if (markerForm) {
+            markerForm.remove(); // Удаляем существующую форму, если она есть
+        }
+
+        markerForm = document.createElement('div');
+        markerForm.id = 'markerForm';
+        markerForm.className = 'marker-form';
+        markerForm.innerHTML = `
+            <input type="text" id="markerText" placeholder="Введите описание метки">
+            <select id="markerType">
+                <option value="essenceStones">Камни сил</option>
+                <option value="alchemists">Алхимики</option>
+                <option value="hunters">Охотники</option>
+                <option value="armorMen">Бронники</option>
+                <option value="weaponMen">Оружейники</option>
+                <option value="boards">Трактирщики</option>
+                <option value="recipes">Древние чертежи</option>
+                <option value="dangerZones">Опасные места</option>
+                <option value="caves">Пещеры</option>
+                <option value="granizons">Гарнизоны</option>
+                <option value="quests">Работы</option>
+                <option value="traders">Барахольщики</option>
+            </select>
+            <button id="submitMarkerButton">Отправить</button>
+        `;
+        document.body.appendChild(markerForm);
+
+        // Устанавливаем позицию формы около клика
+        markerForm.style.position = 'absolute';
+        markerForm.style.left = `${x + 10}px`;
+        markerForm.style.top = `${y - 35}px`;
+
+        // Добавляем обработчик для кнопки "Отправить"
+        document.getElementById('submitMarkerButton').addEventListener('click', submitMarker);
+
+        // Скрыть форму при клике вне формы
+        setTimeout(() => {
+            document.addEventListener('click', onDocumentClick);
+        }, 0);
+    }
+    
+    function onDocumentClick(event) {
+        if (!markerForm.contains(event.target)) {
+            markerForm.remove();
+            document.removeEventListener('click', onDocumentClick);
+            markerForm = null;
+        }
+    }
+
+    function submitMarker() {
+        const text = document.getElementById('markerText').value;
+        const type = document.getElementById('markerType').value;
+        const coordinates = clickLatLng;
+    
+        if (text && type) {
+            fetch('https://eonj50l4rsq1o6q.m.pipedream.net', { // Да это открытый вебхук. Другой реализации через gh pages и нет. Если из-за этого возникнут проблемы, придётся что-то делать :clown_face: 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text, type, coordinates })
+            }).then(response => {
+                if (response.ok) {
+                    alert('Метка успешно отправлена!');
+                    markerForm.remove();
+                    markerForm = null;
+                } else {
+                    alert('Ошибка при отправке метки!');
+                }
+            }).catch(error => console.error('Ошибка:', error));
+        } else {
+            alert('Пожалуйста, заполните все поля!');
+        }
+    }
+    
+    
 
     document.getElementById('copy-coordinates').addEventListener('click', function(event) {
         if (clickLatLng) {
@@ -50,7 +135,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
             navigator.clipboard.writeText(coordinates)
                 .then(() => {
-                    showCopyNotification(event.clientX, event.clientY); // Передача корректных координат
+                    showCopyNotification(event.clientX, event.clientY);
                 })
                 .catch(err => {
                     console.error('Ошибка при копировании: ', err);
@@ -64,7 +149,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function showCopyNotification(x, y) {
         copyNotification.style.left = `${x - 110}px`; // немного сдвиг, чтобы не перекрывать курсор
         copyNotification.style.top = `${y - 50}px`; // немного сдвиг, чтобы не перекрывать курсор
-        copyNotification.style.transform = 'translate(0, 0)'; // убрать центрирование
+        copyNotification.style.transform = 'translate(0, 0)';
         copyNotification.classList.remove('hidden');
     
         setTimeout(() => {
@@ -72,7 +157,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }, 500);
     }
     
-
     // Скрыть контекстное меню, если пользователь кликает в другом месте
     map.on('click', function() {
         contextMenu.classList.add('hidden');
@@ -80,7 +164,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 
-    // ## Квесты
+
+    // # Квесты
 
     const sidebar = document.getElementById('quest-sidebar');
     const toggleButton = document.getElementById('sidebar-toggle');
@@ -133,7 +218,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    // ## Метки
+    // # Метки
 
     // Создаем массивы для хранения меток
     const essenceStones = [];
@@ -149,7 +234,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const quests = [];
     const traders = [];
 
-    // добавление алхимика
+    // #добавление алхимика
 
     const alchemyIcon = L.icon({
         iconUrl: 'images/iconAlchemist.png',
@@ -160,13 +245,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     function addAlchemist(longitude, latitude, popupText) {
         const marker = L.marker([latitude, longitude],{ icon: alchemyIcon }).addTo(map);
+        alchemists.push(marker);
         if (popupText) {
+            popupText =     
             marker.bindPopup(popupText);
         }
-        alchemists.push(marker);
     }
 
-    // добавление бронника
+    // #добавление бронника
 
     const armorManIcon = L.icon({
         iconUrl: 'images/iconArmor.png',
@@ -183,7 +269,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         armorMen.push(marker);
     }
 
-    // добавление лагеря бандитов
+    // #добавление лагеря бандитов
 
     const banditCampIcon = L.icon({
         iconUrl: 'images/iconBandit.png',
@@ -216,23 +302,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         boards.push(marker);
     }
 
-    // добавление пещер
-
-    const caveIcon = L.icon({
-        iconUrl: 'images/iconCave.png',
-        iconSize: [32, 32], // размер иконки
-        iconAnchor: [16, 32], // точка привязки иконки (центр)
-        popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
-    });
-
-    function addCave(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: caveIcon }).addTo(map);
-        if (popupText) {
-            marker.bindPopup(popupText);
-        }
-        caves.push(marker);
-    }
-
     // добавление гарнизонов
 
     const gpIcon = L.icon({
@@ -248,23 +317,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             marker.bindPopup(popupText);
         }
         granizons.push(marker);
-    }
-
-    // добавление опасных мест
-
-    const mosterIcon = L.icon({
-        iconUrl: 'images/iconMonsters.png',
-        iconSize: [32, 32], // размер иконки
-        iconAnchor: [16, 32], // точка привязки иконки (центр)
-        popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
-    });
-
-    function addDangZone(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: mosterIcon }).addTo(map);
-        if (popupText) {
-            marker.bindPopup(popupText);
-        }
-        dangerZones.push(marker);
     }
         
     // добавление квеста
@@ -335,6 +387,56 @@ document.addEventListener('DOMContentLoaded', (event) => {
         hunters.push(marker);
     }
 
+    // Трейдеры и работы
+    /// Оксенфурт
+    addAlchemist(1733, 1955, '<b>Трейдер | Травница №1</b> <br>Описание');
+    addHunter(1787 , 1964, '<b>Трейдер | Охотник №1</b> <br>Описание');
+    addArmorman(1744 , 1950, '<b>Трейдер | Бронник</b> <br>Описание');
+    addWeaponMan(1763 , 1975, '<b>Трейдер | Оружейник</b> <br>Описание');
+    addTrader(1760 , 1963, '<b>Трейдер | Барахольщик №1</b> <br>Описание');
+    addGarnizon(1830 , 1735, '<b>Гарнизон Редании</b>');
+    addQuest(1772 , 1954, '<b>Работа | Мешки</b> <br> Таскание мешков за 4 кроны')
+    addBoard(1749 , 1981, '<b>Трейдер | Трактирщик №1</b>');
+    /// Вроницы
+    addBoard(700 , 1279, '<b>Трейдер | Трактирщик №2</b>');
+    addTrader(707 , 1265, '<b>Трейдер | Барахольщик №2</b> <br>Описание');
+    addAlchemist(667 , 1252, '<b>Трейдер | Травница №2</b> <br>Описание');
+    addHunter(651 , 1274, '<b>Трейдер | Охотник №2</b> <br>Описание');
+    addArmorman(682 , 1263, '<b>Трейдер | Бронник</b> <br>Описание');
+    addWeaponMan(674 , 1262, '<b>Трейдер | Оружейник</b> <br>Описание');
+    addGarnizon(644 , 1329, '<b>Гарнизон Людей Барона</b>');
+    /// Вызима
+    /// Эльфы
+    addBoard(2354 , 2949, '<b>Трейдер | Трактирщик №4</b>');
+    addHunter(2341 , 3038, '<b>Трейдер | Охотник №4</b> <br>Описание');
+    addTrader(2329 , 3035, '<b>Трейдер | Барахольщик №4</b> <br>Описание');
+    addAlchemist(2308 , 3054, '<b>Трейдер | Травница №4</b> <br>Описание');
+    addWeaponMan(2227 , 3035, '<b>Трейдер | Оружейник</b> <br>Описание');
+    addArmorman(2188 , 2887, '<b>Трейдер | Бронник</b> <br>Описание');
+    addGarnizon(2233 , 2966, '<b>Гарнизон Эльфов</b>');
+    /// Белые сады
+    addAlchemist(2615 , 487, '<b>Трейдер | Травница №5</b> <br>Описание');
+    addHunter(2751 , 407, '<b>Трейдер | Охотник №5</b> <br>Описание');
+    addBoard(2820 , 489, '<b>Трейдер | Трактирщи №5к</b>');
+    addArmorman(2789 , 458, '<b>Трейдер | Бронник</b> <br>Описание');
+    addWeaponMan(2784 , 456, '<b>Трейдер | Оружейник</b> <br>Описание');
+    /// Остальное
+    addBoard(903 , 1587, '<b>Трейдер | Трактирщик №6</b>');
+    addBoard(1174 , 2275, '<b>Трейдер | Трактирщик №7</b>');
+    addAlchemist(581 , 1047, '<b>Трейдер | Травница №6</b> <br>Описание');
+    addAlchemist(641 , 869, '<b>Трейдер | Травница №7</b> <br>Описание');
+    addAlchemist(232 , 1030, '<b>Трейдер | Травница №8</b> <br>Описание');
+    addAlchemist(1402 , 1214, '<b>Трейдер | Травница №9</b> <br>Описание');
+    addAlchemist(887 , 1600, '<b>Трейдер | Травница №10</b> <br>Описание');
+    addAlchemist(1708 , 1277, '<b>Трейдер | Травница №11</b> <br>Описание');
+    addTrader(584 , 1035, '<b>Трейдер | Барахольщик №6</b> <br>Описание');
+    addTrader(248 , 1012, '<b>Трейдер | Барахольщик №7</b> <br>Описание');
+    addTrader(326 , 390, '<b>Трейдер | Барахольщик №8</b> <br>Описание');
+    addHunter(585 , 837, '<b>Трейдер | Охотник №6</b> <br>Описание');
+    addHunter(231 , 1009, '<b>Трейдер | Охотник №7</b> <br>Описание');
+    addHunter(308 , 414, '<b>Трейдер | Охотник №8</b> <br>Описание');
+    addQuest(309 , 396, '<b>Работа | Грузчик</b> <br> Таскание мешков');
+    
     // добавление камней силы
 
     const essenceIcon = L.icon({
@@ -351,7 +453,63 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
         essenceStones.push(marker);
     }
+    
+    essenceStonesData.forEach((coordinates, index) => {
+        const [longitude, latitude] = coordinates;
+        const popupText = `<b>Камень силы №${index + 1}</b> <br> Возможный спавн камня силы для сбора эссенций`;
+        addEssenceStone(longitude, latitude, popupText);
+    });
 
+    // добавление пещер
+
+    const caveIcon = L.icon({
+        iconUrl: 'images/iconCave.png',
+        iconSize: [32, 32], // размер иконки
+        iconAnchor: [16, 32], // точка привязки иконки (центр)
+        popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
+    });
+
+    function addCave(longitude, latitude, popupText) {
+        const marker = L.marker([latitude, longitude],{ icon: caveIcon }).addTo(map);
+        if (popupText) {
+            marker.bindPopup(popupText);
+        }
+        caves.push(marker);
+    }
+    
+    cavesData.forEach((cave, caveIndex) => {
+        cave.entrances.forEach((coordinates) => {
+            const [longitude, latitude] = coordinates;
+            const popupText = `<b>Вход в пещеру №${caveIndex + 1}</b> <br> ${cave.description}`;
+            addCave(longitude, latitude, popupText);
+        });
+    });
+
+    
+    // добавление опасных мест
+
+    const mosterIcon = L.icon({
+        iconUrl: 'images/iconMonsters.png',
+        iconSize: [32, 32], // размер иконки
+        iconAnchor: [16, 32], // точка привязки иконки (центр)
+        popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
+    });
+
+    function addDangZone(longitude, latitude, popupText) {
+        const marker = L.marker([latitude, longitude],{ icon: mosterIcon }).addTo(map);
+        if (popupText) {
+            marker.bindPopup(popupText);
+        }
+        dangerZones.push(marker);
+    }
+    
+    dangerZonesData.forEach((coordinates, index) => {
+        const [longitude, latitude] = coordinates;
+        const popupText = `<b>Опасное место №${index + 1}</b> <br> Большое скопление гончих или накеров независимо от экипировки`;
+        addDangZone(longitude, latitude, popupText);
+    });
+    
+    
     // добавление мест поиска чертежей
 
     const recipeIcon = L.icon({
@@ -368,118 +526,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
         recipes.push(marker);
     }
-
-    // Трейдеры и работы
-    /// Оксенфурт
-    addAlchemist(1733, 1955, '<b>Трейдер | Травница №1</b> <br>Описание');
-    addHunter(1787 , 1964, '<b>Трейдер | Охотник №1</b> <br>Описание');
-    addArmorman(1744 , 1950, '<b>Трейдер | Бронник</b> <br>Описание');
-    addWeaponMan(1763 , 1975, '<b>Трейдер | Оружейник</b> <br>Описание');
-    addTrader(1760 , 1963, '<b>Трейдер | Барахольщик №1</b> <br>Описание');
-    addGarnizon(1830 , 1735, '<b>Гарнизон Редании</b>')
-    addQuest(1772 , 1954, '<b>Работа | Мешки</b> <br> Таскание мешков за 4 кроны')
-    addBoard(1749 , 1981, '<b>Трейдер | Трактирщик №1</b>')
-    /// Вроницы
-    addBoard(700 , 1279, '<b>Трейдер | Трактирщик №2</b>')
-    addTrader(707 , 1265, '<b>Трейдер | Барахольщик №2</b> <br>Описание');
-    addAlchemist(667 , 1252, '<b>Трейдер | Травница №2</b> <br>Описание');
-    addHunter(651 , 1274, '<b>Трейдер | Охотник №2</b> <br>Описание');
-    addArmorman(682 , 1263, '<b>Трейдер | Бронник</b> <br>Описание');
-    addWeaponMan(674 , 1262, '<b>Трейдер | Оружейник</b> <br>Описание');
-    addGarnizon(644 , 1329, '<b>Гарнизон Людей Барона</b>')
-    /// Вызима
-    /// Эльфы
-    addGarnizon(2233 , 2966, '<b>Гарнизон Эльфов</b>')
-    /// Белые сады
-    addAlchemist(2615 , 487, '<b>Трейдер | Травница №5</b> <br>Описание');
-    addHunter(2751 , 407, '<b>Трейдер | Охотник №5</b> <br>Описание');
-    addBoard(2820 , 489, '<b>Трейдер | Трактирщи №5к</b>')
-    addArmorman(2789 , 458, '<b>Трейдер | Бронник</b> <br>Описание');
-    addWeaponMan(2784 , 456, '<b>Трейдер | Оружейник</b> <br>Описание');
-    /// Остальное
-    addBoard(903 , 1587, '<b>Трейдер | Трактирщик №6</b>')
-    addAlchemist(581 , 1047, '<b>Трейдер | Травница №6</b> <br>Описание');
-    addAlchemist(641 , 869, '<b>Трейдер | Травница №7</b> <br>Описание');
-    addAlchemist(232 , 1030, '<b>Трейдер | Травница №8</b> <br>Описание');
-    addAlchemist(1402 , 1214, '<b>Трейдер | Травница №9</b> <br>Описание');
-    addAlchemist(887 , 1600, '<b>Трейдер | Травница №10</b> <br>Описание');
-    addAlchemist(1708 , 1277, '<b>Трейдер | Травница №11</b> <br>Описание');
-    addTrader(584 , 1035, '<b>Трейдер | Барахольщик №6</b> <br>Описание');
-    addTrader(248 , 1012, '<b>Трейдер | Барахольщик №7</b> <br>Описание');
-    addHunter(585 , 837, '<b>Трейдер | Охотник №6</b> <br>Описание');
-    addHunter(231 , 1009, '<b>Трейдер | Охотник №7</b> <br>Описание');
-    // Камни силы
-    addEssenceStone(1567 , 1724, '<b>Камень силы №1</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1609 , 1516, '<b>Камень силы №2</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1567 , 1668, '<b>Камень силы №3</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1667 , 1449, '<b>Камень силы №4</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1399 , 2001, '<b>Камень силы №5</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1244 , 1568, '<b>Камень силы №6</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(2569 , 565, '<b>Камень силы №7</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(2644 , 516, '<b>Камень силы №8</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(2809 , 331, '<b>Камень силы №9</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(2724 , 855, '<b>Камень силы №10</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(604 , 1647, '<b>Камень силы №11</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(690 , 985, '<b>Камень силы №12</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(924 , 1003, '<b>Камень силы №13</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(2411 , 2238, '<b>Камень силы №14</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1310 , 1866, '<b>Камень силы №15</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1403 , 788, '<b>Камень силы №16</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1321 , 1726, '<b>Камень силы №17</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1393 , 1751, '<b>Камень силы №18</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1450 , 1533, '<b>Камень силы №19</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1315 , 1519, '<b>Камень силы №20</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1885 , 1611, '<b>Камень силы №21</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1844 , 1597, '<b>Камень силы №22</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(2177 , 1665, '<b>Камень силы №23</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1781 , 1413, '<b>Камень силы №24</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1883 , 1386, '<b>Камень силы №25</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1844 , 1234, '<b>Камень силы №26</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1904 , 1168, '<b>Камень силы №27</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1615 , 1164, '<b>Камень силы №28</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1330 , 1287, '<b>Камень силы №29</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1331 , 1328, '<b>Камень силы №30</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(597 , 1214, '<b>Камень силы №31</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1539 , 1027, '<b>Камень силы №32</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1459 , 986, '<b>Камень силы №33</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1355 , 1062, '<b>Камень силы №34</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(2011 , 821, '<b>Камень силы №35</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(2065 , 873, '<b>Камень силы №36</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(2112 , 810, '<b>Камень силы №37</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1135 , 363, '<b>Камень силы №38</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(1704 , 342, '<b>Камень силы №39</b> <br> Возможный спавн камня силы для сбора эссенций')
-    addEssenceStone(2237 , 627, '<b>Камень силы №40</b> <br> Возможный спавн камня силы для сбора эссенций')
-    // Пещеры
-    addCave(1891 , 1235, '<b>Вход в пещеру №1</b> <br> Пещера у углежогов')
-    addCave(1887 , 1291, '<b>Вход в пещеру №1</b> <br> Пещера у углежогов')
-    addCave(2012 , 1268, '<b>Вход в пещеру №1</b> <br> Пещера у углежогов')
-    addCave(1041 , 1121, '<b>Вход в пещеру №2</b> <br> Пещера с туманником')
-    addCave(1469 , 1076, '<b>Вход в пещеру №3</b> <br> Пещера у поместья Реордан')
-    addCave(1376 , 1044, '<b>Вход в пещеру №3</b> <br> Пещера у поместья Реордан')
-    addCave(1482 , 991, '<b>Вход в пещеру №3</b> <br> Пещера у поместья Реордан')
-    addCave(2442 , 323, '<b>Вход в пещеру №4</b> <br> Сквозная пещера Белых Садов')
-    addCave(2256 , 469, '<b>Вход в пещеру №4</b> <br> Сквозная пещера Белых Садов')
-    addCave(3198 , 184, '<b>Вход в пещеру №5</b> <br> Дальняя пещера Белых Садов')
-    addCave(2701 , 786, '<b>Вход в пещеру №6</b> <br> Сквозная пещера с расщельем')
-    addCave(2570 , 898, '<b>Вход в пещеру №6</b> <br> Сквозная пещера с расщельем')
-    addCave(2790 , 834, '<b>Вход в пещеру №6</b> <br> Сквозная пещера с расщельем')
-    addCave(2433 , 2251, '<b>Вход в пещеру №7</b> <br> Маленькая пещера эльфов')
-    addCave(1024 , 275, '<b>Вход в пещеру №8</b> <br> Пещера в виде Члена')
-    // Опасные места
-    addDangZone(1073 , 1867, '<b>Опасное место №1</b> <br> Большое скопление гончих или накеров независимо от экипировки')
-    addDangZone(1401 , 1523, '<b>Опасное место №2</b> <br> Большое скопление гончих или накеров независимо от экипировки')
-    addDangZone(1620 , 1688, '<b>Опасное место №3</b> <br> Большое скопление гончих или накеров независимо от экипировки')
-    addDangZone(717 , 1544, '<b>Опасное место №4</b> <br> Большое скопление гончих или накеров независимо от экипировки')
-    addDangZone(2089 , 1256, '<b>Опасное место №5</b> <br> Большое скопление гончих или накеров независимо от экипировки')
-    // Чертежи
-    addRecipePlace(1289 , 1974, '<b>Древние Чертежи №1</b> <br> Возможное местоположение чертежа. Локация может быть опасна по наличию накеров и гончих')
-    addRecipePlace(465 , 916, '<b>Древние Чертежи №2</b> <br> Возможное местоположение чертежа. Локация может быть опасна по наличию накеров и гончих')
-    addRecipePlace(2504 , 2424, '<b>Древние Чертежи №3</b> <br> Возможное местоположение чертежа. Локация может быть опасна по наличию накеров и гончих')
-    addRecipePlace(2114 , 2354, '<b>Древние Чертежи №4</b> <br> Возможное местоположение чертежа. Локация может быть опасна по наличию накеров и гончих')
-    addRecipePlace(1485 , 775, '<b>Древние Чертежи №5</b> <br> Возможное местоположение чертежа. Локация может быть опасна по наличию накеров и гончих')
-    addRecipePlace(2277 , 2554, '<b>Древние Чертежи №6</b> <br> Возможное местоположение чертежа. Локация может быть опасна по наличию накеров и гончих')
-    addRecipePlace(549 , 2381, '<b>Древние Чертежи №7</b> <br> Возможное местоположение чертежа. Локация может быть опасна по наличию накеров и гончих')
-
+    
+    recipePlacesData.forEach((coordinates, index) => {
+        const [longitude, latitude] = coordinates;
+        const popupText = `<b>Древние Чертежи №${index + 1}</b> <br> Возможное местоположение чертежа. Локация может быть опасна по наличию накеров и гончих`;
+        addRecipePlace(longitude, latitude, popupText);
+    });
+    
+    // Добавление переключаемых маркеров на сокрытие элементов интерфейса
 
     function toggleMarkers(markers) {
         markers.forEach(marker => {

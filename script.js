@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         if (text && type) {
             showLoader();  // Показать лоадер перед началом запроса
-            fetch('https://eonj50l4rsq1o6q.m.pipedream.net', {
+            fetch('https://urprice.ru:3000', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

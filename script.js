@@ -27,30 +27,26 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let clickLatLng = null;
     let markerForm = null;
 
-    // Обработчик события правого клика
     map.on('contextmenu', function(event) {
         clickLatLng = event.latlng;
         showContextMenu(event.containerPoint.x, event.containerPoint.y);
         event.originalEvent.preventDefault();
     });
 
-    // Функция для показа контекстного меню
     function showContextMenu(x, y) {
         contextMenu.style.left = `${x + 10}px`;
         contextMenu.style.top = `${y - 35}px`;
         contextMenu.classList.remove('hidden');
     }
 
-    // Обработчик для кнопки "Создать метку"
     document.getElementById('createMarkerButton').addEventListener('click', function(event) {
         createMarker(event.clientX, event.clientY);
         contextMenu.classList.add('hidden');
     });
 
-    // Функция для создания метки
     function createMarker(x, y) {
         if (markerForm) {
-            markerForm.remove(); // Удаляем существующую форму, если она есть
+            markerForm.remove();  // Удалим текущую форму, если она есть
         }
 
         markerForm = document.createElement('div');
@@ -60,7 +56,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             <input type="text" id="markerText" placeholder="Введите описание метки">
             <select id="markerType">
                 <option value="essenceStones">Камни сил</option>
-                <option value="alchemists">Алхимики</option>
+                <option value="alchemists">Алхимики/Травники</option>
                 <option value="hunters">Охотники</option>
                 <option value="armorMen">Бронники</option>
                 <option value="weaponMen">Оружейники</option>
@@ -72,26 +68,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 <option value="quests">Работы</option>
                 <option value="traders">Барахольщики</option>
             </select>
-            <button id="submitMarkerButton">Отправить</button>
+            <button id="submitMarkerButton">Отправить запрос</button>
         `;
         document.body.appendChild(markerForm);
 
-        // Устанавливаем позицию формы около клика
         markerForm.style.position = 'absolute';
         markerForm.style.left = `${x + 10}px`;
         markerForm.style.top = `${y - 35}px`;
 
-        // Добавляем обработчик для кнопки "Отправить"
+        // Убедитесь, что предыдущий обработчик удалён, прежде чем добавить новый
+        document.getElementById('submitMarkerButton').removeEventListener('click', submitMarker);
         document.getElementById('submitMarkerButton').addEventListener('click', submitMarker);
 
-        // Скрыть форму при клике вне формы
         setTimeout(() => {
             document.addEventListener('click', onDocumentClick);
         }, 0);
     }
-    
+
     function onDocumentClick(event) {
-        if (!markerForm.contains(event.target)) {
+        if (markerForm && !markerForm.contains(event.target)) {
             markerForm.remove();
             document.removeEventListener('click', onDocumentClick);
             markerForm = null;
@@ -102,9 +97,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const text = document.getElementById('markerText').value;
         const type = document.getElementById('markerType').value;
         const coordinates = clickLatLng;
-    
+
         if (text && type) {
-            fetch('https://eonj50l4rsq1o6q.m.pipedream.net', { // Да это открытый вебхук. Другой реализации через gh pages и нет. Если из-за этого возникнут проблемы, придётся что-то делать :clown_face: 
+            fetch('https://eonj50l4rsq1o6q.m.pipedream.net', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -112,19 +107,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 body: JSON.stringify({ text, type, coordinates })
             }).then(response => {
                 if (response.ok) {
-                    alert('Метка успешно отправлена!');
-                    markerForm.remove();
-                    markerForm = null;
+                    alert('Запрос на добавление метки успешно создан! Он может обрабатываться некоторое время и метка появится не сразу.');
+                    if (markerForm) {
+                        markerForm.remove();
+                        document.removeEventListener('click', onDocumentClick);
+                        markerForm = null;
+                    }
                 } else {
-                    alert('Ошибка при отправке метки!');
+                    alert('Ошибка при отправке запроса!');
                 }
             }).catch(error => console.error('Ошибка:', error));
         } else {
             alert('Пожалуйста, заполните все поля!');
         }
     }
-    
-    
 
     document.getElementById('copy-coordinates').addEventListener('click', function(event) {
         if (clickLatLng) {
@@ -132,7 +128,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const y = Math.floor(lat);
             const x = Math.floor(lng);
             const coordinates = `${x} , ${y}`;
-    
+
             navigator.clipboard.writeText(coordinates)
                 .then(() => {
                     showCopyNotification(event.clientX, event.clientY);
@@ -140,24 +136,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 .catch(err => {
                     console.error('Ошибка при копировании: ', err);
                 });
-            
-            contextMenu.classList.add('hidden'); // Скрыть контекстное меню
+
+            contextMenu.classList.add('hidden');
         }
     });
-    
-    // Обновленная функция для показа уведомления
+
     function showCopyNotification(x, y) {
-        copyNotification.style.left = `${x - 110}px`; // немного сдвиг, чтобы не перекрывать курсор
-        copyNotification.style.top = `${y - 50}px`; // немного сдвиг, чтобы не перекрывать курсор
+        copyNotification.style.left = `${x - 110}px`;
+        copyNotification.style.top = `${y - 50}px`;
         copyNotification.style.transform = 'translate(0, 0)';
         copyNotification.classList.remove('hidden');
-    
+
         setTimeout(() => {
             copyNotification.classList.add('hidden');
         }, 500);
     }
-    
-    // Скрыть контекстное меню, если пользователь кликает в другом месте
+
     map.on('click', function() {
         contextMenu.classList.add('hidden');
     });

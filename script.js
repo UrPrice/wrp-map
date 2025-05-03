@@ -92,13 +92,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
             markerForm = null;
         }
     }
-
+    
+    function showLoader() {
+        const overlay = document.getElementById('loader-overlay');
+        overlay.classList.remove('hidden');
+    }
+    
+    function hideLoader() {
+        const overlay = document.getElementById('loader-overlay');
+        overlay.classList.add('hidden');
+    }
+    
     function submitMarker() {
         const text = document.getElementById('markerText').value;
         const type = document.getElementById('markerType').value;
         const coordinates = clickLatLng;
 
         if (text && type) {
+            showLoader();  // Показать лоадер перед началом запроса
             fetch('https://eonj50l4rsq1o6q.m.pipedream.net', {
                 method: 'POST',
                 headers: {
@@ -106,6 +117,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 },
                 body: JSON.stringify({ text, type, coordinates })
             }).then(response => {
+                hideLoader();  // Скрыть лоадер после завершения запроса
                 if (response.ok) {
                     alert('Запрос на добавление метки успешно создан! Он может обрабатываться некоторое время и метка появится не сразу.');
                     if (markerForm) {
@@ -116,7 +128,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 } else {
                     alert('Ошибка при отправке запроса!');
                 }
-            }).catch(error => console.error('Ошибка:', error));
+            }).catch(error => {
+                hideLoader();  // Скрыть лоадер даже в случае ошибки
+                console.error('Ошибка:', error);
+            });
         } else {
             alert('Пожалуйста, заполните все поля!');
         }

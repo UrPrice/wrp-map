@@ -11,6 +11,9 @@
 </head>
 <body>
     <div id="map" style="width: 100vw; height: 100vh;"></div>
+    <div id="loader-overlay" class="overlay hidden">
+        <div id="loader" class="loader"></div>
+    </div>    
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="leaflet/leaflet-src.esm.js"></script>
     <script src="leaflet/leaflet-src.js"></script>
@@ -71,7 +74,6 @@
         <button id="createMarkerButton">Запросить добавление метки</button>
         <button id="copy-coordinates">Скопировать координаты</button>
     </div>
-    
 
     <div id="copy-notification" class="hidden">Координаты скопированы</div>
 

@@ -28,8 +28,9 @@ html, body {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 10000;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column; /* Разместите элементы в колонку */
+    align-items: center; /* Центрируйте горизонтально */
+    justify-content: center; /* Центрируйте вертикально */
 }
 
 .loader {
@@ -39,6 +40,13 @@ html, body {
     border-top-color: #7c2222;
     border-radius: 50%;
     animation: spin 1s linear infinite;
+}
+
+.loader-text {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px; /* Задайте верхний отступ для создания пространства между анимацией и текстом */
 }
 
 .hidden {

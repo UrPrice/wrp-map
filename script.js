@@ -55,9 +55,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         markerForm.innerHTML = `
             <input type="text" id="markerText" placeholder="Введите описание метки">
             <select id="markerType">
-                <option value="essenceStones">Камни сил</option>
-                <option value="alchemists">Алхимики/Травники</option>
-                <option value="hunters">Охотники</option>
+                <option value="essence-stone">Камни сил</option>
+                <option value="alchemist">Алхимики/Травники</option>
+                <option value="hunter">Охотники</option>
                 <option value="armorMen">Бронники</option>
                 <option value="weaponMen">Оружейники</option>
                 <option value="boards">Трактирщики</option>
@@ -96,6 +96,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function showLoader() {
         const overlay = document.getElementById('loader-overlay');
         overlay.classList.remove('hidden');
+        const loaderText = document.getElementById('loader-text');
+    loaderText.style.display = 'block'; // Показываем текст
     }
     
     function hideLoader() {
@@ -107,7 +109,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const text = document.getElementById('markerText').value;
         const type = document.getElementById('markerType').value;
         const coordinates = clickLatLng;
-
+    
         if (text && type) {
             showLoader();  // Показать лоадер перед началом запроса
             fetch('https://urprice.ru:3000', {
@@ -119,23 +121,52 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }).then(response => {
                 hideLoader();  // Скрыть лоадер после завершения запроса
                 if (response.ok) {
-                    alert('Запрос на добавление метки успешно создан! Он может обрабатываться некоторое время и метка появится не сразу.');
+                    Swal.fire({
+                        title: 'Успех!',
+                        text: 'Запрос на добавление метки успешно создан! Он может обрабатываться некоторое время и метка появится не сразу.',
+                        icon: 'success',
+                        confirmButtonText: 'ОК'
+                    });
                     if (markerForm) {
                         markerForm.remove();
                         document.removeEventListener('click', onDocumentClick);
                         markerForm = null;
                     }
+    
+                    // Сохранение в localStorage
+                    const markerData = { text, type, coordinates, timestamp: Date.now() };
+                    const savedMarkers = JSON.parse(localStorage.getItem('pendingMarkers')) || [];
+                    savedMarkers.push(markerData);
+                    localStorage.setItem('pendingMarkers', JSON.stringify(savedMarkers));
+                    addLocalMarker(markerData);
                 } else {
-                    alert('Ошибка при отправке запроса!');
+                    Swal.fire({
+                        title: 'Ошибка!',
+                        text: 'Ошибка при отправке запроса!',
+                        icon: 'error',
+                        confirmButtonText: 'ОК'
+                    });
                 }
             }).catch(error => {
                 hideLoader();  // Скрыть лоадер даже в случае ошибки
                 console.error('Ошибка:', error);
+                Swal.fire({
+                    title: 'Ошибка!',
+                    text: 'Произошла ошибка при выполнении запроса.',
+                    icon: 'error',
+                    confirmButtonText: 'ОК'
+                });
             });
         } else {
-            alert('Пожалуйста, заполните все поля!');
+            Swal.fire({
+                title: 'Внимание!',
+                text: 'Пожалуйста, заполните все поля!',
+                icon: 'warning',
+                confirmButtonText: 'ОК'
+            });
         }
     }
+    
 
     document.getElementById('copy-coordinates').addEventListener('click', function(event) {
         if (clickLatLng) {
@@ -170,8 +201,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     map.on('click', function() {
         contextMenu.classList.add('hidden');
     });
-
-
 
 
     // # Квесты
@@ -542,6 +571,169 @@ document.addEventListener('DOMContentLoaded', (event) => {
         addRecipePlace(longitude, latitude, popupText);
     });
     
+    // Локальные метки
+
+    
+    function getIconUrl(type) {
+        const typeClass = `${type}-icon`;
+        // Создайте временный элемент с корректным CSS-классом
+        const div = document.createElement('div');
+        div.className = typeClass;
+        document.body.appendChild(div);
+        
+        const style = window.getComputedStyle(div);
+        const backgroundImage = style.backgroundImage;
+        
+        // Удалите временный элемент
+        document.body.removeChild(div);
+        
+        // Извлечение URL из backgroundImage
+        if (backgroundImage && backgroundImage !== 'none') {
+            const url = backgroundImage.slice(5, -2);  // Если url("...")
+            return url;
+        }
+        return null;
+    }
+    
+    const localMarkers = {};
+
+    function addLocalMarker(markerData) {
+        const iconUrl = getIconUrl(markerData.type);
+    
+        if (iconUrl) {
+            const markerIcon = L.icon({
+                iconUrl: iconUrl,
+                iconSize: [32, 32], // размер иконки
+                iconAnchor: [16, 32], // центр иконки
+                popupAnchor: [0, -32] // место, откуда всплывающее окно будет открываться
+            });
+    
+            const marker = L.marker(markerData.coordinates, {
+                icon: markerIcon,
+                opacity: 0.5 // Более прозрачный маркер
+            }).addTo(map).bindPopup(`
+                <b>Отправленная на добавление вами метка</b> <br>Выбранный тип: ${markerData.type} <br>Заданное описание: ${markerData.text}
+                <br>
+                <button onclick="removeMarker('${getMarkerKey(markerData.coordinates)}')">Удалить метку</button>
+                `);
+            localMarkers[getMarkerKey(markerData.coordinates)] = marker;
+        } else {
+            console.error(`Icon URL not found for type: ${markerData.type}`);
+        }
+    }
+    
+    function getMarkerKey(coordinates) {
+        return `${coordinates.lat},${coordinates.lng}`;
+    }
+
+    const savedMarkers = JSON.parse(localStorage.getItem('pendingMarkers')) || [];
+
+    savedMarkers.forEach(markerData => {
+        const iconUrl = getIconUrl(markerData.type);
+
+        if (iconUrl) {
+            const markerIcon = L.icon({
+                iconUrl: iconUrl,
+                iconSize: [32, 32], // размер иконки
+                iconAnchor: [16, 32], // центр иконки
+                popupAnchor: [0, -32] // место, откуда всплывающее полотно будет открываться
+            });
+
+            const marker = L.marker(markerData.coordinates, {
+                icon: markerIcon,
+                opacity: 0.5 // Более прозрачный маркер
+            }).addTo(map).bindPopup(`
+                <b>Отправленная на добавление вами метка</b> <br>Выбранный тип: ${markerData.type} <br>Заданное описание: ${markerData.text}
+                <br>
+                <button onclick="removeMarker('${getMarkerKey(markerData.coordinates)}')">Удалить метку</button>
+                `);
+            localMarkers[getMarkerKey(markerData.coordinates)] = marker;
+        } else {
+            console.error(`Icon URL not found for type: ${markerData.type}`);
+        }
+    });
+
+    // Функция удаления метки
+    function removeMarker(markerKey) {
+        // Удалить маркер с карты
+        if (localMarkers[markerKey]) {
+            map.removeLayer(localMarkers[markerKey]); // Удаляем сам маркер с карты
+            delete localMarkers[markerKey]; // Удаляем запись из локального хранилища маркеров
+        }
+
+        // Удалить маркер из localStorage
+        const savedMarkers = JSON.parse(localStorage.getItem('pendingMarkers')) || [];
+        const updatedMarkers = savedMarkers.filter(marker => getMarkerKey(marker.coordinates) !== markerKey);
+        localStorage.setItem('pendingMarkers', JSON.stringify(updatedMarkers));
+
+        Swal.fire({
+            title: 'Удалено!',
+            text: 'Метка удалена.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    }
+
+    window.removeMarker = removeMarker;
+
+    const oneWeek = 7 * 24 * 60 * 60 * 1000; // One week in milliseconds
+    const currentTime = Date.now();
+    const freshMarkers = savedMarkers.filter(marker => currentTime - marker.timestamp < oneWeek);
+    localStorage.setItem('pendingMarkers', JSON.stringify(freshMarkers));
+
+    function areCoordinatesClose(coords1, coords2, tolerance = 2) {
+        return Math.abs(coords1.lat - coords2.lat) <= tolerance &&
+               Math.abs(coords1.lng - coords2.lng) <= tolerance;
+    }
+    
+
+    function checkForAddedMarkers() {
+        const savedMarkers = JSON.parse(localStorage.getItem('pendingMarkers')) || [];
+    
+        const allMarkers = [
+            ...essenceStones,
+            ...alchemists,
+            ...hunters,
+            ...armorMen,
+            ...weaponMen,
+            ...boards,
+            ...recipes,
+            ...dangerZones,
+            ...caves,
+            ...granizons,
+            ...quests,
+            ...traders
+        ];
+    
+        const addedMarkers = savedMarkers.filter(localMarker =>
+            allMarkers.some(marker => 
+                areCoordinatesClose(marker.getLatLng(), localMarker.coordinates)
+            )
+        );
+    
+        if (addedMarkers.length > 0) {
+            const markerDescriptions = addedMarkers.map(marker => `Метки: ${marker.text}`).join(', ');
+            Swal.fire({
+                title: 'Метки добавлены!',
+                text: `Следующие метки были добавлены на сервер: ${markerDescriptions}`,
+                icon: 'info',
+                confirmButtonText: 'ОК'
+            });
+    
+            // Удалить добавленные метки из localStorage и с карты
+            addedMarkers.forEach(marker => {
+                const key = getMarkerKey(marker.coordinates);
+                if (localMarkers[key]) {
+                    map.removeLayer(localMarkers[key]); // Удалить с карты
+                    delete localMarkers[key]; // Удалить из коллекции локальных маркеров
+                }
+            });
+    
+            const remainingMarkers = savedMarkers.filter(marker => !addedMarkers.includes(marker));
+            localStorage.setItem('pendingMarkers', JSON.stringify(remainingMarkers));
+        }
+    }    
+
     // Добавление переключаемых маркеров на сокрытие элементов интерфейса
 
     function toggleMarkers(markers) {
@@ -601,5 +793,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const opacityValue = event.target.value / 100;
         imageLayer.getElement().style.filter = `brightness(${1 - opacityValue})`;
     });
+
+    checkForAddedMarkers();
 
 });

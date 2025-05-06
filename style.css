@@ -19,6 +19,14 @@ html, body {
     background-color: rgb(20, 20, 20);
 }
 
+.witcher-style-text {
+    font-family: 'Cinzel', serif; /* Шрифт из Google Fonts */
+    color: #e0d8c3; /* Цвет в стилистике старинной бумаги или пергамента */
+    letter-spacing: 1px; /* Легкий интервал между буквами для придания древности */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Тень для объемности */
+    font-size: 14px; /* Базовый размер шрифта можно изменить под нужды */
+}
+
 .overlay {
     position: fixed;
     top: 0;
@@ -66,10 +74,8 @@ ul.hidden, #copy-notification.hidden {
 
 .context-menu {
     position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
+    background-color: rgba(0, 0, 0, 0);
     padding: 5px;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
 }
 
@@ -80,25 +86,93 @@ ul.hidden, #copy-notification.hidden {
 .context-menu button {
     display: block;
     width: 100%;
-    padding: 5px;
     margin: 2px 0;
-    background: #f9f9f9;
-    border: none;
-    cursor: pointer;
     text-align: left;
+    position: relative; /* Для позиционирования псевдоэлемента */
+    overflow: hidden; /* Чтобы скрыть псевдоэлемент снаружи кнопки */
+    color: #f5f5f5;
+    padding: 10px 15px;
+    border: 1px solid #2b2b2b;
+    border-radius: 5px;
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.3s; /* Плавный переход для эффекта трансформации */
+
+    /* Настройки для кнопки в покое, добавьте здесь любой базовый цвет */
+    background-color: transparent;
+}
+
+.context-menu button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(0.48turn, #333 30%, #2b2b2b 80%, #7c2222);
+    transition: opacity 0.3s; /* Плавный переход прозрачности */
+    opacity: 1; /* Полностью видно по умолчанию */
+    z-index: -1; /* Чтобы градиент располагался под текстом */
+}
+
+.context-menu button:hover::before {
+    opacity: 0.7; /* Изменение прозрачности для эффекта наведения */
 }
 
 .context-menu button:hover {
-    background: #e9e9e9;
+    transform: scale(1.05); /* Легкая трансформация при наведении */
 }
+
 
 .marker-form {
     position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
+    background: linear-gradient(0.48turn, #333 30%, #2b2b2b 80%, #7c2222);
+    border: 1px solid #222;
     padding: 10px;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
     z-index: 10000; /* Установите высокое значение z-index, чтобы элемент отображался поверх других */
+}
+
+/* Стили для текстового поля input */
+input[type="text"].witcher-style-text {
+    background-color: #2b2b2b; /* Темный фон, напоминающий мрачную атмосферу игры */
+    color: #e0d8c3; /* Цвет текста, схожий с цветом древней бумаги */
+    border: 1px solid #444; /* Темная граница для выделения */
+    border-radius: 4px; /* Легкие скругления для плавности */
+    padding: 8px;
+    margin-bottom: 10px;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5); /* Внутренняя тень для глубины */
+    transition: border-color 0.3s;
+}
+
+input[type="text"].witcher-style-text:focus {
+    border-color: #7c2222; /* Цвет границы при фокусе для акцента */
+    outline: none;
+}
+
+/* Стили для select и option */
+select.witcher-style-text {
+    background-color: #2b2b2b; /* Темный фон, который сочетается с общими элементами интерфейса */
+    color: #e0d8c3; /* Цвет текста как у древней книги */
+    border: 1px solid #444; /* Тёмная граница */
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-family: 'Cinzel', serif; /* Используем шрифт для придания средневекового стиля */
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5); /* Внутренняя тень */
+    transition: border-color 0.3s;
+}
+
+select.witcher-style-text:focus {
+    border-color: #7c2222; /* Цвет границы при фокусе */
+    outline: none;
+}
+
+option {
+    background-color: #2b2b2b; /* Удостоверяйтесь, чтобы опции имели общий стиль */
+    color: #e0d8c3; /* Цвет текста опций */
+    font-family: 'Cinzel', serif;
 }
 
 
@@ -132,59 +206,6 @@ ul.hidden, #copy-notification.hidden {
     outline: none;
     background: transparent;
     cursor: pointer;
-}
-
-#quest-sidebar {
-    position: fixed;
-    top: 150px; /* расстояние от верхнего края - отрегулируйте по необходимости */
-    right: 0px;
-    width: 300px;
-    height: calc(100vh - 300px);
-    background-color: rgba(20, 20, 20, 0.95); /* Темный полупрозрачный фон */
-    overflow-y: auto;
-    transition: transform 0.3s ease-in-out;
-    transform: translateX(100%);
-    box-shadow: 2px 2px 5px #aaa;
-    border-radius: 10px 0 0 10px;
-    z-index: 1000; /* Достаточно высокий z-index */
-    font-family: 'Friz Quadrata';
-    color: white;
-}
-
-#quest-sidebar.open {
-    transform: translateX(0%);
-}
-
-#sidebar-toggle {
-    position: absolute;
-    top: 90px;
-    right: 0;
-    background-color: rgba(225, 225, 225, 0.5);
-    color: black;
-    text-align: center;
-    line-height: 50px;
-    width: 60px;
-    height: 50px;
-    cursor: pointer;
-    box-shadow: 2px 2px 5px #aaa;
-    border-radius: 10px 0 0 10px;
-    z-index: 1100; /* Высокий z-index для отображения поверх карты */
-    font-family: 'Friz Quadrata'; /* Поддержка используемого шрифта */
-}
-
-.quest-item {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    cursor: pointer;
-    color: white;
-}
-
-.quest-item:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-#quest-info {
-    padding: 10px;
 }
 
 
@@ -226,6 +247,29 @@ ul.hidden, #copy-notification.hidden {
 .filter-button:hover::after {
     opacity: 1; /* Показывает tooltip при наведении */
 }
+
+.detail-button {
+    background-color: #4a4a4a; /* Темно-серый цвет, напоминающий обмундирование */
+    color: #f5f5f5; /* Светлый текст для контраста */
+    padding: 10px 15px; /* Внутренний отступ для лучшего размера */
+    border: 1px solid #2b2b2b; /* Более темный ободок */
+    border-radius: 5px; /* Скругленные края */
+    font-family: 'Cinzel', serif; /* Шрифт для придания средневекового стиля */
+    font-size: 14px; /* Размер шрифта */
+    cursor: pointer; /* Указатель курсора при наведении */
+    transition: background-color 0.3s, transform 0.3s; /* Плавный переход для эффектов */
+}
+
+.detail-button:hover {
+    background-color: #3a3d3d; /* Изменение цвета при наведении */
+    transform: scale(1.05); /* Легкое увеличение для акцента */
+}
+
+.detail-button:active {
+    background-color: #2e2e2e; /* Как кнопку держат нажатой */
+    transform: scale(0.98); /* Легкое уменьшение для нажатого эффекта */
+}
+
 
 /* Устанавливаем фон для каждой кнопки */
 .essence-stone-icon {

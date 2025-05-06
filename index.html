@@ -6,6 +6,7 @@
     <title>W:RP IMap by UrPrice</title>
     <link rel="icon" type="image/png" href="images/logoSmall.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="leaflet/leaflet.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -27,6 +28,8 @@
         <script src="jsData/dangerZones.js"></script>
         <script src="jsData/essenceStones.js"></script>
         <script src="jsData/rareRecipes.js"></script>
+        <script src="jsData/quests.js"></script>
+        <script src="jsData/traders.js"></script>
 
     <div id="coordinates" style="position: fixed; bottom: 10px; left: 10px; background-color: rgba(225, 225, 225, 0.5); padding: 5px; border-radius: 3px; z-index: 1000;">
         x: 0, y: 0
@@ -40,23 +43,6 @@
         <a href="https://discord.gg/Gr2Egx3Nwm" style="text-decoration: none; color: inherit;">W:RP <img src="images/logoSmall.png" height="16px" width="16px"></img></a>
     </div>
     
-    <div id="sidebar-toggle" class="sidebar-toggle">Квесты</div>
-
-    <div id="quest-sidebar" class="quest-sidebar">
-        <div id="quest-list" class="hidden">
-            <ul>
-                work in progress <br>
-                квестовая база ещё не создана
-                <li class="quest-item" data-quest-id="1">Тест квест</li>
-                <li class="quest-item" data-quest-id="2">Тест квест</li>
-                <li class="quest-item" data-quest-id="3">Тест квест</li>
-                
-            </ul>
-        </div>
-        <div id="quest-info" class="hidden">
-            
-        </div>
-    </div>
 
     <div id="filter-controls" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); background-color: rgba(225, 225, 225, 0.5); padding: 10px; z-index: 1100; border-radius: 10px 10px 0 0;">
         <button id="toggle-traders" class="filter-button traders-icon" data-tooltip="Скрыть Барахольщиков"></button>
@@ -74,8 +60,8 @@
     </div>
 
     <div id="context-menu" class="context-menu hidden">
-        <button id="createMarkerButton">Запросить добавление метки</button>
-        <button id="copy-coordinates">Скопировать координаты</button>
+        <button id="createMarkerButton" class="witcher-style-text">Запросить добавление метки</button>
+        <button id="copy-coordinates" class="witcher-style-text">Скопировать координаты</button>
     </div>
 
     <div id="copy-notification" class="hidden">Координаты скопированы</div>

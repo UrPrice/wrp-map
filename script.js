@@ -53,22 +53,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
         markerForm.id = 'markerForm';
         markerForm.className = 'marker-form';
         markerForm.innerHTML = `
-            <input type="text" id="markerText" placeholder="Введите описание метки">
-            <select id="markerType">
-                <option value="essence-stone">Камни сил</option>
-                <option value="alchemist">Алхимики/Травники</option>
-                <option value="hunter">Охотники</option>
-                <option value="armorMen">Бронники</option>
-                <option value="weaponMen">Оружейники</option>
-                <option value="boards">Трактирщики</option>
-                <option value="recipes">Древние чертежи</option>
-                <option value="dangerZones">Опасные места</option>
-                <option value="caves">Пещеры</option>
-                <option value="granizons">Гарнизоны</option>
-                <option value="quests">Работы</option>
-                <option value="traders">Барахольщики</option>
+            <input class="witcher-style-text" type="text" id="markerText" placeholder="Введите описание метки">
+            <select class="witcher-style-text" id="markerType">
+                <option  value="essence-stone">Камни сил</option>
+                <option  value="alchemist">Алхимики/Травники</option>
+                <option  value="hunter">Охотники</option>
+                <option  value="armorMen">Бронники</option>
+                <option  value="weaponMen">Оружейники</option>
+                <option  value="boards">Трактирщики</option>
+                <option  value="recipes">Древние чертежи</option>
+                <option  value="dangerZones">Опасные места</option>
+                <option  value="caves">Пещеры</option>
+                <option  value="granizons">Гарнизоны</option>
+                <option  value="quests">Работы</option>
+                <option  value="traders">Барахольщики</option>
             </select>
-            <button id="submitMarkerButton">Отправить запрос</button>
+            <button class="detail-button witcher-style-text" id="submitMarkerButton">Отправить запрос</button>
         `;
         document.body.appendChild(markerForm);
 
@@ -198,65 +198,47 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }, 500);
     }
 
+
     map.on('click', function() {
         contextMenu.classList.add('hidden');
     });
 
 
-    // # Квесты
-
-    const sidebar = document.getElementById('quest-sidebar');
-    const toggleButton = document.getElementById('sidebar-toggle');
-    const questItems = document.getElementsByClassName('quest-item');
-    const questInfo = document.getElementById('quest-info');
-
-    toggleButton.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-    });
-
-    for (let item of questItems) {
-        item.addEventListener('click', () => {
-            const questId = item.dataset.questId;
-            displayQuestInfo(questId);
-        });
-    }
-
-    function displayQuestInfo(questId) {
-        const questData = {
-            1: {
-                name: "Опасная гладкость",
-                level: 40,
-                requirements: "Принести 2 бритвы",
-                rewards: "30 опыта"
-            },
-            2: {
-                name: "Опасная гладкость",
-                level: 40,
-                requirements: "Принести 2 бритвы",
-                rewards: "30 опыта"
-            },
-            3: {
-                name: "Опасная гладкость",
-                level: 40,
-                requirements: "Принести 2 бритвы",
-                rewards: "30 опыта"
-            },
-        };
-
-        const info = questData[questId];
-        
-        if (info) {
-            questInfo.innerHTML = `
-                <h3>${info.name}</h3>
-                <p><strong>Макс. Уровень:</strong> ${info.level}</p>
-                <p><strong>Требуется:</strong> ${info.requirements}</p>
-                <p><strong>Награда:</strong> ${info.rewards}</p>
-            `;
-            questInfo.classList.remove('hidden');
+    // # Метки
+    
+    function showDetailedQuestInfo(questId, level, rewards, notes, buttonElem, markerId) {
+        const marker = map._layers[markerId];
+        const info = questsData[questId];
+        if (info && buttonElem instanceof HTMLElement && marker) {
+            let notesContent = notes != "undefined" ? `<p class="witcher-style-text"><strong>Примечание:</strong> ${notes}</p>` : '';  // Условие на наличие примечания
+            marker.setPopupContent(`
+                <h3 class="witcher-style-text" style="font-size: 16px;">${info.title}</h3>
+                <p class="witcher-style-text"><strong>Макс. Уровень:</strong> ${level}</p>
+                <p class="witcher-style-text"><strong>Требуется:</strong> ${info.requirements}</p>
+                ${notesContent}  
+                <p class="witcher-style-text"><strong>Награда:</strong> ${rewards}</p>
+                <button class="detail-button witcher-style-text" onclick="goBackToQuestList(this, ${markerId})">Назад</button>
+            `);
+            marker.openPopup();
+        } else {
+            console.error('Попытка доступа к неопределенному маркеру: ', markerId);
         }
     }
+    
+    
+    function goBackToQuestList(buttonElem, markerId) {
+        const marker = map._layers[markerId];
+        if (marker && marker.originalContent) {
+            // Использовать сохраненное оригинальное содержание
+            marker.setPopupContent(marker.originalContent);
+            marker.openPopup();
+        }
+    }
+    
+    window.showDetailedQuestInfo = showDetailedQuestInfo;
 
-    // # Метки
+    window.goBackToQuestList = goBackToQuestList;
+
 
     // Создаем массивы для хранения меток
     const essenceStones = [];
@@ -281,14 +263,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
         popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
     });
     
-    function addAlchemist(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: alchemyIcon }).addTo(map);
+    function addAlchemist(longitude, latitude, alchemistData) {
+        const marker = L.marker([latitude, longitude], { icon: alchemyIcon }).addTo(map);
+
+        let popupContent = `<h3 class="witcher-style-text" style="font-size: 16px;">${alchemistData.name}</h3><ul>`;
+        alchemistData.quests.forEach(quest => {
+            const questInfo = questsData[quest.id];
+            if (questInfo) {
+                popupContent += `<li class="witcher-style-text">${questInfo.title}  
+                                <button class="detail-button witcher-style-text" onclick="showDetailedQuestInfo('${quest.id}', ${quest.level}, '${quest.rewards}', '${quest.notes}', this, ${marker._leaflet_id})">?</button>
+                                </li>`;
+            }
+        });
+        popupContent += `</ul>`;
+
+        marker.originalContent = popupContent; // сохраните оригинальное содержание
+
+        const popupOptions = {
+            closeOnClick: false,
+            autoClose: false
+        };
+
+        marker.bindPopup(popupContent, popupOptions);
         alchemists.push(marker);
-        if (popupText) {
-            popupText =     
-            marker.bindPopup(popupText);
-        }
     }
+    
+    window.addAlchemist = addAlchemist;
 
     // #добавление бронника
 
@@ -299,13 +299,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
         popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
     });
 
-    function addArmorman(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: armorManIcon }).addTo(map);
-        if (popupText) {
-            marker.bindPopup(popupText);
-        }
+    function addArmorman(longitude, latitude, armormanData) {
+        const marker = L.marker([latitude, longitude], { icon: armorManIcon }).addTo(map);
+    
+        let popupContent = `<h3 class="witcher-style-text" style="font-size: 16px;">${armormanData.name}</h3><ul>`;
+        armormanData.quests.forEach(service => {
+            const serviceInfo = questsData[service.id];
+            if (serviceInfo) {
+                popupContent += `<li class="witcher-style-text">${serviceInfo.title}    
+                                <button class="detail-button witcher-style-text" onclick="showDetailedQuestInfo('${service.id}', ${service.level}, '${service.rewards}', '${service.notes}', this, ${marker._leaflet_id})">?</button>
+                                </li>`;
+            }
+        });
+        popupContent += `</ul>`;
+    
+        marker.originalContent = popupContent; // сохраните оригинальное содержание
+    
+        const popupOptions = {
+            closeOnClick: false,
+            autoClose: false
+        };
+    
+        marker.bindPopup(popupContent, popupOptions);
         armorMen.push(marker);
     }
+    
+    window.addArmorman = addArmorman;
 
     // #добавление лагеря бандитов
 
@@ -323,7 +342,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    // добавление доски объявлений
+    // добавление трактирщиков
 
     const boardIcon = L.icon({
         iconUrl: 'images/iconBoard.png',
@@ -332,13 +351,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
         popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
     });
 
-    function addBoard(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: boardIcon }).addTo(map);
-        if (popupText) {
-            marker.bindPopup(popupText);
-        }
+    function addBoard(longitude, latitude, boardData) {
+        const marker = L.marker([latitude, longitude], { icon: boardIcon }).addTo(map);
+        
+        let popupContent = `<h3 class="witcher-style-text" style="font-size: 16px;">${boardData.name}</h3><ul>`;
+        boardData.quests.forEach(notice => {
+            const noticeInfo = questsData[notice.id];
+            if (noticeInfo) {
+                popupContent += `<li class="witcher-style-text">${noticeInfo.title}   
+                                <button class="detail-button witcher-style-text" onclick="showDetailedQuestInfo('${notice.id}', ${notice.level}, '${notice.rewards}', '${notice.notes}', this, ${marker._leaflet_id})">?</button>
+                                </li>`;
+            }
+        });
+        popupContent += `</ul>`;
+    
+        marker.originalContent = popupContent; // сохраните оригинальное содержание
+    
+        const popupOptions = {
+            closeOnClick: false,
+            autoClose: false
+        };
+    
+        marker.bindPopup(popupContent, popupOptions);
         boards.push(marker);
     }
+    
+    window.addBoard = addBoard;
 
     // добавление гарнизонов
 
@@ -352,10 +390,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function addGarnizon(longitude, latitude, popupText) {
         const marker = L.marker([latitude, longitude],{ icon: gpIcon }).addTo(map);
         if (popupText) {
-            marker.bindPopup(popupText);
+            marker.bindPopup(`<div class="witcher-style-text">${popupText}</div>`);
         }
         granizons.push(marker);
     }
+
+    window.addGarnizon = addGarnizon;
         
     // добавление квеста
 
@@ -369,10 +409,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function addQuest(longitude, latitude, popupText) {
         const marker = L.marker([latitude, longitude],{ icon: questIcon }).addTo(map);
         if (popupText) {
-            marker.bindPopup(popupText);
+            marker.bindPopup(`<div class="witcher-style-text">${popupText}</div>`);
         }
         quests.push(marker);
     }
+
+    window.addQuest = addQuest;
 
     // добавление барахольщика
 
@@ -383,13 +425,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
         popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
     });
 
-    function addTrader(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: traderIcon }).addTo(map);
-        if (popupText) {
-            marker.bindPopup(popupText);
-        }
+    function addTrader(longitude, latitude, traderData) {
+        const marker = L.marker([latitude, longitude], { icon: traderIcon }).addTo(map);
+    
+        let popupContent = `<h3 class="witcher-style-text" style="font-size: 16px;">${traderData.name}</h3><ul>`;
+        traderData.quests.forEach(good => {
+            const goodInfo = questsData[good.id];
+            if (goodInfo) {
+                popupContent += `<li class="witcher-style-text">${goodInfo.title}   
+                                <button class="detail-button witcher-style-text" onclick="showDetailedQuestInfo('${good.id}', ${good.level}, '${good.rewards}', '${good.notes}', this, ${marker._leaflet_id})">?</button>
+                                </li>`;
+            }
+        });
+        popupContent += `</ul>`;
+    
+        marker.originalContent = popupContent; // сохраните оригинальное содержание
+    
+        const popupOptions = {
+            closeOnClick: false,
+            autoClose: false
+        };
+    
+        marker.bindPopup(popupContent, popupOptions);
         traders.push(marker);
     }
+
+    window.addTrader = addTrader;
 
     // добавление оружейника
 
@@ -400,13 +461,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
         popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
     });
 
-    function addWeaponMan(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: weaponManIcon }).addTo(map);
-        if (popupText) {
-            marker.bindPopup(popupText);
-        }
+    function addWeaponMan(longitude, latitude, weaponManData) {
+        const marker = L.marker([latitude, longitude], { icon: weaponManIcon }).addTo(map);
+    
+        let popupContent = `<h3 class="witcher-style-text" style="font-size: 16px;">${weaponManData.name}</h3><ul>`;
+        weaponManData.quests.forEach(weapon => {
+            const weaponInfo = questsData[weapon.id];
+            if (weaponInfo) {
+                popupContent += `<li class="witcher-style-text">${weaponInfo.title}     
+                                <button class="detail-button witcher-style-text" onclick="showDetailedQuestInfo('${weapon.id}', ${weapon.level}, '${weapon.rewards}', '${weapon.notes}', this, ${marker._leaflet_id})">?</button>
+                                </li>`;
+            }
+        });
+        popupContent += `</ul>`;
+    
+        marker.originalContent = popupContent; // сохраните оригинальное содержание
+    
+        const popupOptions = {
+            closeOnClick: false,
+            autoClose: false
+        };
+    
+        marker.bindPopup(popupContent, popupOptions);
         weaponMen.push(marker);
     }
+    
+    window.addWeaponMan = addWeaponMan;
 
     // добавление оружейника
 
@@ -417,63 +497,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
         popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
     });
 
-    function addHunter(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: hunterIcon }).addTo(map);
-        if (popupText) {
-            marker.bindPopup(popupText);
-        }
+    function addHunter(longitude, latitude, hunterData) {
+        const marker = L.marker([latitude, longitude], { icon: hunterIcon }).addTo(map);
+    
+        let popupContent = `<h3 class="witcher-style-text" style="font-size: 16px;">${hunterData.name}</h3><ul>`;
+        hunterData.quests.forEach(hunt => {
+            const huntInfo = questsData[hunt.id];
+            if (huntInfo) {
+                popupContent += `<li class="witcher-style-text">${huntInfo.title}   
+                                <button class="detail-button witcher-style-text" onclick="showDetailedQuestInfo('${hunt.id}', ${hunt.level}, '${hunt.rewards}', '${hunt.notes}', this, ${marker._leaflet_id})">?</button>
+                                </li>`;
+            }
+        });
+        popupContent += `</ul>`;
+    
+        marker.originalContent = popupContent; // сохраните оригинальное содержание
+    
+        const popupOptions = {
+            closeOnClick: false,
+            autoClose: false
+        };
+    
+        marker.bindPopup(popupContent, popupOptions);
         hunters.push(marker);
     }
-
-    // Трейдеры и работы
-    /// Оксенфурт
-    addAlchemist(1733, 1955, '<b>Трейдер | Травница №1</b> <br>Описание');
-    addHunter(1787 , 1964, '<b>Трейдер | Охотник №1</b> <br>Описание');
-    addArmorman(1744 , 1950, '<b>Трейдер | Бронник</b> <br>Описание');
-    addWeaponMan(1763 , 1975, '<b>Трейдер | Оружейник</b> <br>Описание');
-    addTrader(1760 , 1963, '<b>Трейдер | Барахольщик №1</b> <br>Описание');
-    addGarnizon(1830 , 1735, '<b>Гарнизон Редании</b>');
-    addQuest(1772 , 1954, '<b>Работа | Мешки</b> <br> Таскание мешков за 4 кроны')
-    addBoard(1749 , 1981, '<b>Трейдер | Трактирщик №1</b>');
-    /// Вроницы
-    addBoard(700 , 1279, '<b>Трейдер | Трактирщик №2</b>');
-    addTrader(707 , 1265, '<b>Трейдер | Барахольщик №2</b> <br>Описание');
-    addAlchemist(667 , 1252, '<b>Трейдер | Травница №2</b> <br>Описание');
-    addHunter(651 , 1274, '<b>Трейдер | Охотник №2</b> <br>Описание');
-    addArmorman(682 , 1263, '<b>Трейдер | Бронник</b> <br>Описание');
-    addWeaponMan(674 , 1262, '<b>Трейдер | Оружейник</b> <br>Описание');
-    addGarnizon(644 , 1329, '<b>Гарнизон Людей Барона</b>');
-    /// Вызима
-    /// Эльфы
-    addBoard(2354 , 2949, '<b>Трейдер | Трактирщик №4</b>');
-    addHunter(2341 , 3038, '<b>Трейдер | Охотник №4</b> <br>Описание');
-    addTrader(2329 , 3035, '<b>Трейдер | Барахольщик №4</b> <br>Описание');
-    addAlchemist(2308 , 3054, '<b>Трейдер | Травница №4</b> <br>Описание');
-    addWeaponMan(2227 , 3035, '<b>Трейдер | Оружейник</b> <br>Описание');
-    addArmorman(2188 , 2887, '<b>Трейдер | Бронник</b> <br>Описание');
-    addGarnizon(2233 , 2966, '<b>Гарнизон Эльфов</b>');
-    /// Белые сады
-    addAlchemist(2615 , 487, '<b>Трейдер | Травница №5</b> <br>Описание');
-    addHunter(2751 , 407, '<b>Трейдер | Охотник №5</b> <br>Описание');
-    addBoard(2820 , 489, '<b>Трейдер | Трактирщи №5к</b>');
-    addArmorman(2789 , 458, '<b>Трейдер | Бронник</b> <br>Описание');
-    addWeaponMan(2784 , 456, '<b>Трейдер | Оружейник</b> <br>Описание');
-    /// Остальное
-    addBoard(903 , 1587, '<b>Трейдер | Трактирщик №6</b>');
-    addBoard(1174 , 2275, '<b>Трейдер | Трактирщик №7</b>');
-    addAlchemist(581 , 1047, '<b>Трейдер | Травница №6</b> <br>Описание');
-    addAlchemist(641 , 869, '<b>Трейдер | Травница №7</b> <br>Описание');
-    addAlchemist(232 , 1030, '<b>Трейдер | Травница №8</b> <br>Описание');
-    addAlchemist(1402 , 1214, '<b>Трейдер | Травница №9</b> <br>Описание');
-    addAlchemist(887 , 1600, '<b>Трейдер | Травница №10</b> <br>Описание');
-    addAlchemist(1708 , 1277, '<b>Трейдер | Травница №11</b> <br>Описание');
-    addTrader(584 , 1035, '<b>Трейдер | Барахольщик №6</b> <br>Описание');
-    addTrader(248 , 1012, '<b>Трейдер | Барахольщик №7</b> <br>Описание');
-    addTrader(326 , 390, '<b>Трейдер | Барахольщик №8</b> <br>Описание');
-    addHunter(585 , 837, '<b>Трейдер | Охотник №6</b> <br>Описание');
-    addHunter(231 , 1009, '<b>Трейдер | Охотник №7</b> <br>Описание');
-    addHunter(308 , 414, '<b>Трейдер | Охотник №8</b> <br>Описание');
-    addQuest(309 , 396, '<b>Работа | Грузчик</b> <br> Таскание мешков');
+    
+    window.addHunter = addHunter;
     
     // добавление камней силы
 
@@ -487,7 +536,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function addEssenceStone(longitude, latitude, popupText) {
         const marker = L.marker([latitude, longitude],{ icon: essenceIcon }).addTo(map);
         if (popupText) {
-            marker.bindPopup(popupText);
+            marker.bindPopup(`<div class="witcher-style-text">${popupText}</div>`);
         }
         essenceStones.push(marker);
     }
@@ -510,7 +559,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function addCave(longitude, latitude, popupText) {
         const marker = L.marker([latitude, longitude],{ icon: caveIcon }).addTo(map);
         if (popupText) {
-            marker.bindPopup(popupText);
+            marker.bindPopup(`<div class="witcher-style-text">${popupText}</div>`);
         }
         caves.push(marker);
     }
@@ -536,7 +585,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function addDangZone(longitude, latitude, popupText) {
         const marker = L.marker([latitude, longitude],{ icon: mosterIcon }).addTo(map);
         if (popupText) {
-            marker.bindPopup(popupText);
+            marker.bindPopup(`<div class="witcher-style-text">${popupText}</div>`);
         }
         dangerZones.push(marker);
     }
@@ -560,7 +609,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function addRecipePlace(longitude, latitude, popupText) {
         const marker = L.marker([latitude, longitude],{ icon: recipeIcon }).addTo(map);
         if (popupText) {
-            marker.bindPopup(popupText);
+            marker.bindPopup(`<div class="witcher-style-text">${popupText}</div>`);
         }
         recipes.push(marker);
     }
@@ -611,11 +660,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const marker = L.marker(markerData.coordinates, {
                 icon: markerIcon,
                 opacity: 0.5 // Более прозрачный маркер
-            }).addTo(map).bindPopup(`
+            }).addTo(map).bindPopup(`<div class="witcher-style-text">
                 <b>Отправленная на добавление вами метка</b> <br>Выбранный тип: ${markerData.type} <br>Заданное описание: ${markerData.text}
                 <br>
-                <button onclick="removeMarker('${getMarkerKey(markerData.coordinates)}')">Удалить метку</button>
-                `);
+                <button class="detail-button witcher-style-text" onclick="removeMarker('${getMarkerKey(markerData.coordinates)}')">Удалить метку</button>
+                </div>`);
             localMarkers[getMarkerKey(markerData.coordinates)] = marker;
         } else {
             console.error(`Icon URL not found for type: ${markerData.type}`);
@@ -642,11 +691,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const marker = L.marker(markerData.coordinates, {
                 icon: markerIcon,
                 opacity: 0.5 // Более прозрачный маркер
-            }).addTo(map).bindPopup(`
+            }).addTo(map).bindPopup(`<div class="witcher-style-text">
                 <b>Отправленная на добавление вами метка</b> <br>Выбранный тип: ${markerData.type} <br>Заданное описание: ${markerData.text}
                 <br>
-                <button onclick="removeMarker('${getMarkerKey(markerData.coordinates)}')">Удалить метку</button>
-                `);
+                <button class="detail-button witcher-style-text" onclick="removeMarker('${getMarkerKey(markerData.coordinates)}')">Удалить метку</button>
+                </div>`);
             localMarkers[getMarkerKey(markerData.coordinates)] = marker;
         } else {
             console.error(`Icon URL not found for type: ${markerData.type}`);

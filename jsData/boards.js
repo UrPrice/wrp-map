@@ -265,4 +265,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         ]
     });
+    addBoard(1398 , 1226, {
+        name: "Трактирщик | Мельница",
+        quests: []
+    });
 });

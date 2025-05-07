@@ -71,6 +71,46 @@ const questsData = {
         "title": "Сбор: Плод баллиса",
         "requirements": "Принести 3 плода баллиса"
     },
+    "alchemistalt_podorojnik": {
+        "title": "Подорожник",
+        "requirements": "Принести 3 подорожника"
+    },
+    "alchemistalt_arenaria": {
+        "title": "Аренария",
+        "requirements": "Принести 3 цветка аренарии"
+    },
+    "alchemistalt_verbena": {
+        "title": "Вербена",
+        "requirements": "Принести 3 цветка вербены"
+    },
+    "alchemistalt_volkoboi": {
+        "title": "Волкобой",
+        "requirements": "Принести 3 цветка волкобоя"
+    },
+    "alchemistalt_oduvanchik": {
+        "title": "Одуванчик",
+        "requirements": "Принести 3 цветка одуванчика"
+    },
+    "alchemistalt_naker": {
+        "title": "Полезные чудища: Накер",
+        "requirements": "Принести 3 крови накера"
+    },
+    "alchemistalt_utopec": {
+        "title": "Полезные чудища: Утопец",
+        "requirements": "Принести 2 водных эссенции"
+    },
+    "alchemistalt_gnilec": {
+        "title": "Полезные чудища: Гнилец",
+        "requirements": "Принести 3 крови Гнильца"
+    },
+    "alchemistalt_halfnight": {
+        "title": "Полезные чудищ: Полуночница",
+        "requirements": "Принести 1 призрачную пыль"
+    },
+    "alchemistalt_halfday": {
+        "title": "Полезные чудищ: Полудница",
+        "requirements": "Принести 1 эссенцию света"
+    },
     "hunter_bear": {
         "title": "Охота на медведя",
         "requirements": "Принести 1 шкуру медведя"
@@ -126,6 +166,18 @@ const questsData = {
     "traktir_glam": {
         "title": "Модные порывыв",
         "requirements": "Принести 5 парфюма<br>Принести 5 гламура"
+    },
+    "traktirext_lutnya": {
+        "title": "Лютня",
+        "requirements": "Принести 1 лютню"
+    },
+    "traktirext_polovik": {
+        "title": "Половик",
+        "requirements": "Принести 1 половик"
+    },
+    "traktirext_branches": {
+        "title": "Палки",
+        "requirements": "Принести 10 палок"
     },
     "armor_coal": {
         "title": "Уголь в топку",

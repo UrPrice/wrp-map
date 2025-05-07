@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
 
-    // Трейдеры и работы
-    /// Оксенфурт
     addAlchemist(1733, 1955, {
         name: "Травница | Оксенфурт",
         quests: [
@@ -754,6 +752,54 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         ]
     });
+    addBoard(1398 , 1810, {
+        name: "Трактирщик | Каменоломня Старые Хрычи",
+        quests: [
+            {
+                id: "traktir_tarelki",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktir_krujki",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktir_meat",
+                level: 40,
+                rewards: "20 опыта",
+                notes: "10 мяса можно купить у него же"
+            },
+            { 
+                id: "traktir_fish", 
+                level: 40, 
+                rewards: "20 опыта",
+                notes: "5 рыбы можно купить у него же"
+            },
+            { 
+                id: "traktir_glam", 
+                level: 40, 
+                rewards: "20 опыта",
+                notes: "гламур выгоднее продавать, а духи сдавать барахольщику"
+            },
+            {
+                id: "traktirext_lutnya",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktirext_polovik",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktirext_branches",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
     addAlchemist(581 , 1047, {
         name: "Травница | Temp1",
         quests: [
@@ -863,7 +909,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         ]
     });
     addAlchemist(232 , 1030, {
-        name: "Травница | Temp3",
+        name: "Травница | Деревня Подлесье",
         quests: [
             { 
                 id: "alchemist_pepper", 
@@ -1078,6 +1124,126 @@ document.addEventListener('DOMContentLoaded', (event) => {
             
         ]
     });
+    addAlchemist(62 , 956, {
+        name: "Травница | Лесопилка Брука",
+        quests: [
+            { 
+                id: "alchemistalt_podorojnik", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_arenaria", 
+                level: 40, 
+                rewards: "40 опыта",
+                notes: "Недобываемая трава"
+            },
+            { 
+                id: "alchemistalt_verbena", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_volkoboi", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_oduvanchik", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_naker", 
+                level: 40, 
+                rewards: "40 опыта",
+                notes: "Открывающее задание"
+            },
+            { 
+                id: "alchemistalt_utopec", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_gnilec", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_halfnight", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_halfday", 
+                level: 40, 
+                rewards: "40 опыта"
+            }
+            
+        ]
+    });
+    addAlchemist(868 , 1159, {
+        name: "Травница | Лагерь поддержки",
+        quests: [
+            { 
+                id: "alchemistalt_podorojnik", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_arenaria", 
+                level: 40, 
+                rewards: "40 опыта",
+                notes: "Недобываемая трава"
+            },
+            { 
+                id: "alchemistalt_verbena", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_volkoboi", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_oduvanchik", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_naker", 
+                level: 40, 
+                rewards: "40 опыта",
+                notes: "Открывающее задание"
+            },
+            { 
+                id: "alchemistalt_utopec", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_gnilec", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_halfnight", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_halfday", 
+                level: 40, 
+                rewards: "40 опыта"
+            }
+            
+        ]
+    });
+    addAlchemist(464 , 1597, {
+        name: "Травница | Деревня Вересковка",
+        quests: []
+    });
     addTrader(584 , 1035, {
         name: "Барахольщик | Temp1",
         quests: [
@@ -1130,7 +1296,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         ]
     });
     addTrader(248 , 1012, {
-        name: "Барахольщик | Temp2",
+        name: "Барахольщик | Деревня Подлесье",
         quests: [
             {
                 id: "trader_candelabra",
@@ -1181,7 +1347,211 @@ document.addEventListener('DOMContentLoaded', (event) => {
         ]
     });
     addTrader(326 , 390, {
-        name: "Барахольщик | Temp9",
+        name: "Барахольщик | Деревня Хель",
+        quests: [
+            {
+                id: "trader_candelabra",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_butter_knife",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_inkwell",
+                level: 40,
+                rewards: "20 опыта",
+                notes: "чернильницу можно купить у этого же трейдера"
+            },
+            { 
+                id: "trader_blades", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            { 
+                id: "trader_glasses", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_collection",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_smoking",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_seashell",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_perfume",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
+    addTrader(61 , 968, {
+        name: "Барахольщик | Лесопилка Брука",
+        quests: [
+            {
+                id: "trader_candelabra",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_butter_knife",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_inkwell",
+                level: 40,
+                rewards: "20 опыта",
+                notes: "чернильницу можно купить у этого же трейдера"
+            },
+            { 
+                id: "trader_blades", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            { 
+                id: "trader_glasses", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_collection",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_smoking",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_seashell",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_perfume",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
+    addTrader(1394 , 1799, {
+        name: "Барахольщик | Каменоломня Старые Хрычи",
+        quests: [
+            {
+                id: "trader_candelabra",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_butter_knife",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_inkwell",
+                level: 40,
+                rewards: "20 опыта",
+                notes: "чернильницу можно купить у этого же трейдера"
+            },
+            { 
+                id: "trader_blades", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            { 
+                id: "trader_glasses", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_collection",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_smoking",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_seashell",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_perfume",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
+    addTrader(471 , 1583, {
+        name: "Барахольщик | Деревня Вересковка",
+        quests: [
+            {
+                id: "trader_candelabra",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_butter_knife",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_inkwell",
+                level: 40,
+                rewards: "20 опыта",
+                notes: "чернильницу можно купить у этого же трейдера"
+            },
+            { 
+                id: "trader_blades", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            { 
+                id: "trader_glasses", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_collection",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_smoking",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_seashell",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_perfume",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
+    addTrader(845 , 1140, {
+        name: "Барахольщик | Лагерь поддержки",
         quests: [
             {
                 id: "trader_candelabra",
@@ -1282,7 +1652,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         ]
     });
     addHunter(231 , 1009, {
-        name: "Охотник | Temp2",
+        name: "Охотник | Деревня Подлесье",
         quests: [
             {
                 id: "hunter_bear",
@@ -1332,7 +1702,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         ]
     });
     addHunter(308 , 414, {
-        name: "Охотник | Temp3",
+        name: "Охотник | Дервня Хель",
         quests: [
             {
                 id: "hunter_bear",
@@ -1381,7 +1751,161 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         ]
     });
-    addQuest(309 , 396, '<b>Работа | Грузчик</b> <br> Таскание мешков');
+    addHunter(52 , 964, {
+        name: "Охотник | Лесопилка Брука",
+        quests: [
+            {
+                id: "hunter_bear",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_olen",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_kaban",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            { 
+                id: "hunter_kozy", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            { 
+                id: "hunter_naker", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_utopec",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_gnilec",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_halfnight",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_halfday",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
+    addHunter(1379 , 1795, {
+        name: "Охотник | Каменоломня Старые Хрычи",
+        quests: [
+            {
+                id: "hunter_bear",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_olen",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_kaban",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            { 
+                id: "hunter_kozy", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            { 
+                id: "hunter_naker", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_utopec",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_gnilec",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_halfnight",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_halfday",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
+    addHunter(849 , 1172, {
+        name: "Охотник | Лагерь поддержки",
+        quests: [
+            {
+                id: "hunter_bear",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_olen",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_kaban",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            { 
+                id: "hunter_kozy", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            { 
+                id: "hunter_naker", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_utopec",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_gnilec",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_halfnight",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_halfday",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
+    addQuest(309 , 396, '<b>Работа | Грузчик</b> <br> Перетащить мешки');
+    addQuest(494 , 1588, '<b>Работа | Фермер | Деревня Вересковка</b> <br> Собирать урожай');
+    addQuest(458 , 1624, '<b>Работа | Доярка | Деревня Вересковка</b> <br> Доить коровв');
+    addQuest(61 , 963, '<b>Работа | Дровосек | Лесопилка Брука</b> <br> Валить лес. За бревно 16 крон.');
+    addQuest(837 , 1171, '<b>Работа | Грузчик | Лагерь поддержки</b> <br> Перетащить мешки.');
 
 
 });

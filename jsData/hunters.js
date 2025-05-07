@@ -1,541 +1,483 @@
 document.addEventListener('DOMContentLoaded', (event) => {
 
-    addTrader(1760 , 1963, {
-        name: "Барахольщик | Оксенфурт",
+    addHunter(1787 , 1964, {
+        name: "Охотник | Оксенфурт",
         quests: [
             {
-                id: "trader_candelabra",
+                id: "hunter_bear",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_butter_knife",
+                id: "hunter_olen",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_inkwell",
+                id: "hunter_kaban",
                 level: 60,
-                rewards: "30 опыта",
-                notes: "чернильницу можно купить у этого же трейдера"
+                rewards: "30 опыта"
             },
             { 
-                id: "trader_blades", 
+                id: "hunter_kozy", 
                 level: 60, 
                 rewards: "30 опыта"
             },
             { 
-                id: "trader_glasses", 
+                id: "hunter_naker", 
                 level: 60, 
                 rewards: "30 опыта"
             },
             {
-                id: "trader_collection",
+                id: "hunter_utopec",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_smoking",
+                id: "hunter_gnilec",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_seashell",
+                id: "hunter_halfnight",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_perfume",
+                id: "hunter_halfday",
                 level: 60,
                 rewards: "30 опыта"
             }
         ]
-    });    
-    addTrader(707 , 1265, {
-        name: "Барахольщик | Вроницы",
+    });
+    addHunter(651 , 1274, {
+        name: "Охотник | Вроницы",
         quests: [
             {
-                id: "trader_candelabra",
+                id: "hunter_bear",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_butter_knife",
+                id: "hunter_olen",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_inkwell",
+                id: "hunter_kaban",
                 level: 60,
-                rewards: "30 опыта",
-                notes: "чернильницу можно купить у этого же трейдера"
+                rewards: "30 опыта"
             },
             { 
-                id: "trader_blades", 
+                id: "hunter_kozy", 
                 level: 60, 
                 rewards: "30 опыта"
             },
             { 
-                id: "trader_glasses", 
+                id: "hunter_naker", 
                 level: 60, 
                 rewards: "30 опыта"
             },
             {
-                id: "trader_collection",
+                id: "hunter_utopec",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_smoking",
+                id: "hunter_gnilec",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_seashell",
+                id: "hunter_halfnight",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_perfume",
+                id: "hunter_halfday",
                 level: 60,
                 rewards: "30 опыта"
             }
         ]
     });
-    addTrader(2329 , 3035, {
-        name: "Барахольщик | Эльфы",
+    addHunter(2341 , 3038, {
+        name: "Охотник | Эльфы",
         quests: [
             {
-                id: "trader_candelabra",
+                id: "hunter_bear",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_butter_knife",
+                id: "hunter_olen",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_inkwell",
+                id: "hunter_kaban",
                 level: 60,
-                rewards: "30 опыта",
-                notes: "чернильницу можно купить у этого же трейдера"
+                rewards: "30 опыта"
             },
             { 
-                id: "trader_blades", 
+                id: "hunter_kozy", 
                 level: 60, 
                 rewards: "30 опыта"
             },
             { 
-                id: "trader_glasses", 
+                id: "hunter_naker", 
                 level: 60, 
                 rewards: "30 опыта"
             },
             {
-                id: "trader_collection",
+                id: "hunter_utopec",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_smoking",
+                id: "hunter_gnilec",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_seashell",
+                id: "hunter_halfnight",
                 level: 60,
                 rewards: "30 опыта"
             },
             {
-                id: "trader_perfume",
+                id: "hunter_halfday",
                 level: 60,
                 rewards: "30 опыта"
             }
         ]
     });
-    addTrader(584 , 1035, {
-        name: "Барахольщик | Temp1",
+    addHunter(2751 , 407, {
+        name: "Охотник | Белые Сады>",
+        quests: []
+    });
+    addHunter(585 , 837, {
+        name: "Охотник | Temp1",
         quests: [
             {
-                id: "trader_candelabra",
+                id: "hunter_bear",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_butter_knife",
+                id: "hunter_olen",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_inkwell",
+                id: "hunter_kaban",
                 level: 40,
-                rewards: "20 опыта",
-                notes: "чернильницу можно купить у этого же трейдера"
+                rewards: "20 опыта"
             },
             { 
-                id: "trader_blades", 
+                id: "hunter_kozy", 
                 level: 40, 
                 rewards: "20 опыта"
             },
             { 
-                id: "trader_glasses", 
+                id: "hunter_naker", 
                 level: 40, 
                 rewards: "20 опыта"
             },
             {
-                id: "trader_collection",
+                id: "hunter_utopec",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_smoking",
+                id: "hunter_gnilec",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_seashell",
+                id: "hunter_halfnight",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_perfume",
+                id: "hunter_halfday",
                 level: 40,
                 rewards: "20 опыта"
             }
         ]
     });
-    addTrader(248 , 1012, {
-        name: "Барахольщик | Деревня Подлесье",
+    addHunter(231 , 1009, {
+        name: "Охотник | Деревня Подлесье",
         quests: [
             {
-                id: "trader_candelabra",
+                id: "hunter_bear",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_butter_knife",
+                id: "hunter_olen",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_inkwell",
+                id: "hunter_kaban",
                 level: 40,
-                rewards: "20 опыта",
-                notes: "чернильницу можно купить у этого же трейдера"
+                rewards: "20 опыта"
             },
             { 
-                id: "trader_blades", 
+                id: "hunter_kozy", 
                 level: 40, 
                 rewards: "20 опыта"
             },
             { 
-                id: "trader_glasses", 
+                id: "hunter_naker", 
                 level: 40, 
                 rewards: "20 опыта"
             },
             {
-                id: "trader_collection",
+                id: "hunter_utopec",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_smoking",
+                id: "hunter_gnilec",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_seashell",
+                id: "hunter_halfnight",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_perfume",
+                id: "hunter_halfday",
                 level: 40,
                 rewards: "20 опыта"
             }
         ]
     });
-    addTrader(326 , 390, {
-        name: "Барахольщик | Деревня Хель",
+    addHunter(308 , 414, {
+        name: "Охотник | Дервня Хель",
         quests: [
             {
-                id: "trader_candelabra",
+                id: "hunter_bear",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_butter_knife",
+                id: "hunter_olen",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_inkwell",
+                id: "hunter_kaban",
                 level: 40,
-                rewards: "20 опыта",
-                notes: "чернильницу можно купить у этого же трейдера"
+                rewards: "20 опыта"
             },
             { 
-                id: "trader_blades", 
+                id: "hunter_kozy", 
                 level: 40, 
                 rewards: "20 опыта"
             },
             { 
-                id: "trader_glasses", 
+                id: "hunter_naker", 
                 level: 40, 
                 rewards: "20 опыта"
             },
             {
-                id: "trader_collection",
+                id: "hunter_utopec",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_smoking",
+                id: "hunter_gnilec",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_seashell",
+                id: "hunter_halfnight",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_perfume",
+                id: "hunter_halfday",
                 level: 40,
                 rewards: "20 опыта"
             }
         ]
     });
-    addTrader(61 , 968, {
-        name: "Барахольщик | Лесопилка Брука",
+    addHunter(52 , 964, {
+        name: "Охотник | Лесопилка Брука",
         quests: [
             {
-                id: "trader_candelabra",
+                id: "hunter_bear",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_butter_knife",
+                id: "hunter_olen",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_inkwell",
+                id: "hunter_kaban",
                 level: 40,
-                rewards: "20 опыта",
-                notes: "чернильницу можно купить у этого же трейдера"
+                rewards: "20 опыта"
             },
             { 
-                id: "trader_blades", 
+                id: "hunter_kozy", 
                 level: 40, 
                 rewards: "20 опыта"
             },
             { 
-                id: "trader_glasses", 
+                id: "hunter_naker", 
                 level: 40, 
                 rewards: "20 опыта"
             },
             {
-                id: "trader_collection",
+                id: "hunter_utopec",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_smoking",
+                id: "hunter_gnilec",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_seashell",
+                id: "hunter_halfnight",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_perfume",
+                id: "hunter_halfday",
                 level: 40,
                 rewards: "20 опыта"
             }
         ]
     });
-    addTrader(1394 , 1799, {
-        name: "Барахольщик | Каменоломня Старые Хрычи",
+    addHunter(1379 , 1795, {
+        name: "Охотник | Каменоломня Старые Хрычи",
         quests: [
             {
-                id: "trader_candelabra",
+                id: "hunter_bear",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_butter_knife",
+                id: "hunter_olen",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_inkwell",
+                id: "hunter_kaban",
                 level: 40,
-                rewards: "20 опыта",
-                notes: "чернильницу можно купить у этого же трейдера"
+                rewards: "20 опыта"
             },
             { 
-                id: "trader_blades", 
+                id: "hunter_kozy", 
                 level: 40, 
                 rewards: "20 опыта"
             },
             { 
-                id: "trader_glasses", 
+                id: "hunter_naker", 
                 level: 40, 
                 rewards: "20 опыта"
             },
             {
-                id: "trader_collection",
+                id: "hunter_utopec",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_smoking",
+                id: "hunter_gnilec",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_seashell",
+                id: "hunter_halfnight",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_perfume",
+                id: "hunter_halfday",
                 level: 40,
                 rewards: "20 опыта"
             }
         ]
     });
-    addTrader(471 , 1583, {
-        name: "Барахольщик | Деревня Вересковка",
+    addHunter(849 , 1172, {
+        name: "Охотник | Лагерь поддержки",
         quests: [
             {
-                id: "trader_candelabra",
+                id: "hunter_bear",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_butter_knife",
+                id: "hunter_olen",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_inkwell",
+                id: "hunter_kaban",
                 level: 40,
-                rewards: "20 опыта",
-                notes: "чернильницу можно купить у этого же трейдера"
+                rewards: "20 опыта"
             },
             { 
-                id: "trader_blades", 
+                id: "hunter_kozy", 
                 level: 40, 
                 rewards: "20 опыта"
             },
             { 
-                id: "trader_glasses", 
+                id: "hunter_naker", 
                 level: 40, 
                 rewards: "20 опыта"
             },
             {
-                id: "trader_collection",
+                id: "hunter_utopec",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_smoking",
+                id: "hunter_gnilec",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_seashell",
+                id: "hunter_halfnight",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_perfume",
+                id: "hunter_halfday",
                 level: 40,
                 rewards: "20 опыта"
             }
         ]
     });
-    addTrader(845 , 1140, {
-        name: "Барахольщик | Лагерь поддержки",
+    addHunter(1619 , 2230, {
+        name: "Охотник | Деревня Карстен",
         quests: [
             {
-                id: "trader_candelabra",
+                id: "hunter_bear",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_butter_knife",
+                id: "hunter_olen",
                 level: 40,
                 rewards: "20 опыта"
             },
             {
-                id: "trader_inkwell",
+                id: "hunter_kaban",
                 level: 40,
-                rewards: "20 опыта",
-                notes: "чернильницу можно купить у этого же трейдера"
-            },
-            { 
-                id: "trader_blades", 
-                level: 40, 
                 rewards: "20 опыта"
             },
             { 
-                id: "trader_glasses", 
+                id: "hunter_kozy", 
                 level: 40, 
-                rewards: "20 опыта"
-            },
-            {
-                id: "trader_collection",
-                level: 40,
-                rewards: "20 опыта"
-            },
-            {
-                id: "trader_smoking",
-                level: 40,
-                rewards: "20 опыта"
-            },
-            {
-                id: "trader_seashell",
-                level: 40,
-                rewards: "20 опыта"
-            },
-            {
-                id: "trader_perfume",
-                level: 40,
-                rewards: "20 опыта"
-            }
-        ]
-    });
-    addTrader(1636 , 2255, {
-        name: "Барахольщик | Деревня Карстен",
-        quests: [
-            { 
-                id: "trader_blades", 
-                level: 40, 
-                rewards: "20 опыта"
-            },
-            {
-                id: "trader_collection",
-                level: 40,
-                rewards: "20 опыта"
-            },
-            {
-                id: "trader_smoking",
-                level: 40,
-                rewards: "20 опыта"
-            },
-            {
-                id: "trader_perfume",
-                level: 40,
                 rewards: "20 опыта"
             }
         ]
     });
     
-   
-
 });

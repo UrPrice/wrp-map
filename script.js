@@ -492,7 +492,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     const hunterIcon = L.icon({
         iconUrl: 'images/huntIcon.png',
-        iconSize: [32, 32], // размер иконки
+        iconSize: [26, 26], // размер иконки
         iconAnchor: [16, 32], // точка привязки иконки (центр)
         popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
     });
@@ -528,7 +528,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     const essenceIcon = L.icon({
         iconUrl: 'images/iconEssence.png',
-        iconSize: [32, 32], // размер иконки
+        iconSize: [22, 22], // размер иконки
         iconAnchor: [16, 32], // точка привязки иконки (центр)
         popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
     });

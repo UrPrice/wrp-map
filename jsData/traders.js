@@ -678,6 +678,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         ]
     });
+    addArmorman(1184 , 1606, {
+        name: "Бронник | Деревня Яворник",
+        quests: [
+            {
+                id: "weapon_silver",
+                level: 60,
+                rewards: "30 опыта",
+                notes: "После выполнения задания - появятся новые квесты у этого трейдера"
+            }
+        ]
+    });
     addGarnizon(2233 , 2966, '<b>Гарнизон Эльфов</b>');
     /// Белые сады
     // addAlchemist(2615 , 487, '<b>Трейдер | Травница №5</b> <br>Описание');
@@ -754,6 +765,54 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
     addBoard(1398 , 1810, {
         name: "Трактирщик | Каменоломня Старые Хрычи",
+        quests: [
+            {
+                id: "traktir_tarelki",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktir_krujki",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktir_meat",
+                level: 40,
+                rewards: "20 опыта",
+                notes: "10 мяса можно купить у него же"
+            },
+            { 
+                id: "traktir_fish", 
+                level: 40, 
+                rewards: "20 опыта",
+                notes: "5 рыбы можно купить у него же"
+            },
+            { 
+                id: "traktir_glam", 
+                level: 40, 
+                rewards: "20 опыта",
+                notes: "гламур выгоднее продавать, а духи сдавать барахольщику"
+            },
+            {
+                id: "traktirext_lutnya",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktirext_polovik",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktirext_branches",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
+    addBoard(1182 , 1635, {
+        name: "Трактирщик | Деревня Яворник",
         quests: [
             {
                 id: "traktir_tarelki",
@@ -964,165 +1023,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
     addAlchemist(1402 , 1214, {
         name: "Травница | Temp4",
-        quests: [
-            { 
-                id: "alchemist_pepper", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_zubrovka", 
-                level: 40, 
-                rewards: "40 опыта",
-                notes: "Недобываемая трава"
-            },
-            { 
-                id: "alchemist_krovostoi", 
-                level: 40, 
-                rewards: "40 опыта",
-                notes: "Недобываемая трава"
-            },
-            { 
-                id: "alchemist_lastochka", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_pautinnik", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_scarroweye", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_sporin", 
-                level: 40, 
-                rewards: "40 опыта",
-                notes: "Недобываемая трава"
-            },
-            { 
-                id: "alchemist_dvoegrot", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_ballis", 
-                level: 40, 
-                rewards: "40 опыта"
-            }
-            
-        ]
+        quests: []
     });
     addAlchemist(887 , 1600, {
         name: "Травница | Temp5",
-        quests: [
-            { 
-                id: "alchemist_pepper", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_zubrovka", 
-                level: 40, 
-                rewards: "40 опыта",
-                notes: "Недобываемая трава"
-            },
-            { 
-                id: "alchemist_krovostoi", 
-                level: 40, 
-                rewards: "40 опыта",
-                notes: "Недобываемая трава"
-            },
-            { 
-                id: "alchemist_lastochka", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_pautinnik", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_scarroweye", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_sporin", 
-                level: 40, 
-                rewards: "40 опыта",
-                notes: "Недобываемая трава"
-            },
-            { 
-                id: "alchemist_dvoegrot", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_ballis", 
-                level: 40, 
-                rewards: "40 опыта"
-            }
-            
-        ]
+        quests: []
     });
     addAlchemist(1708 , 1277, {
         name: "Травница | Temp6",
-        quests: [
-            { 
-                id: "alchemist_pepper", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_zubrovka", 
-                level: 40, 
-                rewards: "40 опыта",
-                notes: "Недобываемая трава"
-            },
-            { 
-                id: "alchemist_krovostoi", 
-                level: 40, 
-                rewards: "40 опыта",
-                notes: "Недобываемая трава"
-            },
-            { 
-                id: "alchemist_lastochka", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_pautinnik", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_scarroweye", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_sporin", 
-                level: 40, 
-                rewards: "40 опыта",
-                notes: "Недобываемая трава"
-            },
-            { 
-                id: "alchemist_dvoegrot", 
-                level: 40, 
-                rewards: "40 опыта"
-            },
-            { 
-                id: "alchemist_ballis", 
-                level: 40, 
-                rewards: "40 опыта"
-            }
-            
-        ]
+        quests: []
     });
     addAlchemist(62 , 956, {
         name: "Травница | Лесопилка Брука",
@@ -1184,6 +1093,122 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
     addAlchemist(868 , 1159, {
         name: "Травница | Лагерь поддержки",
+        quests: [
+            { 
+                id: "alchemistalt_podorojnik", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_arenaria", 
+                level: 40, 
+                rewards: "40 опыта",
+                notes: "Недобываемая трава"
+            },
+            { 
+                id: "alchemistalt_verbena", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_volkoboi", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_oduvanchik", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_naker", 
+                level: 40, 
+                rewards: "40 опыта",
+                notes: "Открывающее задание"
+            },
+            { 
+                id: "alchemistalt_utopec", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_gnilec", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_halfnight", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_halfday", 
+                level: 40, 
+                rewards: "40 опыта"
+            }
+            
+        ]
+    });
+    addAlchemist(1176 , 1647, {
+        name: "Травница | Деревня Яворник",
+        quests: [
+            { 
+                id: "alchemistalt_podorojnik", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_arenaria", 
+                level: 40, 
+                rewards: "40 опыта",
+                notes: "Недобываемая трава"
+            },
+            { 
+                id: "alchemistalt_verbena", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_volkoboi", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_oduvanchik", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_naker", 
+                level: 40, 
+                rewards: "40 опыта",
+                notes: "Открывающее задание"
+            },
+            { 
+                id: "alchemistalt_utopec", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_gnilec", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_halfnight", 
+                level: 40, 
+                rewards: "40 опыта"
+            },
+            { 
+                id: "alchemistalt_halfday", 
+                level: 40, 
+                rewards: "40 опыта"
+            }
+            
+        ]
+    });
+    addAlchemist(1619 , 2256, {
+        name: "Травница | Деревня Карстен",
         quests: [
             { 
                 id: "alchemistalt_podorojnik", 
@@ -1601,6 +1626,31 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         ]
     });
+    addTrader(1636 , 2255, {
+        name: "Барахольщик | Деревня Карстен",
+        quests: [
+            { 
+                id: "trader_blades", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_collection",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_smoking",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_perfume",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
     addHunter(585 , 837, {
         name: "Охотник | Temp1",
         quests: [
@@ -1901,11 +1951,38 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         ]
     });
-    addQuest(309 , 396, '<b>Работа | Грузчик</b> <br> Перетащить мешки');
+    addHunter(1619 , 2230, {
+        name: "Охотник | Деревня Карстен",
+        quests: [
+            {
+                id: "hunter_bear",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_olen",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_kaban",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            { 
+                id: "hunter_kozy", 
+                level: 40, 
+                rewards: "20 опыта"
+            }
+        ]
+    });
+    addQuest(309 , 396, '<b>Работа | Грузчик | Деревня Хель</b> <br> Перетащить мешки');
     addQuest(494 , 1588, '<b>Работа | Фермер | Деревня Вересковка</b> <br> Собирать урожай');
     addQuest(458 , 1624, '<b>Работа | Доярка | Деревня Вересковка</b> <br> Доить коровв');
     addQuest(61 , 963, '<b>Работа | Дровосек | Лесопилка Брука</b> <br> Валить лес. За бревно 16 крон.');
     addQuest(837 , 1171, '<b>Работа | Грузчик | Лагерь поддержки</b> <br> Перетащить мешки.');
+    addQuest(1160 , 1645, '<b>Работа | Фермер | Деревня Яворник</b> <br> Собирать урожай');
+    addQuest(1174 , 1640, '<b>Работа | Грузчик | Деревня Яворник</b> <br> Перетащить мешки');
 
 
 });

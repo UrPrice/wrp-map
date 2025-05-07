@@ -168,15 +168,15 @@ const questsData = {
         "requirements": "Принести 5 парфюма<br>Принести 5 гламура"
     },
     "traktirext_lutnya": {
-        "title": "Лютня",
+        "title": "Бард без лютни",
         "requirements": "Принести 1 лютню"
     },
     "traktirext_polovik": {
-        "title": "Половик",
-        "requirements": "Принести 1 половик"
+        "title": "Черпак",
+        "requirements": "Принести 1 ополовник"
     },
     "traktirext_branches": {
-        "title": "Палки",
+        "title": "Потребности корчмы",
         "requirements": "Принести 10 палок"
     },
     "armor_coal": {

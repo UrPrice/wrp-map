@@ -10,12 +10,54 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     const bounds = [[0, 0], [3565, 3619]]; 
 
-    const imageOverlay = L.imageOverlay('mapImage/mainMap.png', bounds).addTo(map);
+    L.imageOverlay('mapImage/mainMap.png', bounds).addTo(map);
 
     map.fitBounds(bounds); 
 
     const coordinatesDisplay = document.getElementById('coordinates');
 
+    // Данные дорог в виде полилиний
+    const gridWidth = Math.round(bounds[1][0]);
+    const gridHeight = Math.round(bounds[1][1]);
+    
+    // Инициализируем сетку с непроходимыми узлами
+    let grid = new PF.Grid(gridWidth, gridHeight);
+
+    // Устанавливаем все ячейки как непроходимые (повторение излишне, если вы хотите сделать это самим сразу после инициализации)
+    for (let x = 0; x < gridWidth; x++) {
+        for (let y = 0; y < gridHeight; y++) {
+            grid.setWalkableAt(x, y, false);
+        }
+    }
+    console.log(grid)
+    const roads = [
+        [[100, 200], [200, 200], [300, 300]],
+        [[100, 200], [90, 300], [200, 400]]
+    ];
+
+    roads.forEach(road => {
+        L.polyline(road, {color: 'grey'}).addTo(map);
+
+        for (let i = 0; i < road.length - 1; i++) {
+            const p1 = road[i];
+            const p2 = road[i + 1];
+
+            const numPoints = Math.max(Math.abs(p1[0] - p2[0]), Math.abs(p1[1] - p2[1]));
+            for (let j = 0; j <= numPoints; j++) {
+                const y = Math.round(p1[0] + (p2[0] - p1[0]) * j / numPoints);
+                const x = Math.round(p1[1] + (p2[1] - p1[1]) * j / numPoints);
+
+                if (grid.isInside(x, y)) {
+                    grid.setWalkableAt(x, y, true); // теперь это проходимо
+                }
+            }
+        }
+    });
+
+    let startPoint = null;
+    let endPoint = null;
+    let activeRouteLine = null;
+    let activeConnectingLines = [];
     // Обработчик события движения мыши
     map.on('mousemove', function(event) {
         const { lat, lng } = event.latlng;
@@ -24,11 +66,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     const contextMenu = document.getElementById('context-menu');
     const copyNotification = document.getElementById('copy-notification');
+    const routeButton = document.getElementById('routeButton');
+    let contextMenuState = 'Выбрать точку А';
     let clickLatLng = null;
     let markerForm = null;
 
     map.on('contextmenu', function(event) {
         clickLatLng = event.latlng;
+        switch(contextMenuState) {
+            case 'Выбрать точку А':
+                routeButton.textContent = 'Выбрать точку А';
+                break;
+            case 'Выбрать точку Б':
+                routeButton.textContent = 'Выбрать точку Б';
+                break;
+            case 'Очистить маршрут':
+                routeButton.textContent = 'Очистить маршрут';
+                break;
+        }
         showContextMenu(event.containerPoint.x, event.containerPoint.y);
         event.originalEvent.preventDefault();
     });
@@ -38,6 +93,118 @@ document.addEventListener('DOMContentLoaded', (event) => {
         contextMenu.style.top = `${y - 35}px`;
         contextMenu.classList.remove('hidden');
     }
+
+    routeButton.addEventListener('click', function() {
+        switch(contextMenuState) {
+            case 'Выбрать точку А':
+                startPoint = [Math.floor(clickLatLng.lng), Math.floor(clickLatLng.lat)];
+                contextMenuState = 'Выбрать точку Б';
+                break;
+            case 'Выбрать точку Б':
+                endPoint = [Math.floor(clickLatLng.lng), Math.floor(clickLatLng.lat)];
+                if (startPoint && endPoint) {
+                    findRoute(startPoint, endPoint);
+                    contextMenuState = 'Очистить маршрут';
+                }
+                break;
+            case 'Очистить маршрут':
+                startPoint = null;
+                endPoint = null;
+                if (activeRouteLine) {
+                    map.removeLayer(activeRouteLine);
+                    activeRouteLine = null;
+                }
+                activeConnectingLines.forEach(line => map.removeLayer(line));
+                activeConnectingLines = [];
+                contextMenuState = 'Выбрать точку А';
+                break;
+        }
+        contextMenu.classList.add('hidden');
+    });
+
+    function findNearestWalkable(grid, point) {
+        let minDist = Infinity;
+        let nearest = null;
+        
+        grid.nodes.forEach((col, x) => {
+            col.forEach((node, y) => {
+                if (node.walkable) {
+                    const dist = Math.hypot(x - point[0], y - point[1]);
+                    if (dist < minDist) {
+                        minDist = dist;
+                        nearest = [x, y];
+                    }
+                }
+            });
+        });
+
+        console.log(`Nearest walkable for ${point} is ${nearest}`);
+        return nearest;
+    }
+
+    function findRoute(start, end) {
+    if (!start || !end) return;
+
+    const gridToUse = grid.clone();
+
+    const nearestStart = findNearestWalkable(gridToUse, start);
+    const nearestEnd = findNearestWalkable(gridToUse, end);
+
+    console.log(`Nearest walkable points: Start - ${nearestStart}, End - ${nearestEnd}`);
+
+    if (!nearestStart || !nearestEnd) {
+        alert('Не найдены ближайшие узлы на дороге для маршрутизации');
+        return;
+    }
+
+    // Убедитесь, что путь между nearestStart и nearestEnd действительно существует.
+    const finder = new PF.AStarFinder({ allowDiagonal: true, dontCrossCorners: false });
+
+    const roadPath = finder.findPath(nearestStart[0], nearestStart[1], nearestEnd[0], nearestEnd[1], gridToUse);
+    console.log('roadPath:', roadPath);
+
+    if (!roadPath || roadPath.length === 0) {
+        alert("Маршрут на дороге не найден!");
+        return;
+    }
+
+    const path = PF.Util.compressPath(roadPath);
+
+    let fullPath = [];
+    if (start[0] !== nearestStart[0] || start[1] !== nearestStart[1]) {
+        fullPath.push([start[1], start[0]]);
+        fullPath.push([nearestStart[1], nearestStart[0]]);
+    }
+
+    fullPath = fullPath.concat(path.map(point => [point[1], point[0]]));
+
+    if (end[0] !== nearestEnd[0] || end[1] !== nearestEnd[1]) {
+        fullPath.push([nearestEnd[1], nearestEnd[0]]);
+        fullPath.push([end[1], end[0]]);
+    }
+
+    if (activeRouteLine) {
+        map.removeLayer(activeRouteLine);
+    }
+
+    activeRouteLine = L.polyline(fullPath, { color: 'blue' }).addTo(map);
+    
+    // Визуализация подключения в случае перекрытия дороги
+    activeConnectingLines.forEach(line => map.removeLayer(line));
+    activeConnectingLines = [];
+
+    if (start[0] !== nearestStart[0] || start[1] !== nearestStart[1]) {
+        const connectionStart = L.polyline([start, [nearestStart[1], nearestStart[0]]], { color: 'red', dashArray: '5,5' }).addTo(map);
+        activeConnectingLines.push(connectionStart);
+    }
+
+    if (end[0] !== nearestEnd[0] || end[1] !== nearestEnd[1]) {
+        const connectionEnd = L.polyline([[nearestEnd[1], nearestEnd[0]], end], { color: 'red', dashArray: '5,5' }).addTo(map);
+        activeConnectingLines.push(connectionEnd);
+    }
+}
+
+
 
     document.getElementById('createMarkerButton').addEventListener('click', function(event) {
         createMarker(event.clientX, event.clientY);
@@ -112,7 +279,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
         if (text && type) {
             showLoader();  // Показать лоадер перед началом запроса
-            fetch('https://urprice.ru:3000', {
+            fetch('https://urprice.ru:3001', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

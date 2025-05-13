@@ -535,7 +535,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         ]
     });
-    
+    addTrader(1757 , 1258, {
+        name: "Барахольщик | Деревня Тодерас",
+        quests: []
+    });
+    addTrader(2808 , 637, {
+        name: "Барахольщик | Мельница Белых Садов",
+        quests: []
+    });
+    addTrader(2275 , 531, {
+        name: "Барахольщик | Деревня Ольшина",
+        quests: []
+    });
    
 
 });

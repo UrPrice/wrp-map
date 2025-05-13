@@ -155,6 +155,10 @@ const questsData = {
         "title": "Пивная тара",
         "requirements": "Принести 5 кружок"
     },
+    "traktir_stealing": {
+        "title": "Воруют ироды",
+        "requirements": "Принести 5 кружок"
+    },
     "traktir_meat": {
         "title": "Давай мяса",
         "requirements": "Принести 10 кусков мяса"
@@ -166,6 +170,10 @@ const questsData = {
     "traktir_glam": {
         "title": "Модные порывыв",
         "requirements": "Принести 5 парфюма<br>Принести 5 гламура"
+    },
+    "traktir_deficit": {
+        "title": "Вечный дефицит",
+        "requirements": "Принести 5 тарелок*"
     },
     "traktirext_lutnya": {
         "title": "Бард без лютни",
@@ -195,9 +203,29 @@ const questsData = {
         "title": "Серебро как золото",
         "requirements": "Принести 2 штуки серебряной руды"
     },
-    "weapon_silver": {
+    "armor_shasaint": {
+        "title": "Шахтер: Светящаяся руда",
+        "requirements": "Принести 2 штуки светящейся руды"
+    },
+    "armor_shagold": {
+        "title": "Шахтер: Золотая руда",
+        "requirements": "Принести 2 штуки золотой руды"
+    },
+    "armor_shasvin": {
+        "title": "Шахтер: Свинцовая руда",
+        "requirements": "Принести 4 штуки свинцовой руды"
+    },
+    "blacksmith_coal": {
         "title": "Уголь для ковки*",
         "requirements": "Принести 10 угля"
+    },
+    "blacksmith_ancient": {
+        "title": "Дрова для печи*",
+        "requirements": "Принести 10 палок"
+    },
+    "blacksmith_drova": {
+        "title": "Древние писания",
+        "requirements": "Принести 2 штуки древнего ископаемого"
     },
     "suarmor_med": {
         "title": "Подмастерье: Слитки меди",
@@ -231,4 +259,64 @@ const questsData = {
         "title": "Подмастерье: Слиток тёмной стали",
         "requirements": "Принести 3 слитка тёмной стали"
     },
+    "leshek_whathappened": {
+        "title": "Разведчик",
+        "requirements": "Узнать что случилось. Необходимо отправиться на поле битвы (Опасное место №1 на севере от квестовика)."
+    },
+    "leshek_allok": {
+        "title": "А вдруг чудовище",
+        "requirements": "Убедиться что всё хорошо. Необходимо посетить руины недалеко от сгоревшей деревни."
+    },
+    "leshek_palki": {
+        "title": "Собрать хворост",
+        "requirements": "Принести 10 палок"
+    },
+    "leshek_doski": {
+        "title": "Выручи",
+        "requirements": "Принести 10 досок"
+    },
+    "petter_bereg": {
+        "title": "Береговой",
+        "requirements": "Проверить берег. Необходимо пройтись по берегу недалеко от деревни."
+    },
+    "petter_trash": {
+        "title": "Нужный мусор",
+        "requirements": "Принести 2 сломанных весла<br>Принести одну шину"
+    },
+    "petter_svechi": {
+        "title": "Свечи",
+        "requirements": "Принести 2 свечи"
+    },
+    "pronya_dubinu": {
+        "title": "Дубину купишь?",
+        "requirements": "Принести 2 шелка"
+    },
+    "pronya_dream": {
+        "title": "Погоня за мечтой",
+        "requirements": "Принести 1 парфюм<br>Принести 1 гламур"
+    },
+    "pronya_medicine": {
+        "title": "Лучшее лекарство",
+        "requirements": "Принести 1 медвежий жир"
+    },
+    "pronya_sbor": {
+        "title": "Сбор урожая",
+        "requirements": "Принести 4 вязки пшеницы"
+    },
+    "pronya_posuda": {
+        "title": "Ложки вилки",
+        "requirements": "Принести 1 набор посуды"
+    },
+    "pronya_coalandbranch": {
+        "title": "Школа на дому",
+        "requirements": "Принести 1 уголь<br>Принести 1 палку"
+    },
+    "pronya_meh": {
+        "title": "Мех для подушки",
+        "requirements": "Принести 4 меха"
+    },
+    "newbee_alch": {
+        "title": "Знакомство с ремеслом травника*",
+        "requirements": "Принести 1 подорожник<br>Принести 1 леписток ганации<br>Принести 1 плод баллисы<br>Принести 1 одуванчик<br>Принести 1 плод берберки"
+    }
 };

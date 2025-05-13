@@ -101,7 +101,36 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
     addBoard(2820 , 489, {
         name: "Трактирщик | Белые Сады",
-        quests: []
+        quests: [
+            {
+                id: "traktir_tarelki",
+                level: 7,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktir_krujki",
+                level: 7,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktir_meat",
+                level: 7,
+                rewards: "20 опыта",
+                notes: "10 мяса можно купить у него же"
+            },
+            { 
+                id: "traktir_fish", 
+                level: 7, 
+                rewards: "20 опыта",
+                notes: "5 рыбы можно купить у него же"
+            },
+            { 
+                id: "traktir_glam", 
+                level: 7, 
+                rewards: "20 опыта",
+                notes: "гламур выгоднее продавать, а духи сдавать барахольщику"
+            }
+        ]
     });
     addBoard(903 , 1587, {
         name: "Трактирщик | Temp1",
@@ -268,5 +297,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
     addBoard(1398 , 1226, {
         name: "Трактирщик | Мельница",
         quests: []
+    });
+    addBoard(2110 , 579, {
+        name: "Трактирщик | Деревня Ольшина",
+        quests: [
+            {
+                id: "traktir_deficit",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktirext_polovik",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktir_stealing",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
     });
 });

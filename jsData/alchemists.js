@@ -6,50 +6,50 @@ document.addEventListener('DOMContentLoaded', (event) => {
             { 
                 id: "alchemist_pepper", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_zubrovka", 
                 level: 60, 
-                rewards: "60 опыта",
+                rewards: "30 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_krovostoi", 
                 level: 60, 
-                rewards: "60 опыта",
+                rewards: "30 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_lastochka", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_pautinnik", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_scarroweye", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_sporin", 
                 level: 60, 
-                rewards: "60 опыта",
+                rewards: "30 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_dvoegrot", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_ballis", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             }
             
         ]
@@ -60,50 +60,50 @@ document.addEventListener('DOMContentLoaded', (event) => {
             { 
                 id: "alchemist_pepper", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_zubrovka", 
                 level: 60, 
-                rewards: "60 опыта",
+                rewards: "30 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_krovostoi", 
                 level: 60, 
-                rewards: "60 опыта",
+                rewards: "30 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_lastochka", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_pautinnik", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_scarroweye", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_sporin", 
                 level: 60, 
-                rewards: "60 опыта",
+                rewards: "30 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_dvoegrot", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_ballis", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             }
             
         ]
@@ -114,57 +114,63 @@ document.addEventListener('DOMContentLoaded', (event) => {
             { 
                 id: "alchemist_pepper", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_zubrovka", 
                 level: 60, 
-                rewards: "60 опыта",
+                rewards: "30 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_krovostoi", 
                 level: 60, 
-                rewards: "60 опыта",
+                rewards: "30 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_lastochka", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_pautinnik", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_scarroweye", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_sporin", 
                 level: 60, 
-                rewards: "60 опыта",
+                rewards: "30 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_dvoegrot", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             },
             { 
                 id: "alchemist_ballis", 
                 level: 60, 
-                rewards: "60 опыта"
+                rewards: "30 опыта"
             }
             
         ]
     });
     addAlchemist(2615 , 487,  {
         name: "Травница | Белые Сады",
-        quests: []
+        quests: [
+            { 
+                id: "newbee_alch", 
+                level: 7, 
+                rewards: "20 опыта"
+            }
+        ]
     });
     addAlchemist(581 , 1047, {
         name: "Травница | Temp1",
@@ -172,50 +178,50 @@ document.addEventListener('DOMContentLoaded', (event) => {
             { 
                 id: "alchemist_pepper", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_zubrovka", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_krovostoi", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_lastochka", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_pautinnik", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_scarroweye", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_sporin", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_dvoegrot", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_ballis", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             }
             
         ]
@@ -226,50 +232,50 @@ document.addEventListener('DOMContentLoaded', (event) => {
             { 
                 id: "alchemist_pepper", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_zubrovka", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_krovostoi", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_lastochka", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_pautinnik", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_scarroweye", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_sporin", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_dvoegrot", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_ballis", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             }
             
         ]
@@ -280,50 +286,50 @@ document.addEventListener('DOMContentLoaded', (event) => {
             { 
                 id: "alchemist_pepper", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_zubrovka", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_krovostoi", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_lastochka", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_pautinnik", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_scarroweye", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_sporin", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemist_dvoegrot", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemist_ballis", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             }
             
         ]
@@ -337,8 +343,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
         quests: []
     });
     addAlchemist(1708 , 1277, {
-        name: "Травница | Temp6",
-        quests: []
+        name: "Травница | Деревня Тодерас",
+        quests: [
+            { 
+                id: "alchemistalt_podorojnik", 
+                level: 40, 
+                rewards: "20 опыта"
+            }
+        ]
+    });
+    addAlchemist(2223 , 467, {
+        name: "Травница | Деревня Ольшина",
+        quests: [
+            { 
+                id: "alchemistalt_podorojnik", 
+                level: 40, 
+                rewards: "20 опыта"
+            }
+        ]
     });
     addAlchemist(62 , 956, {
         name: "Травница | Лесопилка Брука",
@@ -346,54 +368,54 @@ document.addEventListener('DOMContentLoaded', (event) => {
             { 
                 id: "alchemistalt_podorojnik", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_arenaria", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemistalt_verbena", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_volkoboi", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_oduvanchik", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_naker", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Открывающее задание"
             },
             { 
                 id: "alchemistalt_utopec", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_gnilec", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_halfnight", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_halfday", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             }
             
         ]
@@ -404,54 +426,54 @@ document.addEventListener('DOMContentLoaded', (event) => {
             { 
                 id: "alchemistalt_podorojnik", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_arenaria", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemistalt_verbena", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_volkoboi", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_oduvanchik", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_naker", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Открывающее задание"
             },
             { 
                 id: "alchemistalt_utopec", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_gnilec", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_halfnight", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_halfday", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             }
             
         ]
@@ -462,54 +484,54 @@ document.addEventListener('DOMContentLoaded', (event) => {
             { 
                 id: "alchemistalt_podorojnik", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_arenaria", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemistalt_verbena", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_volkoboi", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_oduvanchik", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_naker", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Открывающее задание"
             },
             { 
                 id: "alchemistalt_utopec", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_gnilec", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_halfnight", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_halfday", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             }
             
         ]
@@ -520,54 +542,54 @@ document.addEventListener('DOMContentLoaded', (event) => {
             { 
                 id: "alchemistalt_podorojnik", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_arenaria", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Недобываемая трава"
             },
             { 
                 id: "alchemistalt_verbena", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_volkoboi", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_oduvanchik", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_naker", 
                 level: 40, 
-                rewards: "40 опыта",
+                rewards: "20 опыта",
                 notes: "Открывающее задание"
             },
             { 
                 id: "alchemistalt_utopec", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_gnilec", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_halfnight", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             },
             { 
                 id: "alchemistalt_halfday", 
                 level: 40, 
-                rewards: "40 опыта"
+                rewards: "20 опыта"
             }
             
         ]

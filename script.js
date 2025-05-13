@@ -253,8 +253,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const granizons = [];
     const quests = [];
     const traders = [];
+    const questGivers = [];
 
-    // #добавление алхимика
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const alchemyIcon = L.icon({
         iconUrl: 'images/iconAlchemist.png',
@@ -290,7 +291,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     window.addAlchemist = addAlchemist;
 
-    // #добавление бронника
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const armorManIcon = L.icon({
         iconUrl: 'images/iconArmor.png',
@@ -326,7 +327,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     window.addArmorman = addArmorman;
 
-    // #добавление лагеря бандитов
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const banditCampIcon = L.icon({
         iconUrl: 'images/iconBandit.png',
@@ -342,7 +343,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    // добавление трактирщиков
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const boardIcon = L.icon({
         iconUrl: 'images/iconBoard.png',
@@ -378,7 +379,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     window.addBoard = addBoard;
 
-    // добавление гарнизонов
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const gpIcon = L.icon({
         iconUrl: 'images/iconGP.png',
@@ -397,7 +398,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     window.addGarnizon = addGarnizon;
         
-    // добавление квеста
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const questIcon = L.icon({
         iconUrl: 'images/iconQuestion.png',
@@ -416,7 +417,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     window.addQuest = addQuest;
 
-    // добавление барахольщика
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const traderIcon = L.icon({
         iconUrl: 'images/iconTrader.png',
@@ -452,7 +453,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     window.addTrader = addTrader;
 
-    // добавление оружейника
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const weaponManIcon = L.icon({
         iconUrl: 'images/iconWeapon.png',
@@ -488,7 +489,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     window.addWeaponMan = addWeaponMan;
 
-    // добавление оружейника
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const hunterIcon = L.icon({
         iconUrl: 'images/huntIcon.png',
@@ -524,7 +525,43 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     window.addHunter = addHunter;
     
-    // добавление камней силы
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    const questGiverIcon = L.icon({
+        iconUrl: 'images/confused.png',
+        iconSize: [26, 26], // размер иконки
+        iconAnchor: [16, 32], // точка привязки иконки (центр)
+        popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
+    });
+
+    function addQuestGiver(longitude, latitude, questGiverData) {
+        const marker = L.marker([latitude, longitude], { icon: questGiverIcon }).addTo(map);
+    
+        let popupContent = `<h3 class="witcher-style-text" style="font-size: 16px;">${questGiverData.name}</h3><ul>`;
+        questGiverData.quests.forEach(hunt => {
+            const huntInfo = questsData[hunt.id];
+            if (huntInfo) {
+                popupContent += `<li class="witcher-style-text">${huntInfo.title}   
+                                <button class="detail-button witcher-style-text" onclick="showDetailedQuestInfo('${hunt.id}', ${hunt.level}, '${hunt.rewards}', '${hunt.notes}', this, ${marker._leaflet_id})">?</button>
+                                </li>`;
+            }
+        });
+        popupContent += `</ul>`;
+    
+        marker.originalContent = popupContent; // сохраните оригинальное содержание
+    
+        const popupOptions = {
+            closeOnClick: false,
+            autoClose: false
+        };
+    
+        marker.bindPopup(popupContent, popupOptions);
+        questGivers.push(marker);
+    }
+    
+    window.addQuestGiver = addQuestGiver;
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const essenceIcon = L.icon({
         iconUrl: 'images/iconEssence.png',
@@ -547,7 +584,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         addEssenceStone(longitude, latitude, popupText);
     });
 
-    // добавление пещер
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const caveIcon = L.icon({
         iconUrl: 'images/iconCave.png',
@@ -573,8 +610,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     
-    // добавление опасных мест
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     const mosterIcon = L.icon({
         iconUrl: 'images/iconMonsters.png',
         iconSize: [32, 32], // размер иконки
@@ -597,7 +633,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
     
     
-    // добавление мест поиска чертежей
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const recipeIcon = L.icon({
         iconUrl: 'images/iconRecipe.png',
@@ -620,7 +656,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         addRecipePlace(longitude, latitude, popupText);
     });
     
-    // Локальные метки
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     
     function getIconUrl(type) {

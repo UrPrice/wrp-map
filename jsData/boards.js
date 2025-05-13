@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         ]
     });
     addBoard(903 , 1587, {
-        name: "Трактирщик | Temp1",
+        name: "Трактирщик | Корчма на перепутье",
         quests: [
             {
                 id: "traktir_tarelki",

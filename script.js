@@ -254,6 +254,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const quests = [];
     const traders = [];
     const questGivers = [];
+    const territories = [];
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -655,6 +656,77 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const popupText = `<b>Древние Чертежи №${index + 1}</b> <br> Возможное местоположение чертежа. Локация может быть опасна по наличию накеров и гончих`;
         addRecipePlace(longitude, latitude, popupText);
     });
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    const fractions = {
+        Neutral: {
+            description: 'Нейтральная территория',
+            color: '#b0b0b0'
+        },
+        Bandits: {
+            description: 'Территория разбойников',
+            color: '#8b8b8b'
+        },
+        Redania: {
+            description: 'Территория Редании',
+            color: '#ff4040'
+        },
+        Baron: {
+            description: 'Территория Людей Барона',
+            color: '#34383a'
+        },
+        Elf: {
+            description: 'Территория Эльфов',
+            color: '#50c878'
+        },
+        Nilf: {
+            description: 'Территория Нильфгаарда',
+            color: '#dfa928'
+        }
+    };
+
+    function addTerritory(lng, lat, radius, choosen, cityName) {
+        const circle = L.circle([lat, lng], {
+            color: fractions[choosen].color,
+            fillColor: fractions[choosen].color,
+            fillOpacity: 0.2,
+            radius: radius
+        }).addTo(map);
+
+        let tooltip = L.tooltip({
+            permanent: false,
+            direction: 'top',
+            offset: [0, 0],
+            className: 'custom-tooltip'
+        }).setContent(`<div class="witcher-style-text">${fractions[choosen].description}<br>${cityName}</div>`);
+
+        circle.on('mousemove', function(e) {
+            tooltip.setLatLng(e.latlng); // Обновляем позицию тултипа на основании событий мыши
+            map.openTooltip(tooltip);
+        });
+
+        circle.on('mouseout', function() {
+            map.closeTooltip(tooltip);
+        });
+
+        territories.push(circle);
+    }
+
+    function toggleTerritories() {
+        territories.forEach(circle => {
+            if (map.hasLayer(circle)) {
+                map.removeLayer(circle);
+            } else {
+                map.addLayer(circle);
+            }
+        });
+    }
+
+    window.addTerritory = addTerritory;
+
+
+    document.getElementById('toggle-territories').addEventListener('click', toggleTerritories);
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -855,6 +927,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('toggle-recipes').addEventListener('click', () => {
         toggleMarkers(recipes);
     });
+    //document.getElementById('toggle-territories').addEventListener('click', () => {
+        // toggleMarkers(territories);
+    //});
     document.getElementById('toggle-dangerZones').addEventListener('click', () => {
         toggleMarkers(dangerZones);
     });

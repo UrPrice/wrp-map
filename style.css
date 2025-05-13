@@ -311,5 +311,29 @@ option {
 .traders-icon{
     background-image: url('images/iconTrader.png');
 }
+.territories-icon{
+    background-image: url('images/flag.png');
+}
 
+
+
+.leaflet-tooltip.custom-tooltip {
+    background-color: rgba(20, 20, 20, 0.5);
+    border: none; /* Без границы */
+    color: #e0d8c3; /* Цвет текста */
+    font-size: 14px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Тень для текста */
+    pointer-events: none; /* Отключение реакции на события, чтобы клик не взаимодействовал с tooltip */
+}
+
+
+
+.leaflet-tooltip.custom-tooltip::before {
+    /* Если нужны дополнительные эффекты, добавьте их здесь */
+}
+
+/* CSS для удаления выделения при клике */
+.leaflet-interactive:focus {
+    outline: none; /* Установка outline в none уберёт стандартное выделение при клике */
+}
 /* Добавьте дополнительные стили для других категорий */

@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     addTerritory(2818 , 664, 60, 'Baron', 'Мельница Белых Садов');
     addTerritory(847 , 1165, 40, 'Baron', 'Лагерь поддержки');
     addTerritory(1870 , 136, 120, 'Nilf', 'Вызима');
-    addTerritory(1171 , 1620, 40, 'Nilf', 'Деревня Яворник');
+    addTerritory(1171 , 1620, 40, 'Redania', 'Деревня Яворник');
     addTerritory(1558 , 1080, 30, 'Nilf', 'Поместье Реордан');
-    addTerritory(1083 , 1255, 50, 'Nilf', 'Поместье Залипье');
+    addTerritory(1083 , 1255, 50, 'Nilf', 'Деревня Залипье');
     addTerritory(2772 , 469, 70, 'Nilf', 'Белые Сады');
     addTerritory(2921 , 497, 30, 'Nilf', 'Белые Сады');
     addTerritory(2242 , 524, 80, 'Nilf', 'Деревня Ольшина');
@@ -36,7 +36,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     addTerritory(324 , 400, 40, 'Neutral', 'Деревня Хель');
     addTerritory(239 , 1020, 40, 'Neutral', 'Деревня Подлесье');
     addTerritory(889 , 1595, 30, 'Neutral', 'Корчма на перепутье');
-    addTerritory(599 , 1040, 30, 'Neutral', 'Temp1');
+    addTerritory(599 , 1040, 30, 'Neutral', 'Деревня Глинник');
+    addTerritory(647 , 874, 30, 'Neutral', 'Деревня Рудники');
 
 
 });

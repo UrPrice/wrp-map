@@ -612,6 +612,108 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         ]
     });
+    addTrader(1883 , 2748, {
+        name: "Барахольщик | Хозяйство Фолье",
+        quests: [
+            {
+                id: "trader_candelabra",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_butter_knife",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_inkwell",
+                level: 40,
+                rewards: "20 опыта",
+                notes: "чернильницу можно купить у этого же трейдера"
+            },
+            { 
+                id: "trader_blades", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            { 
+                id: "trader_glasses", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_collection",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_smoking",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_seashell",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_perfume",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
+    addTrader(1914 , 2855, {
+        name: "Барахольщик | Хутор Фолье",
+        quests: [
+            {
+                id: "trader_candelabra",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_butter_knife",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_inkwell",
+                level: 40,
+                rewards: "20 опыта",
+                notes: "чернильницу можно купить у этого же трейдера"
+            },
+            { 
+                id: "trader_blades", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            { 
+                id: "trader_glasses", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_collection",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_smoking",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_seashell",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_perfume",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
     addTrader(1636 , 2255, {
         name: "Барахольщик | Деревня Карстен",
         quests: [

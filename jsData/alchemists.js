@@ -497,6 +497,59 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         ]
     });
+    addAlchemist(1869 , 2749, {
+        name: "Травница | Хозяйство Фолье",
+        quests: [
+            { 
+                id: "alchemist_pepper", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            { 
+                id: "alchemist_zubrovka", 
+                level: 40, 
+                rewards: "20 опыта",
+                notes: "Недобываемая трава"
+            },
+            { 
+                id: "alchemist_krovostoi", 
+                level: 40, 
+                rewards: "20 опыта",
+                notes: "Недобываемая трава"
+            },
+            { 
+                id: "alchemist_lastochka", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            { 
+                id: "alchemist_pautinnik", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            { 
+                id: "alchemist_scarroweye", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            { 
+                id: "alchemist_sporin", 
+                level: 40, 
+                rewards: "20 опыта",
+                notes: "Недобываемая трава"
+            },
+            { 
+                id: "alchemist_dvoegrot", 
+                level: 40, 
+                rewards: "20 опыта"
+            },
+            { 
+                id: "alchemist_ballis", 
+                level: 40, 
+                rewards: "20 опыта"
+            }
+        ]
+    });
     addAlchemist(1708 , 1277, {
         name: "Травница | Деревня Тодерас",
         quests: [

@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     addTerritory(1914 , 2855, 25, 'Neutral', 'Хутор Фолье');
     addTerritory(1862 , 3022, 50, 'Elf', 'Деревня Лесьна');
     addTerritory(1861 , 2755, 50, 'Elf', 'Хозяйство Фолье');
+    addTerritory(2435 , 2645, 40, 'Elf', 'Наследие Предков');
 
 
 });

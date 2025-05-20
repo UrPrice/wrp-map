@@ -674,7 +674,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         },
         Baron: {
             description: 'Территория Людей Барона',
-            color: '#34383a'
+            color: '#204e5f'
         },
         Elf: {
             description: 'Территория Эльфов',

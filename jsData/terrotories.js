@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     addTerritory(984 , 2555, 275, 'Redania', 'Новиград');
     addTerritory(1768 , 1857, 150, 'Redania', 'Оксенфурт');
-    addTerritory(1625 , 2249, 30, 'Redania', 'Деревня Карстен');
+    addTerritory(1625 , 2249, 30, 'Baron', 'Деревня Карстен');
     addTerritory(673 , 1292, 90, 'Baron', 'Вроницы');
     addTerritory(1398 , 1805, 30, 'Baron', 'Каменоломня Старые Хрычи');
     addTerritory(465 , 1582, 55, 'Baron', 'Деревня Вересковка');
@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     addTerritory(2818 , 664, 60, 'Nilf', 'Мельница Белых Садов');
     addTerritory(847 , 1165, 40, 'Baron', 'Лагерь поддержки');
     addTerritory(1870 , 136, 120, 'Nilf', 'Вызима');
-    addTerritory(1171 , 1620, 40, 'Redania', 'Деревня Яворник');
-    addTerritory(1055 , 1941, 45, 'Redania', 'Приграничный пост');
+    addTerritory(1171 , 1620, 40, 'Nilf', 'Деревня Яворник');
+    addTerritory(1055 , 1941, 45, 'Elf', 'Приграничный пост');
     addTerritory(1558 , 1080, 30, 'Baron', 'Поместье Реордан');
     addTerritory(1083 , 1255, 50, 'Nilf', 'Деревня Залипье');
     addTerritory(2772 , 469, 70, 'Nilf', 'Белые Сады');

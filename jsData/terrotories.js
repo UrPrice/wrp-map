@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     //
     ////////////////////////////////
 
-    addTerritory(984 , 2555, 275, 'Redania', 'Новиград');
     addTerritory(1768 , 1857, 150, 'Redania', 'Оксенфурт');
     addTerritory(1625 , 2249, 30, 'Baron', 'Деревня Карстен');
     addTerritory(673 , 1292, 90, 'Baron', 'Вроницы');

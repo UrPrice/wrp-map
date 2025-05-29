@@ -1,33 +1,26 @@
 document.addEventListener('DOMContentLoaded', (event) => {
 
     const map = L.map('map', {
-        center: [1782.5, 1809.5], 
-        zoom: 0, 
+        center: [1782.5, 1809.5],
+        zoom: 0,
         minZoom: -1,
         maxZoom: 4,
-        crs: L.CRS.Simple 
+        crs: L.CRS.Simple,
+        attributionControl: false
     });
 
-    const bounds = [[0, 0], [3565, 3619]]; 
+    const bounds = [[0, 0], [3565, 3619]];
 
     const imageOverlay = L.imageOverlay('mapImage/mainMap.png', bounds).addTo(map);
 
-    map.fitBounds(bounds); 
-
-    const coordinatesDisplay = document.getElementById('coordinates');
-
-    // Обработчик события движения мыши
-    map.on('mousemove', function(event) {
-        const { lat, lng } = event.latlng;
-        coordinatesDisplay.innerHTML = `x: ${Math.floor(lng)}, y: ${Math.floor(lat)}`;
-    });
+    map.fitBounds(bounds);
 
     const contextMenu = document.getElementById('context-menu');
     const copyNotification = document.getElementById('copy-notification');
     let clickLatLng = null;
     let markerForm = null;
 
-    map.on('contextmenu', function(event) {
+    map.on('contextmenu', function (event) {
         clickLatLng = event.latlng;
         showContextMenu(event.containerPoint.x, event.containerPoint.y);
         event.originalEvent.preventDefault();
@@ -39,7 +32,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         contextMenu.classList.remove('hidden');
     }
 
-    document.getElementById('createMarkerButton').addEventListener('click', function(event) {
+    document.getElementById('createMarkerButton').addEventListener('click', function (event) {
         createMarker(event.clientX, event.clientY);
         contextMenu.classList.add('hidden');
     });
@@ -92,24 +85,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
             markerForm = null;
         }
     }
-    
+
     function showLoader() {
         const overlay = document.getElementById('loader-overlay');
         overlay.classList.remove('hidden');
         const loaderText = document.getElementById('loader-text');
-    loaderText.style.display = 'block'; // Показываем текст
+        loaderText.style.display = 'block'; // Показываем текст
     }
-    
+
     function hideLoader() {
         const overlay = document.getElementById('loader-overlay');
         overlay.classList.add('hidden');
     }
-    
+
     function submitMarker() {
         const text = document.getElementById('markerText').value;
         const type = document.getElementById('markerType').value;
         const coordinates = clickLatLng;
-    
+
         if (text && type) {
             showLoader();  // Показать лоадер перед началом запроса
             fetch('https://urprice.ru:3000', {
@@ -132,7 +125,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         document.removeEventListener('click', onDocumentClick);
                         markerForm = null;
                     }
-    
+
                     // Сохранение в localStorage
                     const markerData = { text, type, coordinates, timestamp: Date.now() };
                     const savedMarkers = JSON.parse(localStorage.getItem('pendingMarkers')) || [];
@@ -166,9 +159,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
         }
     }
-    
 
-    document.getElementById('copy-coordinates').addEventListener('click', function(event) {
+
+    document.getElementById('copy-coordinates').addEventListener('click', function (event) {
         if (clickLatLng) {
             const { lat, lng } = clickLatLng;
             const y = Math.floor(lat);
@@ -199,13 +192,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
 
-    map.on('click', function() {
+    map.on('click', function () {
         contextMenu.classList.add('hidden');
     });
 
 
     // # Метки
-    
+
     function showDetailedQuestInfo(questId, level, rewards, notes, buttonElem, markerId) {
         const marker = map._layers[markerId];
         const info = questsData[questId];
@@ -224,8 +217,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             console.error('Попытка доступа к неопределенному маркеру: ', markerId);
         }
     }
-    
-    
+
+
     function goBackToQuestList(buttonElem, markerId) {
         const marker = map._layers[markerId];
         if (marker && marker.originalContent) {
@@ -234,7 +227,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             marker.openPopup();
         }
     }
-    
+
     window.showDetailedQuestInfo = showDetailedQuestInfo;
 
     window.goBackToQuestList = goBackToQuestList;
@@ -250,6 +243,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const recipes = [];
     const dangerZones = [];
     const caves = [];
+    const allLocations = [];
     const granizons = [];
     const quests = [];
     const traders = [];
@@ -264,7 +258,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         iconAnchor: [16, 32], // точка привязки иконки (центр)
         popupAnchor: [0, -32] // точка откуда всплывающее окно будет отступать
     });
-    
+
     function addAlchemist(longitude, latitude, alchemistData) {
         const marker = L.marker([latitude, longitude], { icon: alchemyIcon }).addTo(map);
 
@@ -289,7 +283,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         marker.bindPopup(popupContent, popupOptions);
         alchemists.push(marker);
     }
-    
+
     window.addAlchemist = addAlchemist;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -303,7 +297,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     function addArmorman(longitude, latitude, armormanData) {
         const marker = L.marker([latitude, longitude], { icon: armorManIcon }).addTo(map);
-    
+
         let popupContent = `<h3 class="witcher-style-text" style="font-size: 16px;">${armormanData.name}</h3><ul>`;
         armormanData.quests.forEach(service => {
             const serviceInfo = questsData[service.id];
@@ -314,18 +308,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         });
         popupContent += `</ul>`;
-    
+
         marker.originalContent = popupContent; // сохраните оригинальное содержание
-    
+
         const popupOptions = {
             closeOnClick: false,
             autoClose: false
         };
-    
+
         marker.bindPopup(popupContent, popupOptions);
         armorMen.push(marker);
     }
-    
+
     window.addArmorman = addArmorman;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -338,7 +332,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     function addBanditCamp(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: banditCampIcon }).addTo(map);
+        const marker = L.marker([latitude, longitude], { icon: banditCampIcon }).addTo(map);
         if (popupText) {
             marker.bindPopup(popupText);
         }
@@ -355,7 +349,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     function addBoard(longitude, latitude, boardData) {
         const marker = L.marker([latitude, longitude], { icon: boardIcon }).addTo(map);
-        
+
         let popupContent = `<h3 class="witcher-style-text" style="font-size: 16px;">${boardData.name}</h3><ul>`;
         boardData.quests.forEach(notice => {
             const noticeInfo = questsData[notice.id];
@@ -366,18 +360,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         });
         popupContent += `</ul>`;
-    
+
         marker.originalContent = popupContent; // сохраните оригинальное содержание
-    
+
         const popupOptions = {
             closeOnClick: false,
             autoClose: false
         };
-    
+
         marker.bindPopup(popupContent, popupOptions);
         boards.push(marker);
     }
-    
+
     window.addBoard = addBoard;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -390,7 +384,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     function addGarnizon(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: gpIcon }).addTo(map);
+        const marker = L.marker([latitude, longitude], { icon: gpIcon }).addTo(map);
         if (popupText) {
             marker.bindPopup(`<div class="witcher-style-text">${popupText}</div>`);
         }
@@ -398,7 +392,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     window.addGarnizon = addGarnizon;
-        
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const questIcon = L.icon({
@@ -409,7 +403,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     function addQuest(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: questIcon }).addTo(map);
+        const marker = L.marker([latitude, longitude], { icon: questIcon }).addTo(map);
         if (popupText) {
             marker.bindPopup(`<div class="witcher-style-text">${popupText}</div>`);
         }
@@ -429,7 +423,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     function addTrader(longitude, latitude, traderData) {
         const marker = L.marker([latitude, longitude], { icon: traderIcon }).addTo(map);
-    
+
         let popupContent = `<h3 class="witcher-style-text" style="font-size: 16px;">${traderData.name}</h3><ul>`;
         traderData.quests.forEach(good => {
             const goodInfo = questsData[good.id];
@@ -440,14 +434,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         });
         popupContent += `</ul>`;
-    
+
         marker.originalContent = popupContent; // сохраните оригинальное содержание
-    
+
         const popupOptions = {
             closeOnClick: false,
             autoClose: false
         };
-    
+
         marker.bindPopup(popupContent, popupOptions);
         traders.push(marker);
     }
@@ -465,7 +459,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     function addWeaponMan(longitude, latitude, weaponManData) {
         const marker = L.marker([latitude, longitude], { icon: weaponManIcon }).addTo(map);
-    
+
         let popupContent = `<h3 class="witcher-style-text" style="font-size: 16px;">${weaponManData.name}</h3><ul>`;
         weaponManData.quests.forEach(weapon => {
             const weaponInfo = questsData[weapon.id];
@@ -476,18 +470,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         });
         popupContent += `</ul>`;
-    
+
         marker.originalContent = popupContent; // сохраните оригинальное содержание
-    
+
         const popupOptions = {
             closeOnClick: false,
             autoClose: false
         };
-    
+
         marker.bindPopup(popupContent, popupOptions);
         weaponMen.push(marker);
     }
-    
+
     window.addWeaponMan = addWeaponMan;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -501,7 +495,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     function addHunter(longitude, latitude, hunterData) {
         const marker = L.marker([latitude, longitude], { icon: hunterIcon }).addTo(map);
-    
+
         let popupContent = `<h3 class="witcher-style-text" style="font-size: 16px;">${hunterData.name}</h3><ul>`;
         hunterData.quests.forEach(hunt => {
             const huntInfo = questsData[hunt.id];
@@ -512,20 +506,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         });
         popupContent += `</ul>`;
-    
+
         marker.originalContent = popupContent; // сохраните оригинальное содержание
-    
+
         const popupOptions = {
             closeOnClick: false,
             autoClose: false
         };
-    
+
         marker.bindPopup(popupContent, popupOptions);
         hunters.push(marker);
     }
-    
+
     window.addHunter = addHunter;
-    
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const questGiverIcon = L.icon({
@@ -537,7 +531,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     function addQuestGiver(longitude, latitude, questGiverData) {
         const marker = L.marker([latitude, longitude], { icon: questGiverIcon }).addTo(map);
-    
+
         let popupContent = `<h3 class="witcher-style-text" style="font-size: 16px;">${questGiverData.name}</h3><ul>`;
         questGiverData.quests.forEach(hunt => {
             const huntInfo = questsData[hunt.id];
@@ -548,20 +542,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         });
         popupContent += `</ul>`;
-    
+
         marker.originalContent = popupContent; // сохраните оригинальное содержание
-    
+
         const popupOptions = {
             closeOnClick: false,
             autoClose: false
         };
-    
+
         marker.bindPopup(popupContent, popupOptions);
         questGivers.push(marker);
     }
-    
+
     window.addQuestGiver = addQuestGiver;
-    
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const essenceIcon = L.icon({
@@ -572,13 +566,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     function addEssenceStone(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: essenceIcon }).addTo(map);
+        const marker = L.marker([latitude, longitude], { icon: essenceIcon }).addTo(map);
         if (popupText) {
             marker.bindPopup(`<div class="witcher-style-text">${popupText}</div>`);
         }
         essenceStones.push(marker);
     }
-    
+
     essenceStonesData.forEach((coordinates, index) => {
         const [longitude, latitude] = coordinates;
         const popupText = `<b>Камень силы №${index + 1}</b> <br> Возможный спавн камня силы для сбора эссенций`;
@@ -595,13 +589,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     function addCave(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: caveIcon }).addTo(map);
+        const marker = L.marker([latitude, longitude], { icon: caveIcon }).addTo(map);
         if (popupText) {
             marker.bindPopup(`<div class="witcher-style-text">${popupText}</div>`);
         }
         caves.push(marker);
     }
-    
+
     cavesData.forEach((cave, caveIndex) => {
         cave.entrances.forEach((coordinates) => {
             const [longitude, latitude] = coordinates;
@@ -610,7 +604,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     });
 
-    
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     const mosterIcon = L.icon({
         iconUrl: 'images/iconMonsters.png',
@@ -620,20 +614,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     function addDangZone(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: mosterIcon }).addTo(map);
+        const marker = L.marker([latitude, longitude], { icon: mosterIcon }).addTo(map);
         if (popupText) {
             marker.bindPopup(`<div class="witcher-style-text">${popupText}</div>`);
         }
         dangerZones.push(marker);
     }
-    
+
     dangerZonesData.forEach((coordinates, index) => {
         const [longitude, latitude] = coordinates;
         const popupText = `<b>Опасное место №${index + 1}</b> <br> Большое скопление гончих или накеров независимо от экипировки`;
         addDangZone(longitude, latitude, popupText);
     });
-    
-    
+
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const recipeIcon = L.icon({
@@ -644,18 +638,69 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     function addRecipePlace(longitude, latitude, popupText) {
-        const marker = L.marker([latitude, longitude],{ icon: recipeIcon }).addTo(map);
+        const marker = L.marker([latitude, longitude], { icon: recipeIcon }).addTo(map);
         if (popupText) {
             marker.bindPopup(`<div class="witcher-style-text">${popupText}</div>`);
         }
         recipes.push(marker);
     }
-    
+
     recipePlacesData.forEach((coordinates, index) => {
         const [longitude, latitude] = coordinates;
         const popupText = `<b>Древние Чертежи №${index + 1}</b> <br> Возможное местоположение чертежа. Локация может быть опасна по наличию накеров и гончих`;
         addRecipePlace(longitude, latitude, popupText);
     });
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function AddFTMarker(longitude, latitude, placeName) {
+        const customIcon = L.divIcon({
+            className: 'custom-marker-icon',
+            iconSize: [26, 26],
+            html: `<div class="marker-label witcher-style-text">${placeName}</div><img src="images/fticon.png" style="width:26px;height:26px;">`,
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+        });
+
+        const marker = L.marker([latitude, longitude], { icon: customIcon, riseOnHover: false }).addTo(map);
+
+        // Обработчик движения мыши для карты
+        map.on('mousemove', function(e) {
+            const mouseLatLng = e.latlng;
+            const markerLatLng = marker.getLatLng();
+
+            // Переводим координаты в screen points
+            const mousePoint = map.latLngToLayerPoint(mouseLatLng);
+            const markerPoint = map.latLngToLayerPoint(markerLatLng);
+            
+            const distance = mousePoint.distanceTo(markerPoint);
+
+            const label = marker.getElement().querySelector('.marker-label');
+            
+            // Настройка максимального и минимального расстояния в пикселях
+            const maxDistance = 200; // Полностью прозрачная граница
+            const minDistance = 150; // Полностью непрозрачная граница
+            
+            // Вычисляем прозрачность на основе расстояния
+            if (distance > maxDistance) {
+                label.style.opacity = 0;
+            } else if (distance < minDistance) {
+                label.style.opacity = 1;
+            } else {
+                // Прозрачность уменьшается между 200 и 300 пикселями
+                const opacity = 1 - ((distance - minDistance) / (maxDistance - minDistance));
+                label.style.opacity = opacity;
+            }
+        });
+
+        allLocations.push(marker);
+    }
+
+    allLocationData.forEach((location, index) => {
+        const [longitude, latitude] = location.coords;
+        const popupText = location.description;
+        AddFTMarker(longitude, latitude, popupText);
+    });
+
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -687,10 +732,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
     };
 
     function addTerritory(lng, lat, radius, choosen, cityName) {
+        const stripePattern = new L.StripePattern({
+            width: 4, // ширина полосы
+            height: 4,
+            angle: 65, // угол наклона полос
+            weight: 1, // толщина полосы
+            color: fractions[choosen].color // цвет полос
+        });
+        stripePattern.addTo(map); // добавить паттерн на карту
+
         const circle = L.circle([lat, lng], {
-            color: fractions[choosen].color,
-            fillColor: fractions[choosen].color,
-            fillOpacity: 0.2,
+            color: null,
+            fillPattern: stripePattern, // применение паттерна
+            fillOpacity: 0.6,
             radius: radius
         }).addTo(map);
 
@@ -701,12 +755,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             className: 'custom-tooltip'
         }).setContent(`<div class="witcher-style-text">${fractions[choosen].description}<br>${cityName}</div>`);
 
-        circle.on('mousemove', function(e) {
+        circle.on('mousemove', function (e) {
             tooltip.setLatLng(e.latlng); // Обновляем позицию тултипа на основании событий мыши
             map.openTooltip(tooltip);
         });
 
-        circle.on('mouseout', function() {
+        circle.on('mouseout', function () {
             map.closeTooltip(tooltip);
         });
 
@@ -727,23 +781,67 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
     document.getElementById('toggle-territories').addEventListener('click', toggleTerritories);
-    
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    
+    document.getElementById('changelog-header').addEventListener('click', function() {
+        const changelogContent = document.getElementById('changelog-content');
+        if (changelogContent.classList.contains('hidden')) {
+            changelogContent.classList.remove('hidden');
+            changelogContent.classList.add('visible');
+        } else {
+            changelogContent.classList.remove('visible');
+            changelogContent.classList.add('hidden');
+        }
+    });
+
+    // Загрузка данных (предыдущий пример)
+    fetch('jsData/changelog.json')
+        .then(response => response.json())
+        .then(data => {
+            // Сортировка данных: наиболее свежие изменения помещаются в начало
+            data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            // Формируем HTML для списка изменений
+            const changelogContent = data.map(entry => {
+                const formattedDate = formatCustomDate(entry.date);
+                const changesList = entry.changes.map(change => `<li>${change}</li>`).join('');
+                return `<div class="changelog-entry">
+                            <h4>${formattedDate}</h4>
+                            <ul>${changesList}</ul>
+                        </div>`;
+            }).join('');
+
+            // Добавляем контент в наш блок
+            document.getElementById('changelog-content').innerHTML = changelogContent;
+        });
+
+    // Функция для форматирования даты
+    function formatCustomDate(dateString) {
+        const date = new Date(dateString);
+        const day = date.getDate();
+        const month = date.toLocaleString('default', { month: 'long' });
+        const year = date.getFullYear().toString().substring(2); // Берём последние две цифры
+        return `${day} ${month}'${year}`;
+    }
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
     function getIconUrl(type) {
         const typeClass = `${type}-icon`;
         // Создайте временный элемент с корректным CSS-классом
         const div = document.createElement('div');
         div.className = typeClass;
         document.body.appendChild(div);
-        
+
         const style = window.getComputedStyle(div);
         const backgroundImage = style.backgroundImage;
-        
+
         // Удалите временный элемент
         document.body.removeChild(div);
-        
+
         // Извлечение URL из backgroundImage
         if (backgroundImage && backgroundImage !== 'none') {
             const url = backgroundImage.slice(5, -2);  // Если url("...")
@@ -751,12 +849,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
         return null;
     }
-    
+
     const localMarkers = {};
 
     function addLocalMarker(markerData) {
         const iconUrl = getIconUrl(markerData.type);
-    
+
         if (iconUrl) {
             const markerIcon = L.icon({
                 iconUrl: iconUrl,
@@ -764,7 +862,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 iconAnchor: [16, 32], // центр иконки
                 popupAnchor: [0, -32] // место, откуда всплывающее окно будет открываться
             });
-    
+
             const marker = L.marker(markerData.coordinates, {
                 icon: markerIcon,
                 opacity: 0.5 // Более прозрачный маркер
@@ -778,7 +876,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             console.error(`Icon URL not found for type: ${markerData.type}`);
         }
     }
-    
+
     function getMarkerKey(coordinates) {
         return `${coordinates.lat},${coordinates.lng}`;
     }
@@ -840,13 +938,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     function areCoordinatesClose(coords1, coords2, tolerance = 2) {
         return Math.abs(coords1.lat - coords2.lat) <= tolerance &&
-               Math.abs(coords1.lng - coords2.lng) <= tolerance;
+            Math.abs(coords1.lng - coords2.lng) <= tolerance;
     }
-    
+
 
     function checkForAddedMarkers() {
         const savedMarkers = JSON.parse(localStorage.getItem('pendingMarkers')) || [];
-    
+
         const allMarkers = [
             ...essenceStones,
             ...alchemists,
@@ -861,13 +959,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
             ...quests,
             ...traders
         ];
-    
+
         const addedMarkers = savedMarkers.filter(localMarker =>
-            allMarkers.some(marker => 
+            allMarkers.some(marker =>
                 areCoordinatesClose(marker.getLatLng(), localMarker.coordinates)
             )
         );
-    
+
         if (addedMarkers.length > 0) {
             const markerDescriptions = addedMarkers.map(marker => `Метки: ${marker.text}`).join(', ');
             Swal.fire({
@@ -876,7 +974,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 icon: 'info',
                 confirmButtonText: 'ОК'
             });
-    
+
             // Удалить добавленные метки из localStorage и с карты
             addedMarkers.forEach(marker => {
                 const key = getMarkerKey(marker.coordinates);
@@ -885,11 +983,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     delete localMarkers[key]; // Удалить из коллекции локальных маркеров
                 }
             });
-    
+
             const remainingMarkers = savedMarkers.filter(marker => !addedMarkers.includes(marker));
             localStorage.setItem('pendingMarkers', JSON.stringify(remainingMarkers));
         }
-    }    
+    }
 
     // Добавление переключаемых маркеров на сокрытие элементов интерфейса
 
@@ -927,9 +1025,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('toggle-recipes').addEventListener('click', () => {
         toggleMarkers(recipes);
     });
-    //document.getElementById('toggle-territories').addEventListener('click', () => {
-        // toggleMarkers(territories);
-    //});
+    document.getElementById('toggle-allloc').addEventListener('click', () => {
+        toggleMarkers(allLocations);
+    });
     document.getElementById('toggle-dangerZones').addEventListener('click', () => {
         toggleMarkers(dangerZones);
     });
@@ -949,7 +1047,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const imageLayer = L.imageOverlay('mapImage/mainMap.png', bounds).addTo(map);
     map.fitBounds(bounds);
 
-    document.getElementById('opacity-slider').addEventListener('input', function(event) {
+    document.getElementById('opacity-slider').addEventListener('input', function (event) {
         const opacityValue = event.target.value / 100;
         imageLayer.getElement().style.filter = `brightness(${1 - opacityValue})`;
     });

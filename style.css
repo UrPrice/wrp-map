@@ -314,7 +314,9 @@ option {
 .territories-icon{
     background-image: url('images/flag.png');
 }
-
+.allloc-icon{
+    background-image: url('images/fticon.png');
+}
 
 
 .leaflet-tooltip.custom-tooltip {
@@ -337,3 +339,71 @@ option {
     outline: none; /* Установка outline в none уберёт стандартное выделение при клике */
 }
 /* Добавьте дополнительные стили для других категорий */
+
+
+.marker-label {
+    position: absolute;
+    top: -2px; /* Расположение над иконкой */
+    left: 50%;
+    transform: translate(-50%, -100%);
+    background-color: rgba(20, 20, 20, 0.7); /* Похожий фон как у тултипа */
+    color: #e0d8c3; /* Цвет текста настроен */
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Тень текста */
+    z-index: 1001; /* Убедитесь, что текст над всем */
+    transition: opacity 0.3s ease; /* Плавная смена прозрачности */
+    opacity: 0; /* Изначально скрыт */
+}
+
+.sliding-block {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    background-color: rgba(20, 20, 20, 0.8);
+    color: #e0d8c3;
+    border-radius: 8px 0 8px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-family: 'Cinzel', serif;
+    z-index: 1000; /* Обеспечить высокое значение z-index */
+    overflow: hidden;
+}
+
+.block-header {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #2b2b2b;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.block-header:hover {
+    background-color: #7c2222; 
+}
+
+.block-content {
+    max-height: 0;
+    opacity: 0;
+    overflow-y: auto;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out; 
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.block-content.visible {
+    max-height: 400px;
+    opacity: 1;
+}
+
+/* Скрытие скроллбара */
+.block-content::-webkit-scrollbar {
+    display: none;
+}
+
+.changelog-entry h4 {
+    text-align: center; /* Центрирует текст */
+    margin: 0; /* Убирает дефолтные отступы, если необходимо */
+    padding: 5px 0; /* Немного пространства вокруг даты */
+}

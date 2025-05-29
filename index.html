@@ -22,6 +22,9 @@
     <script src="leaflet/leaflet-src.esm.js"></script>
     <script src="leaflet/leaflet-src.js"></script>
     <script src="leaflet/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.pattern@0.1.0/dist/leaflet.pattern.min.js"></script>
+
+
     
     <script src="script.js"></script>
             <script src="jsData/based/quests.js"></script>
@@ -38,10 +41,7 @@
         <script src="jsData/jobs.js"></script>
         <script src="jsData/questGivers.js"></script>
         <script src="jsData/terrotories.js"></script>
-
-    <div id="coordinates" style="position: fixed; bottom: 10px; left: 10px; background-color: rgba(225, 225, 225, 0.5); padding: 5px; border-radius: 3px; z-index: 1000;">
-        x: 0, y: 0
-    </div>
+        <script src="jsData/locations.js"></script>
 
     <div id="githublink" style="position: fixed; top: 10px; right: 10px; background-color: rgba(225, 225, 225, 0.5); padding: 5px; border-radius: 3px; z-index: 1000;">
         <a href="https://github.com/UrPrice/wrp-map" style="text-decoration: none; color: inherit;">UrPrice <img src="images/iconGitHub.png" height="16px" width="16px"></img></a>
@@ -65,6 +65,7 @@
         <button id="toggle-granizons" class="filter-button granizons-icon" data-tooltip="Скрыть Гарнизоны"></button>
         <button id="toggle-essence-stones" class="filter-button essence-stone-icon" data-tooltip="Скрыть Камни силы"></button>
         <button id="toggle-territories" class="filter-button territories-icon" data-tooltip="Скрыть Территории"></button>
+        <button id="toggle-allloc" class="filter-button allloc-icon" data-tooltip="Скрыть Путевые Знаки"></button>
         <button id="toggle-recipes" class="filter-button recipes-icon" data-tooltip="Скрыть Чертежи"></button>
     </div>
 
@@ -78,6 +79,14 @@
     <div id="slider-container">
         <input type="range" min="0" max="100" value="0" id="opacity-slider">
     </div>
+
+    <div id="changelog-block" class="sliding-block">
+        <div id="changelog-header" class="block-header">Список изменений</div>
+        <div id="changelog-content" class="block-content hidden">
+            
+        </div>
+    </div>
+
     
 
 </body>

@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 level: 60,
                 rewards: "30 опыта"
             },
-            { 
-                id: "armor_silver", 
-                level: 60, 
+            {
+                id: "armor_silver",
+                level: 60,
                 rewards: "30 опыта"
             }
         ]
@@ -43,15 +43,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 level: 60,
                 rewards: "30 опыта"
             },
-            { 
-                id: "armor_silver", 
-                level: 60, 
+            {
+                id: "armor_silver",
+                level: 60,
                 rewards: "30 опыта"
             }
         ]
     });
     addArmorman(2188 , 2887, {
-        name: "Бронник | Эльфы",
+        name: "Бронник | Темерия",
         quests: [
             {
                 id: "armor_coal",
@@ -68,9 +68,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 level: 60,
                 rewards: "30 опыта"
             },
-            { 
-                id: "armor_silver", 
-                level: 60, 
+            {
+                id: "armor_silver",
+                level: 60,
                 rewards: "30 опыта"
             }
         ]
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         ]
     });
     addWeaponMan(2227 , 3035, {
-        name: "Оружейник | Эльфы",
+        name: "Оружейник | Темерия",
         quests: [
             {
                 id: "blacksmith_coal",
@@ -209,5 +209,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
         name: "Оружейник | Белые Сады",
         quests: []
     });
-    
+
 });

@@ -208,30 +208,73 @@ option {
     cursor: pointer;
 }
 
+#filter-controls {
+    position: absolute;
+    top: 15%;
+    right: 1%;
+    background-color: rgba(225, 225, 225, 0);
+    padding: 10px;
+    z-index: 1100;
+    border-radius: 10px 10px 0 0;
+    display: flex; /* Используем flexbox для организации в колонки */
+    gap: 20px; /* Расстояние между колонками */
+}
+
+#filter-controls > div {
+    display: flex;
+    flex-direction: column; /* Элементы в каждой из колонок располагаются в столбик */
+}
+
 
 .filter-button {
-    width: 32px; /* Размер кнопки - совпадает с размером иконки */
+    margin-bottom: 5px; /* Расстояние между кнопками в одной колонке */
+    width: auto;
+    min-width: 32px;
     height: 32px;
-    border: none;
-    background-color: rgba(88, 88, 88, 0.5); /* Серый фон */
+    padding: 0 10px;
+    border: 1px solid #2b2b2b;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #e0d8c3;
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
     cursor: pointer;
-    background-size: cover; /* Масштабирование под размер кнопки */
-    transition: background-color 0.2s; /* Для плавного затемнения */
-    margin: 5px;
+    text-align: left;
+    transition: background-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(0.48turn, #333 30%, #2b2b2b 80%, #7c2222);
+    transition: opacity 0.3s;
+    opacity: 1;
+    z-index: -1; /* Чтобы градиент находился под текстом */
+}
+
+.filter-button:hover::before {
+    opacity: 0.7; /* Изменение прозрачности для эффекта наведения */
 }
 
 .filter-button:hover {
-    background-color: rgba(180, 180, 180, 0.7); /* Фон при наведении */
+    transform: scale(1.05); /* Легкая трансформация при наведении */
 }
 
 .filter-button:active {
-    background-color: rgba(150, 150, 150, 0.9); /* Затемнение при нажатии */
+    background-color: #2e2e2e; /* Цвет нажатой кнопки */
+    transform: scale(0.98); /* Легкое уменьшение для нажатого эффекта */
 }
 
 .filter-button::after {
     content: attr(data-tooltip); /* Текст подсказки из атрибута data-tooltip */
     position: absolute;
-    bottom: 100%; /* Размещает tooltip сверху кнопки */
+    bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.75);
@@ -241,7 +284,8 @@ option {
     white-space: nowrap; /* Предотвращает перенос строки */
     opacity: 0; /* Изначально скрыт */
     pointer-events: none; /* Отключение событий мыши */
-    transition: opacity 0.2s; /* Плавная смена видимости */
+    transition: opacity 0.2s;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Тень для текста */
 }
 
 .filter-button:hover::after {
@@ -380,14 +424,14 @@ option {
 }
 
 .block-header:hover {
-    background-color: #7c2222; 
+    background-color: #7c2222;
 }
 
 .block-content {
     max-height: 0;
     opacity: 0;
     overflow-y: auto;
-    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out; 
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }

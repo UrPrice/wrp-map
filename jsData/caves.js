@@ -43,7 +43,7 @@ const cavesData = [
         ]
     },
     {
-        description: 'Маленькая пещера эльфов',
+        description: 'Маленькая пещера Темерии',
         entrances: [
             [2433, 2251]
         ]

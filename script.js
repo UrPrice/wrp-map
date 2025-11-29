@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 <h3 class="witcher-style-text" style="font-size: 16px;">${info.title}</h3>
                 <p class="witcher-style-text"><strong>Макс. Уровень:</strong> ${level}</p>
                 <p class="witcher-style-text"><strong>Требуется:</strong> ${info.requirements}</p>
-                ${notesContent}  
+                ${notesContent}
                 <p class="witcher-style-text"><strong>Награда:</strong> ${rewards}</p>
                 <button class="detail-button witcher-style-text" onclick="goBackToQuestList(this, ${markerId})">Назад</button>
             `);
@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         alchemistData.quests.forEach(quest => {
             const questInfo = questsData[quest.id];
             if (questInfo) {
-                popupContent += `<li class="witcher-style-text">${questInfo.title}  
+                popupContent += `<li class="witcher-style-text">${questInfo.title}
                                 <button class="detail-button witcher-style-text" onclick="showDetailedQuestInfo('${quest.id}', ${quest.level}, '${quest.rewards}', '${quest.notes}', this, ${marker._leaflet_id})">?</button>
                                 </li>`;
             }
@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         armormanData.quests.forEach(service => {
             const serviceInfo = questsData[service.id];
             if (serviceInfo) {
-                popupContent += `<li class="witcher-style-text">${serviceInfo.title}    
+                popupContent += `<li class="witcher-style-text">${serviceInfo.title}
                                 <button class="detail-button witcher-style-text" onclick="showDetailedQuestInfo('${service.id}', ${service.level}, '${service.rewards}', '${service.notes}', this, ${marker._leaflet_id})">?</button>
                                 </li>`;
             }
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         boardData.quests.forEach(notice => {
             const noticeInfo = questsData[notice.id];
             if (noticeInfo) {
-                popupContent += `<li class="witcher-style-text">${noticeInfo.title}   
+                popupContent += `<li class="witcher-style-text">${noticeInfo.title}
                                 <button class="detail-button witcher-style-text" onclick="showDetailedQuestInfo('${notice.id}', ${notice.level}, '${notice.rewards}', '${notice.notes}', this, ${marker._leaflet_id})">?</button>
                                 </li>`;
             }
@@ -428,7 +428,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         traderData.quests.forEach(good => {
             const goodInfo = questsData[good.id];
             if (goodInfo) {
-                popupContent += `<li class="witcher-style-text">${goodInfo.title}   
+                popupContent += `<li class="witcher-style-text">${goodInfo.title}
                                 <button class="detail-button witcher-style-text" onclick="showDetailedQuestInfo('${good.id}', ${good.level}, '${good.rewards}', '${good.notes}', this, ${marker._leaflet_id})">?</button>
                                 </li>`;
             }
@@ -464,7 +464,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         weaponManData.quests.forEach(weapon => {
             const weaponInfo = questsData[weapon.id];
             if (weaponInfo) {
-                popupContent += `<li class="witcher-style-text">${weaponInfo.title}     
+                popupContent += `<li class="witcher-style-text">${weaponInfo.title}
                                 <button class="detail-button witcher-style-text" onclick="showDetailedQuestInfo('${weapon.id}', ${weapon.level}, '${weapon.rewards}', '${weapon.notes}', this, ${marker._leaflet_id})">?</button>
                                 </li>`;
             }
@@ -500,7 +500,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         hunterData.quests.forEach(hunt => {
             const huntInfo = questsData[hunt.id];
             if (huntInfo) {
-                popupContent += `<li class="witcher-style-text">${huntInfo.title}   
+                popupContent += `<li class="witcher-style-text">${huntInfo.title}
                                 <button class="detail-button witcher-style-text" onclick="showDetailedQuestInfo('${hunt.id}', ${hunt.level}, '${hunt.rewards}', '${hunt.notes}', this, ${marker._leaflet_id})">?</button>
                                 </li>`;
             }
@@ -536,7 +536,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         questGiverData.quests.forEach(hunt => {
             const huntInfo = questsData[hunt.id];
             if (huntInfo) {
-                popupContent += `<li class="witcher-style-text">${huntInfo.title}   
+                popupContent += `<li class="witcher-style-text">${huntInfo.title}
                                 <button class="detail-button witcher-style-text" onclick="showDetailedQuestInfo('${hunt.id}', ${hunt.level}, '${hunt.rewards}', '${hunt.notes}', this, ${marker._leaflet_id})">?</button>
                                 </li>`;
             }
@@ -671,15 +671,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
             // Переводим координаты в screen points
             const mousePoint = map.latLngToLayerPoint(mouseLatLng);
             const markerPoint = map.latLngToLayerPoint(markerLatLng);
-            
+
             const distance = mousePoint.distanceTo(markerPoint);
 
             const label = marker.getElement().querySelector('.marker-label');
-            
+
             // Настройка максимального и минимального расстояния в пикселях
             const maxDistance = 200; // Полностью прозрачная граница
             const minDistance = 150; // Полностью непрозрачная граница
-            
+
             // Вычисляем прозрачность на основе расстояния
             if (distance > maxDistance) {
                 label.style.opacity = 0;
@@ -707,11 +707,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const fractions = {
         Neutral: {
             description: 'Нейтральная территория',
-            color: '#b0b0b0'
+            color: '#cececeff'
         },
         Bandits: {
             description: 'Территория разбойников',
-            color: '#8b8b8b'
+            color: '#9b5f78ff'
         },
         Redania: {
             description: 'Территория Редании',
@@ -719,11 +719,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         },
         Baron: {
             description: 'Территория Людей Барона',
-            color: '#204e5f'
+            color: '#121214ff'
         },
         Elf: {
-            description: 'Территория Эльфов',
-            color: '#50c878'
+            description: 'Территория Темерии',
+            color: '#366fdaff'
         },
         Nilf: {
             description: 'Территория Нильфгаарда',
@@ -744,7 +744,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const circle = L.circle([lat, lng], {
             color: null,
             fillPattern: stripePattern, // применение паттерна
-            fillOpacity: 0.6,
+            fillOpacity: 0.9,
             radius: radius
         }).addTo(map);
 
@@ -1050,6 +1050,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('opacity-slider').addEventListener('input', function (event) {
         const opacityValue = event.target.value / 100;
         imageLayer.getElement().style.filter = `brightness(${1 - opacityValue})`;
+    });
+
+    const allButtons = document.querySelectorAll('#filter-controls .filter-button');
+
+    allButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            button.dataset.tooltip = button.dataset.tooltip.includes('Скрыты') ? button.dataset.tooltip.replace('Скрыты', 'Видимы') : button.dataset.tooltip.replace('Видимы', 'Скрыты');
+        });
+    });
+
+    document.getElementById('hide-all').addEventListener('click', () => {
+        allButtons.forEach(button => {
+            button.dataset.tooltip = button.dataset.tooltip.replace('Видимы', 'Скрыты');
+            if (!button.id.startsWith('hide-') && !button.id.startsWith('show-')) {
+                button.click(); // Симулирует клик для скрытия
+            }
+        });
+    });
+
+    document.getElementById('show-all').addEventListener('click', () => {
+        allButtons.forEach(button => {
+            button.dataset.tooltip = button.dataset.tooltip.replace('Скрыты', 'Видимы');
+            if (!button.id.startsWith('hide-') && !button.id.startsWith('show-')) {
+                button.click(); // Симулирует клик для показа
+            }
+        });
     });
 
     checkForAddedMarkers();

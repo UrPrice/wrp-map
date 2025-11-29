@@ -18,14 +18,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 level: 60,
                 rewards: "30 опыта"
             },
-            { 
-                id: "hunter_kozy", 
-                level: 60, 
+            {
+                id: "hunter_kozy",
+                level: 60,
                 rewards: "30 опыта"
             },
-            { 
-                id: "hunter_naker", 
-                level: 60, 
+            {
+                id: "hunter_naker",
+                level: 60,
                 rewards: "30 опыта"
             },
             {
@@ -68,14 +68,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 level: 60,
                 rewards: "30 опыта"
             },
-            { 
-                id: "hunter_kozy", 
-                level: 60, 
+            {
+                id: "hunter_kozy",
+                level: 60,
                 rewards: "30 опыта"
             },
-            { 
-                id: "hunter_naker", 
-                level: 60, 
+            {
+                id: "hunter_naker",
+                level: 60,
                 rewards: "30 опыта"
             },
             {
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         ]
     });
     addHunter(2341 , 3038, {
-        name: "Охотник | Эльфы",
+        name: "Охотник | Темерия",
         quests: [
             {
                 id: "hunter_bear",
@@ -118,14 +118,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 level: 60,
                 rewards: "30 опыта"
             },
-            { 
-                id: "hunter_kozy", 
-                level: 60, 
+            {
+                id: "hunter_kozy",
+                level: 60,
                 rewards: "30 опыта"
             },
-            { 
-                id: "hunter_naker", 
-                level: 60, 
+            {
+                id: "hunter_naker",
+                level: 60,
                 rewards: "30 опыта"
             },
             {
@@ -172,14 +172,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "hunter_kozy", 
-                level: 40, 
+            {
+                id: "hunter_kozy",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "hunter_naker", 
-                level: 40, 
+            {
+                id: "hunter_naker",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -222,14 +222,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "hunter_kozy", 
-                level: 40, 
+            {
+                id: "hunter_kozy",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "hunter_naker", 
-                level: 40, 
+            {
+                id: "hunter_naker",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -272,14 +272,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "hunter_kozy", 
-                level: 40, 
+            {
+                id: "hunter_kozy",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "hunter_naker", 
-                level: 40, 
+            {
+                id: "hunter_naker",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -322,14 +322,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "hunter_kozy", 
-                level: 40, 
+            {
+                id: "hunter_kozy",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "hunter_naker", 
-                level: 40, 
+            {
+                id: "hunter_naker",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -372,14 +372,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "hunter_kozy", 
-                level: 40, 
+            {
+                id: "hunter_kozy",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "hunter_naker", 
-                level: 40, 
+            {
+                id: "hunter_naker",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -422,14 +422,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "hunter_kozy", 
-                level: 40, 
+            {
+                id: "hunter_kozy",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "hunter_naker", 
-                level: 40, 
+            {
+                id: "hunter_naker",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -472,12 +472,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "hunter_kozy", 
-                level: 40, 
+            {
+                id: "hunter_kozy",
+                level: 40,
                 rewards: "20 опыта"
             }
         ]
     });
-    
+
 });

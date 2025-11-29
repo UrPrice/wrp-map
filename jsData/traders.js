@@ -19,14 +19,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "30 опыта",
                 notes: "чернильницу можно купить у этого же трейдера"
             },
-            { 
-                id: "trader_blades", 
-                level: 60, 
+            {
+                id: "trader_blades",
+                level: 60,
                 rewards: "30 опыта"
             },
-            { 
-                id: "trader_glasses", 
-                level: 60, 
+            {
+                id: "trader_glasses",
+                level: 60,
                 rewards: "30 опыта"
             },
             {
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "30 опыта"
             }
         ]
-    });    
+    });
     addTrader(707 , 1265, {
         name: "Барахольщик | Вроницы",
         quests: [
@@ -70,14 +70,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "30 опыта",
                 notes: "чернильницу можно купить у этого же трейдера"
             },
-            { 
-                id: "trader_blades", 
-                level: 60, 
+            {
+                id: "trader_blades",
+                level: 60,
                 rewards: "30 опыта"
             },
-            { 
-                id: "trader_glasses", 
-                level: 60, 
+            {
+                id: "trader_glasses",
+                level: 60,
                 rewards: "30 опыта"
             },
             {
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         ]
     });
     addTrader(2329 , 3035, {
-        name: "Барахольщик | Эльфы",
+        name: "Барахольщик | Темерия",
         quests: [
             {
                 id: "trader_candelabra",
@@ -121,14 +121,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "30 опыта",
                 notes: "чернильницу можно купить у этого же трейдера"
             },
-            { 
-                id: "trader_blades", 
-                level: 60, 
+            {
+                id: "trader_blades",
+                level: 60,
                 rewards: "30 опыта"
             },
-            { 
-                id: "trader_glasses", 
-                level: 60, 
+            {
+                id: "trader_glasses",
+                level: 60,
                 rewards: "30 опыта"
             },
             {
@@ -172,14 +172,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "чернильницу можно купить у этого же трейдера"
             },
-            { 
-                id: "trader_blades", 
-                level: 40, 
+            {
+                id: "trader_blades",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "trader_glasses", 
-                level: 40, 
+            {
+                id: "trader_glasses",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -223,14 +223,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "чернильницу можно купить у этого же трейдера"
             },
-            { 
-                id: "trader_blades", 
-                level: 40, 
+            {
+                id: "trader_blades",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "trader_glasses", 
-                level: 40, 
+            {
+                id: "trader_glasses",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -274,14 +274,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "чернильницу можно купить у этого же трейдера"
             },
-            { 
-                id: "trader_blades", 
-                level: 40, 
+            {
+                id: "trader_blades",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "trader_glasses", 
-                level: 40, 
+            {
+                id: "trader_glasses",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -325,14 +325,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "чернильницу можно купить у этого же трейдера"
             },
-            { 
-                id: "trader_blades", 
-                level: 40, 
+            {
+                id: "trader_blades",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "trader_glasses", 
-                level: 40, 
+            {
+                id: "trader_glasses",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -376,14 +376,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "чернильницу можно купить у этого же трейдера"
             },
-            { 
-                id: "trader_blades", 
-                level: 40, 
+            {
+                id: "trader_blades",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "trader_glasses", 
-                level: 40, 
+            {
+                id: "trader_glasses",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -427,14 +427,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "чернильницу можно купить у этого же трейдера"
             },
-            { 
-                id: "trader_blades", 
-                level: 40, 
+            {
+                id: "trader_blades",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "trader_glasses", 
-                level: 40, 
+            {
+                id: "trader_glasses",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -478,14 +478,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "чернильницу можно купить у этого же трейдера"
             },
-            { 
-                id: "trader_blades", 
-                level: 40, 
+            {
+                id: "trader_blades",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "trader_glasses", 
-                level: 40, 
+            {
+                id: "trader_glasses",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -529,14 +529,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "чернильницу можно купить у этого же трейдера"
             },
-            { 
-                id: "trader_blades", 
-                level: 40, 
+            {
+                id: "trader_blades",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "trader_glasses", 
-                level: 40, 
+            {
+                id: "trader_glasses",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -580,14 +580,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "чернильницу можно купить у этого же трейдера"
             },
-            { 
-                id: "trader_blades", 
-                level: 40, 
+            {
+                id: "trader_blades",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "trader_glasses", 
-                level: 40, 
+            {
+                id: "trader_glasses",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -631,14 +631,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "чернильницу можно купить у этого же трейдера"
             },
-            { 
-                id: "trader_blades", 
-                level: 40, 
+            {
+                id: "trader_blades",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "trader_glasses", 
-                level: 40, 
+            {
+                id: "trader_glasses",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -682,14 +682,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "чернильницу можно купить у этого же трейдера"
             },
-            { 
-                id: "trader_blades", 
-                level: 40, 
+            {
+                id: "trader_blades",
+                level: 40,
                 rewards: "20 опыта"
             },
-            { 
-                id: "trader_glasses", 
-                level: 40, 
+            {
+                id: "trader_glasses",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -717,9 +717,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     addTrader(1636 , 2255, {
         name: "Барахольщик | Деревня Карстен",
         quests: [
-            { 
-                id: "trader_blades", 
-                level: 40, 
+            {
+                id: "trader_blades",
+                level: 40,
                 rewards: "20 опыта"
             },
             {
@@ -751,6 +751,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         name: "Барахольщик | Деревня Ольшина",
         quests: []
     });
-   
+
 
 });

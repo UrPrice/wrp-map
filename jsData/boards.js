@@ -19,15 +19,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "30 опыта",
                 notes: "10 мяса можно купить у него же"
             },
-            { 
-                id: "traktir_fish", 
-                level: 60, 
+            {
+                id: "traktir_fish",
+                level: 60,
                 rewards: "30 опыта",
                 notes: "5 рыбы можно купить у него же"
             },
-            { 
-                id: "traktir_glam", 
-                level: 60, 
+            {
+                id: "traktir_glam",
+                level: 60,
                 rewards: "30 опыта",
                 notes: "гламур выгоднее продавать, а духи сдавать барахольщику"
             }
@@ -52,22 +52,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "30 опыта",
                 notes: "10 мяса можно купить у него же"
             },
-            { 
-                id: "traktir_fish", 
-                level: 60, 
+            {
+                id: "traktir_fish",
+                level: 60,
                 rewards: "30 опыта",
                 notes: "5 рыбы можно купить у него же"
             },
-            { 
-                id: "traktir_glam", 
-                level: 60, 
+            {
+                id: "traktir_glam",
+                level: 60,
                 rewards: "30 опыта",
                 notes: "гламур выгоднее продавать, а духи сдавать барахольщику"
             }
         ]
     });
     addBoard(2354 , 2949, {
-        name: "Трактирщик | Эльфы",
+        name: "Трактирщик | Темерия",
         quests: [
             {
                 id: "traktir_tarelki",
@@ -85,15 +85,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "30 опыта",
                 notes: "10 мяса можно купить у него же"
             },
-            { 
-                id: "traktir_fish", 
-                level: 60, 
+            {
+                id: "traktir_fish",
+                level: 60,
                 rewards: "30 опыта",
                 notes: "5 рыбы можно купить у него же"
             },
-            { 
-                id: "traktir_glam", 
-                level: 60, 
+            {
+                id: "traktir_glam",
+                level: 60,
                 rewards: "30 опыта",
                 notes: "гламур выгоднее продавать, а духи сдавать барахольщику"
             }
@@ -118,15 +118,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "10 мяса можно купить у него же"
             },
-            { 
-                id: "traktir_fish", 
-                level: 7, 
+            {
+                id: "traktir_fish",
+                level: 7,
                 rewards: "20 опыта",
                 notes: "5 рыбы можно купить у него же"
             },
-            { 
-                id: "traktir_glam", 
-                level: 7, 
+            {
+                id: "traktir_glam",
+                level: 7,
                 rewards: "20 опыта",
                 notes: "гламур выгоднее продавать, а духи сдавать барахольщику"
             }
@@ -151,15 +151,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "10 мяса можно купить у него же"
             },
-            { 
-                id: "traktir_fish", 
-                level: 40, 
+            {
+                id: "traktir_fish",
+                level: 40,
                 rewards: "20 опыта",
                 notes: "5 рыбы можно купить у него же"
             },
-            { 
-                id: "traktir_glam", 
-                level: 40, 
+            {
+                id: "traktir_glam",
+                level: 40,
                 rewards: "20 опыта",
                 notes: "гламур выгоднее продавать, а духи сдавать барахольщику"
             }
@@ -184,15 +184,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "10 мяса можно купить у него же"
             },
-            { 
-                id: "traktir_fish", 
-                level: 40, 
+            {
+                id: "traktir_fish",
+                level: 40,
                 rewards: "20 опыта",
                 notes: "5 рыбы можно купить у него же"
             },
-            { 
-                id: "traktir_glam", 
-                level: 40, 
+            {
+                id: "traktir_glam",
+                level: 40,
                 rewards: "20 опыта",
                 notes: "гламур выгоднее продавать, а духи сдавать барахольщику"
             }
@@ -217,15 +217,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "10 мяса можно купить у него же"
             },
-            { 
-                id: "traktir_fish", 
-                level: 40, 
+            {
+                id: "traktir_fish",
+                level: 40,
                 rewards: "20 опыта",
                 notes: "5 рыбы можно купить у него же"
             },
-            { 
-                id: "traktir_glam", 
-                level: 40, 
+            {
+                id: "traktir_glam",
+                level: 40,
                 rewards: "20 опыта",
                 notes: "гламур выгоднее продавать, а духи сдавать барахольщику"
             },
@@ -265,15 +265,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "20 опыта",
                 notes: "10 мяса можно купить у него же"
             },
-            { 
-                id: "traktir_fish", 
-                level: 40, 
+            {
+                id: "traktir_fish",
+                level: 40,
                 rewards: "20 опыта",
                 notes: "5 рыбы можно купить у него же"
             },
-            { 
-                id: "traktir_glam", 
-                level: 40, 
+            {
+                id: "traktir_glam",
+                level: 40,
                 rewards: "20 опыта",
                 notes: "гламур выгоднее продавать, а духи сдавать барахольщику"
             },

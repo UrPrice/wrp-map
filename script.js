@@ -721,7 +721,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             description: 'Территория Людей Барона',
             color: '#121214ff'
         },
-        Elf: {
+        Temeria: {
             description: 'Территория Темерии',
             color: '#366fdaff'
         },

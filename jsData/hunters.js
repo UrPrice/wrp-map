@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         ]
     });
-    addHunter(2341 , 3038, {
+    addHunter(2355 , 2934, {
         name: "Охотник | Темерия",
         quests: [
             {

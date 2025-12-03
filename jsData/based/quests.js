@@ -219,6 +219,14 @@ const questsData = {
         "title": "Уголь для ковки*",
         "requirements": "Принести 10 угля"
     },
+    "blacksmith_coal_base": {
+        "title": "Уголь",
+        "requirements": "Принести 5 угля"
+    },
+    "blacksmith_med_base": {
+        "title": "Медная руда",
+        "requirements": "Принести 5 медной руды"
+    },
     "blacksmith_ancient": {
         "title": "Дрова для печи*",
         "requirements": "Принести 10 палок"
@@ -227,36 +235,48 @@ const questsData = {
         "title": "Древние писания",
         "requirements": "Принести 2 штуки древнего ископаемого"
     },
+    "blacksmith_plast_med": {
+        "title": "Медная пластина",
+        "requirements": "Принести 2 медных пластины"
+    },
+    "blacksmith_plast_stal": {
+        "title": "Стальная пластина",
+        "requirements": "Принести 2 стальных пластины"
+    },
+    "blacksmith_plast_silver": {
+        "title": "Серебряная пластина",
+        "requirements": "Принести 1 серебряную пластину"
+    },
     "suarmor_med": {
-        "title": "Подмастерье: Слитки меди",
+        "title": "Слитки меди",
         "requirements": "Принести 3 слитка меди"
     },
-    "suarmor_med": {
-        "title": "Подмастерье: Слитки тёмного железа",
+    "suarmor_temj": {
+        "title": "Слитки тёмного железа",
         "requirements": "Принести 3 слитка тёмного железа"
     },
-    "suarmor_med": {
-        "title": "Подмастерье: Слитки святящяйся руды",
+    "suarmor_svetr": {
+        "title": "Слитки святящяйся руды",
         "requirements": "Принести 2 слитка святящяйся руды"
     },
-    "suarmor_med": {
-        "title": "Подмастерье: Слитки золота",
+    "suarmor_gold": {
+        "title": "Слитки золота",
         "requirements": "Принести 2 слитка золота"
     },
-    "suarmor_med": {
-        "title": "Подмастерье: Серебряные слитки",
+    "suarmor_silver": {
+        "title": "Серебряные слитки",
         "requirements": "Принести 3 слитка серебра"
     },
-    "suarmor_med": {
-        "title": "Подмастерье: Стальные слитки",
+    "suarmor_staln": {
+        "title": "Стальные слитки",
         "requirements": "Принести 3 слитка стали"
     },
-    "suarmor_med": {
-        "title": "Подмастерье: Орихалковые слитки",
+    "suarmor_orih": {
+        "title": "Орихалковые слитки",
         "requirements": "Принести 2 слитка орихалка"
     },
-    "suarmor_med": {
-        "title": "Подмастерье: Слиток тёмной стали",
+    "suarmor_temnstal": {
+        "title": "Слиток тёмной стали",
         "requirements": "Принести 3 слитка тёмной стали"
     },
     "leshek_whathappened": {

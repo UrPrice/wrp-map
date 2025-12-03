@@ -390,5 +390,17 @@ allLocationData = [
     {
         description: 'Вызима',
         coords: [1879 , 183]
+    },
+    {
+        description: 'Деревня Лесьна',
+        coords: [1874 , 2981]
+    },
+    {
+        description: 'Хозяйство Фолье',
+        coords: [1907 , 2755]
+    },
+    {
+        description: 'Наследие предков',
+        coords: [2439 , 2678]
     }
 ];

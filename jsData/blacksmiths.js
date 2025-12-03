@@ -54,6 +54,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
         name: "Бронник | Темерия",
         quests: [
             {
+                id: "blacksmith_coal",
+                level: 60,
+                rewards: "30 опыта",
+                notes: "После выполнения задания - появятся новые квесты у этого трейдера"
+            },
+            {
                 id: "armor_coal",
                 level: 60,
                 rewards: "30 опыта"
@@ -69,9 +75,110 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 rewards: "30 опыта"
             },
             {
-                id: "armor_silver",
+                id: "suarmor_med",
                 level: 60,
                 rewards: "30 опыта"
+            },
+            {
+                id: "suarmor_temj",
+                level: 60,
+                rewards: "30 опыта"
+            },
+            {
+                id: "suarmor_temnstal",
+                level: 60,
+                rewards: "30 опыта"
+            },
+            {
+                id: "suarmor_svetr",
+                level: 60,
+                rewards: "30 опыта"
+            },
+            {
+                id: "suarmor_gold",
+                level: 60,
+                rewards: "30 опыта"
+            },
+            {
+                id: "suarmor_silver",
+                level: 60,
+                rewards: "30 опыта"
+            },
+            {
+                id: "suarmor_staln",
+                level: 60,
+                rewards: "30 опыта"
+            },
+            {
+                id: "suarmor_orih",
+                level: 60,
+                rewards: "30 опыта"
+            }
+        ]
+    });
+    addArmorman(1845 , 3036, {
+        name: "Бронник | Деревня Лесьна",
+        quests: [
+            {
+                id: "blacksmith_coal",
+                level: 40,
+                rewards: "20 опыта",
+                notes: "После выполнения задания - появятся новые квесты у этого трейдера"
+            },
+            {
+                id: "armor_coal",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "armor_order",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "armor_med",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "suarmor_med",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "suarmor_temj",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "suarmor_temnstal",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "suarmor_svetr",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "suarmor_gold",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "suarmor_silver",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "suarmor_staln",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "suarmor_orih",
+                level: 40,
+                rewards: "20 опыта"
             }
         ]
     });
@@ -199,7 +306,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
         name: "Оружейник | Темерия",
         quests: [
             {
-                id: "blacksmith_coal",
+                id: "blacksmith_coal_base",
+                level: 60,
+                rewards: "30 опыта"
+            },
+            {
+                id: "blacksmith_med_base",
+                level: 60,
+                rewards: "30 опыта"
+            },
+            {
+                id: "blacksmith_plast_med",
+                level: 60,
+                rewards: "30 опыта"
+            },
+            {
+                id: "blacksmith_plast_stal",
+                level: 60,
+                rewards: "30 опыта"
+            },
+            {
+                id: "blacksmith_plast_silver",
                 level: 60,
                 rewards: "30 опыта"
             }

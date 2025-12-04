@@ -153,6 +153,37 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         ]
     });
+    addTrader(1585 , 2773, {
+        name: "Барахольщик | Темерия",
+        quests: [
+            {
+                id: "trader_butter_knife",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_inkwell",
+                level: 40,
+                rewards: "20 опыта",
+                notes: "чернильницу можно купить у этого же трейдера"
+            },
+            {
+                id: "trader_glasses",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_collection",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "trader_seashell",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
     addTrader(584 , 1035, {
         name: "Барахольщик | Temp1",
         quests: [

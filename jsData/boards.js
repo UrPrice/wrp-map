@@ -246,6 +246,54 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         ]
     });
+    addBoard(1578 , 2808, {
+        name: "Трактирщик | Усадьба Мольдави",
+        quests: [
+            {
+                id: "traktir_tarelki",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktir_krujki",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktir_meat",
+                level: 40,
+                rewards: "20 опыта",
+                notes: "10 мяса можно купить у него же"
+            },
+            {
+                id: "traktir_fish",
+                level: 40,
+                rewards: "20 опыта",
+                notes: "5 рыбы можно купить у него же"
+            },
+            {
+                id: "traktir_glam",
+                level: 40,
+                rewards: "20 опыта",
+                notes: "гламур выгоднее продавать, а духи сдавать барахольщику"
+            },
+            {
+                id: "traktirext_lutnya",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktirext_polovik",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "traktirext_branches",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
     addBoard(1182 , 1635, {
         name: "Трактирщик | Деревня Яворник",
         quests: [

@@ -150,6 +150,56 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         ]
     });
+    addHunter(1591 , 2790, {
+        name: "Охотник | Усадьба Мольдави",
+        quests: [
+            {
+                id: "hunter_bear",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_olen",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_kaban",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_kozy",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_naker",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_utopec",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_gnilec",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_halfnight",
+                level: 40,
+                rewards: "20 опыта"
+            },
+            {
+                id: "hunter_halfday",
+                level: 40,
+                rewards: "20 опыта"
+            }
+        ]
+    });
     addHunter(2751 , 407, {
         name: "Охотник | Белые Сады>",
         quests: []

@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/vnd.github.v3+json',
-                    'Authorization': `token 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`,
+                    'Authorization': secrets.PAT_URPRICE,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(issueData)

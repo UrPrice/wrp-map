@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 markerForm = null;
             }
             // Сохранение в localStorage
-            const markerData = { text, type, coordinates, timestamp: Date.now() };
+            const markerData = { text, type, clickLatLng, timestamp: Date.now() };
             const savedMarkers = JSON.parse(localStorage.getItem('pendingMarkers')) || [];
             savedMarkers.push(markerData);
             localStorage.setItem('pendingMarkers', JSON.stringify(savedMarkers));

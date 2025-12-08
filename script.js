@@ -104,55 +104,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const coordinates = clickLatLng;
 
         if (text && type) {
-            showLoader(); // Показать лоадер перед началом запроса
+            const title = `Запрос на добавление метки: ${text}`;
+            const body = `
+                **Тип метки**: ${type}\n
+                **Описание**: ${text}\n
+                **Координаты**: ${JSON.stringify(coordinates)}
+            `;
 
-            const issueData = {
-                owner: `UrPrice`,
-                repo: `wrp-map-new`,
-                title: `Запрос на добавление метки: ${text}`,
-                body: `**Тип метки**: ${type}\n\n**Описание**: ${text}\n\n**Координаты**: ${JSON.stringify(coordinates)}`
-            };
+            const url = `https://github.com/UrPrice/wrp-map-new/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
 
-            fetch('https://api.github.com/repos/UrPrice/wrp-map-new/issues', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Authorization': secrets.PAT_URPRICE,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(issueData)
-            }).then(response => {
-                hideLoader(); // Скрыть лоадер после завершения запроса
-                if (response.ok) {
-                    Swal.fire({
-                        title: 'Успех!',
-                        text: 'Issue успешно создано в репозитории!',
-                        icon: 'success',
-                        confirmButtonText: 'ОК'
-                    });
-                    if (markerForm) {
-                        markerForm.remove();
-                        document.removeEventListener('click', onDocumentClick);
-                        markerForm = null;
-                    }
-                } else {
-                    Swal.fire({
-                        title: 'Ошибка!',
-                        text: 'Ошибка при создании issue!',
-                        icon: 'error',
-                        confirmButtonText: 'ОК'
-                    });
-                }
-            }).catch(error => {
-                hideLoader(); // Скрыть лоадер даже в случае ошибки
-                console.error('Ошибка:', error);
-                Swal.fire({
-                    title: 'Ошибка!',
-                    text: 'Произошла ошибка при выполнении запроса.',
-                    icon: 'error',
-                    confirmButtonText: 'ОК'
-                });
-            });
+            window.location.href = url; // Перенаправляем пользователя на GitHub
         } else {
             Swal.fire({
                 title: 'Внимание!',
@@ -162,6 +123,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
         }
     }
+
 
 
     document.getElementById('copy-coordinates').addEventListener('click', function (event) {

@@ -104,31 +104,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const coordinates = clickLatLng;
 
         if (text && type) {
-            showLoader();  // Показать лоадер перед началом запроса
+            showLoader(); // Показать лоадер перед началом запроса
 
-            const data = {
-                event_type: 'create-issue',
-                client_payload: {
-                    text: text,
-                    type: type,
-                    coordinates: coordinates
-                }
+            const issueData = {
+                title: `Запрос на добавление метки: ${text}`,
+                body: `**Тип метки**: ${type}\n\n**Описание**: ${text}\n\n**Координаты**: ${JSON.stringify(coordinates)}`
             };
 
-            fetch('https://api.github.com/repos/UrPrice/wrp-map-new/dispatches', {
+            fetch('https://api.github.com/repos/UrPrice/wrp-map-new/issues', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/vnd.github.v3+json',
-                    'Authorization': `token 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`,
+                    'Authorization': `token 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`, // Ваш токен здесь
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(issueData)
             }).then(response => {
-                hideLoader();
+                hideLoader(); // Скрыть лоадер после завершения запроса
                 if (response.ok) {
                     Swal.fire({
                         title: 'Успех!',
-                        text: 'Запрос на добавление метки успешно отправлен!',
+                        text: 'Issue успешно создано в репозитории!',
                         icon: 'success',
                         confirmButtonText: 'ОК'
                     });
@@ -140,13 +136,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 } else {
                     Swal.fire({
                         title: 'Ошибка!',
-                        text: 'Ошибка при отправке запроса!',
+                        text: 'Ошибка при создании issue!',
                         icon: 'error',
                         confirmButtonText: 'ОК'
                     });
                 }
             }).catch(error => {
-                hideLoader();
+                hideLoader(); // Скрыть лоадер даже в случае ошибки
                 console.error('Ошибка:', error);
                 Swal.fire({
                     title: 'Ошибка!',
@@ -164,6 +160,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
         }
     }
+
 
     document.getElementById('copy-coordinates').addEventListener('click', function (event) {
         if (clickLatLng) {

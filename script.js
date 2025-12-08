@@ -110,8 +110,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
 **Координаты**: ${JSON.stringify(coordinates)}`;
 
             const url = `https://github.com/UrPrice/wrp-map-new/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
-
             window.open(url, '_blank')
+            if (markerForm) {
+                markerForm.remove();
+                document.removeEventListener('click', onDocumentClick);
+                markerForm = null;
+            }
+            // Сохранение в localStorage
+            const markerData = { text, type, coordinates, timestamp: Date.now() };
+            const savedMarkers = JSON.parse(localStorage.getItem('pendingMarkers')) || [];
+            savedMarkers.push(markerData);
+            localStorage.setItem('pendingMarkers', JSON.stringify(savedMarkers));
+            addLocalMarker(markerData);
+
         } else {
             Swal.fire({
                 title: 'Внимание!',

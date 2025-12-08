@@ -101,19 +101,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function submitMarker() {
         const text = document.getElementById('markerText').value;
         const type = document.getElementById('markerType').value;
-        const coordinates = clickLatLng;
+        const coordinates = `${clickLatLng.lng}, ${clickLatLng.lat}`;
 
         if (text && type) {
             const title = `Запрос на добавление метки: ${text}`;
-            const body = `
-                **Тип метки**: ${type}\n
-                **Описание**: ${text}\n
-                **Координаты**: ${JSON.stringify(coordinates)}
-            `;
+            const body = `**Тип метки**: ${type}\n
+**Описание**: ${text}\n
+**Координаты**: ${JSON.stringify(coordinates)}`;
 
             const url = `https://github.com/UrPrice/wrp-map-new/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
 
-            window.location.href = url; // Перенаправляем пользователя на GitHub
+            window.open(url, '_blank')
         } else {
             Swal.fire({
                 title: 'Внимание!',

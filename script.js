@@ -107,6 +107,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             showLoader(); // Показать лоадер перед началом запроса
 
             const issueData = {
+                owner: `UrPrice`,
+                repo: `wrp-map-new`,
                 title: `Запрос на добавление метки: ${text}`,
                 body: `**Тип метки**: ${type}\n\n**Описание**: ${text}\n\n**Координаты**: ${JSON.stringify(coordinates)}`
             };
@@ -115,7 +117,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/vnd.github.v3+json',
-                    'Authorization': `token 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`, // Ваш токен здесь
+                    'Authorization': `token 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`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(issueData)

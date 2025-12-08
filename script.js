@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function submitMarker() {
         const text = document.getElementById('markerText').value;
         const type = document.getElementById('markerType').value;
-        const coordinates = `${clickLatLng.lng}, ${clickLatLng.lat}`;
+        const coordinates = `${Math.round(clickLatLng.lng)}, ${Math.round(clickLatLng.lat)}`;
 
         if (text && type) {
             const title = `Запрос на добавление метки: ${text}`;

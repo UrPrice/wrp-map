@@ -105,18 +105,30 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         if (text && type) {
             showLoader();  // Показать лоадер перед началом запроса
-            fetch('https://urprice.ru:3000', {
+
+            const data = {
+                event_type: 'create-issue',
+                client_payload: {
+                    text: text,
+                    type: type,
+                    coordinates: coordinates
+                }
+            };
+
+            fetch('https://api.github.com/repos/UrPrice/wrp-map-new/dispatches', {
                 method: 'POST',
                 headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Authorization': `token ${process.env.PAT_URPRICE}`,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ text, type, coordinates })
+                body: JSON.stringify(data)
             }).then(response => {
-                hideLoader();  // Скрыть лоадер после завершения запроса
+                hideLoader();
                 if (response.ok) {
                     Swal.fire({
                         title: 'Успех!',
-                        text: 'Запрос на добавление метки успешно создан! Он может обрабатываться некоторое время и метка появится не сразу.',
+                        text: 'Запрос на добавление метки успешно отправлен!',
                         icon: 'success',
                         confirmButtonText: 'ОК'
                     });
@@ -125,13 +137,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         document.removeEventListener('click', onDocumentClick);
                         markerForm = null;
                     }
-
-                    // Сохранение в localStorage
-                    const markerData = { text, type, coordinates, timestamp: Date.now() };
-                    const savedMarkers = JSON.parse(localStorage.getItem('pendingMarkers')) || [];
-                    savedMarkers.push(markerData);
-                    localStorage.setItem('pendingMarkers', JSON.stringify(savedMarkers));
-                    addLocalMarker(markerData);
                 } else {
                     Swal.fire({
                         title: 'Ошибка!',
@@ -141,7 +146,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     });
                 }
             }).catch(error => {
-                hideLoader();  // Скрыть лоадер даже в случае ошибки
+                hideLoader();
                 console.error('Ошибка:', error);
                 Swal.fire({
                     title: 'Ошибка!',
@@ -159,7 +164,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
         }
     }
-
 
     document.getElementById('copy-coordinates').addEventListener('click', function (event) {
         if (clickLatLng) {

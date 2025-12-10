@@ -101,13 +101,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function submitMarker() {
         const text = document.getElementById('markerText').value;
         const type = document.getElementById('markerType').value;
-        const coordinates = `${Math.round(clickLatLng.lng)}, ${Math.round(clickLatLng.lat)}`;
-
+        const coordinates = clickLatLng;
+        const coord_context = `${Math.round(clickLatLng.lng)}, ${Math.round(clickLatLng.lat)}`
         if (text && type) {
+            showLoader();
+
             const title = `Запрос на добавление метки: ${text}`;
             const body = `**Тип метки**: ${type}\n
 **Описание**: ${text}\n
-**Координаты**: ${JSON.stringify(coordinates)}`;
+**Координаты**: ${Math.round(coordinates.lng), Math.round(coordinates.lat)}`;
 
             const url = `https://github.com/UrPrice/wrp-map-new/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
             window.open(url, '_blank')
@@ -117,12 +119,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 markerForm = null;
             }
             // Сохранение в localStorage
-            const markerData = { text, type, clickLatLng, timestamp: Date.now() };
+            const markerData = { text, type, coordinates, timestamp: Date.now() };
             const savedMarkers = JSON.parse(localStorage.getItem('pendingMarkers')) || [];
             savedMarkers.push(markerData);
             localStorage.setItem('pendingMarkers', JSON.stringify(savedMarkers));
             addLocalMarker(markerData);
 
+            hideLoader();
         } else {
             Swal.fire({
                 title: 'Внимание!',

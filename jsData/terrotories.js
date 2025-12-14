@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     addTerritory(1083 , 1255, 50, 'Nilf', 'Деревня Залипье');
     addTerritory(2772 , 469, 70, 'Nilf', 'Белые Сады');
     addTerritory(2921 , 497, 30, 'Nilf', 'Белые Сады');
-    addTerritory(2242 , 524, 80, 'Nilf', 'Деревня Ольшина');
-    addTerritory(2119 , 581, 30, 'Nilf', 'Деревня Ольшина');
+    addTerritory(2242 , 524, 80, 'Temeria', 'Деревня Ольшина');
+    addTerritory(2119 , 581, 30, 'Temeria', 'Деревня Ольшина');
     addTerritory(2550 , 750, 30, 'Nilf', 'Руины замка Реда');
     addTerritory(2234 , 2970, 140, 'Temeria', 'Залесье');
     addTerritory(3113 , 416, 50, 'Neutral', 'Сгоревшая деревня');
